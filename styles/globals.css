@@ -71,6 +71,21 @@ nav {
   user-select: none;
 }
 
+.blog-post-link {
+  @apply relative border-b-2 bg-origin-border bg-no-repeat text-gray-600 border-b-gray-200 dark:text-blue-300 dark:border-b-gray-600;
+  background-position: 50% 100%;
+  background-size: 0 0.1rem;
+}
+.blog-post-link:focus,
+.blog-post-link:hover {
+  @apply border-transparent bg-no-repeat;
+  background-image: linear-gradient(90.68deg, #b439df 0.26%, #a28181 102.37%);
+  background-position: 0 100%;
+  background-size: 100% 0.1rem;
+  transition-property: background-position, background-size;
+  transition-duration: 200ms;
+}
+
 @media (min-width: 768px) {
   .sticky-nav-full {
     @apply max-w-full border-none;

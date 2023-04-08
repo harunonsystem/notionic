@@ -1,20 +1,20 @@
 import BLOG from '@/blog.config'
 import Link from 'next/link'
-import Avatar from './NotionAvatar.js'
+import Avatar from './Avatar.js'
 import Social from '../Common/Social.js'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import {
-  MailIcon,
-  RssIcon,
-  ClipboardCheckIcon
-} from '@heroicons/react/outline'
+import { MailIcon, RssIcon, ClipboardCheckIcon } from '@heroicons/react/outline'
 import dynamic from 'next/dynamic'
 import { NotionRenderer } from 'react-notion-x'
 
-const Collection = dynamic(() =>
-  import('react-notion-x/build/third-party/collection').then((m) => m.Collection), { ssr: true }
+const Collection = dynamic(
+  () =>
+    import('react-notion-x/build/third-party/collection').then(
+      (m) => m.Collection
+    ),
+  { ssr: true }
 )
 
 const Hero = ({ blockMap }) => {
@@ -23,12 +23,14 @@ const Hero = ({ blockMap }) => {
   const t = lang[locale]
 
   const clickCopy = async () => {
-    setShowCopied(true)
-    navigator.clipboard.writeText(BLOG.link + '/feed')
-    setTimeout(() => {
-      setShowCopied(false)
-    }, 1000)
+    // setShowCopied(true)
+    // navigator.clipboard.writeText(BLOG.link + '/feed')
+    // setTimeout(() => {
+    //   setShowCopied(false)
+    // }, 1000)
   }
+
+  const router = useRouter()
 
   return (
     <>
@@ -41,17 +43,17 @@ const Hero = ({ blockMap }) => {
           />
           <Social />
           <div className='flex flex-col sm:flex-row sm:justify-center gap-4 mt-6'>
-            <Link passHref href='/contact' scroll={false}>
-              <button className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>
+              <button onClick={() => router.push('/contact')} className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>
                 <MailIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
                 <span className='ml-4 flex items-start flex-col leading-none'>
                   <span className='text-xs text-gray-600 dark:text-day mb-1'>
                     {t.HERO.HOME.CONTACT_BUTTON_DES}
                   </span>
-                  <span className='font-medium'>{t.HERO.HOME.CONTACT_BUTTON}</span>
+                  <span className='font-medium'>
+                    {t.HERO.HOME.CONTACT_BUTTON}
+                  </span>
                 </span>
               </button>
-            </Link>
             {showCopied ? (
               <button
                 disabled
@@ -69,6 +71,7 @@ const Hero = ({ blockMap }) => {
               </button>
             ) : (
               <button
+                disabled
                 onClick={() => clickCopy()}
                 className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
               >
@@ -77,14 +80,14 @@ const Hero = ({ blockMap }) => {
                   <span className='text-xs text-gray-600 dark:text-day mb-1'>
                     {t.HERO.RSS_BUTTON_DES}
                   </span>
-                  <span className='font-medium'>{t.HERO.HOME.RSS_BUTTON}</span>
+                  <span className='font-medium text-gray-500'>{t.HERO.HOME.RSS_BUTTON}</span>
                 </span>
               </button>
             )}
           </div>
         </div>
         <div className='w-2/5'>
-          <Avatar className='text-gray-600 dark:text-gray-300' />
+          <Avatar />
         </div>
       </div>
     </>

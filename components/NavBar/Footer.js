@@ -28,27 +28,27 @@ const Footer = ({ fullWidth }) => {
   const from = +BLOG.since
 
   const links = [
-    {
-      id: 0,
-      name: t.NAV.ABOUT,
-      to: BLOG.path || '/about',
-      icon: <UserIcon className='inline-block mb-1 h-5 w-5' />,
-      show: true
-    },
-    {
-      id: 1,
-      name: t.NAV.FRINEDS,
-      to: '/friends',
-      icon: <UsersIcon className='inline-block mb-1 h-5 w-5' />,
-      show: BLOG.pagesShow.friends
-    },
-    {
-      id: 2,
-      name: t.NAV.BOOKS,
-      to: '/books',
-      icon: <BookOpenIcon className='inline-block mb-1 h-5 w-5' />,
-      show: BLOG.pagesShow.books
-    },
+    // {
+    //   id: 0,
+    //   name: t.NAV.ABOUT,
+    //   to: BLOG.path || '/about',
+    //   icon: <UserIcon className='inline-block mb-1 h-5 w-5' />,
+    //   show: true
+    // },
+    // {
+    //   id: 1,
+    //   name: t.NAV.FRIENDS,
+    //   to: '/friends',
+    //   icon: <UsersIcon className='inline-block mb-1 h-5 w-5' />,
+    //   show: BLOG.pagesShow.friends
+    // },
+    // {
+    //   id: 2,
+    //   name: t.NAV.BOOKS,
+    //   to: '/books',
+    //   icon: <BookOpenIcon className='inline-block mb-1 h-5 w-5' />,
+    //   show: BLOG.pagesShow.books
+    // },
     {
       id: 3,
       name: t.NAV.CONTACT,
@@ -57,6 +57,9 @@ const Footer = ({ fullWidth }) => {
       show: BLOG.pagesShow.contact
     }
   ]
+
+  // splice https://
+  const repositoryName = t.FOOTER.ORIGIN_REPOSITORY_LINK.replace(/(^\w+:|^)\/\//, '')
 
   return (
     <motion.div
@@ -100,6 +103,12 @@ const Footer = ({ fullWidth }) => {
               {t.FOOTER.COPYRIGHT_NAME}
             </a>
             {t.FOOTER.COPYRIGHT_END}
+          </p>
+          <p className='md:flex block py-1'>
+            {t.FOOTER.ORIGIN_REPOSITORY_DESCRIPTION}
+            <a href={`${t.FOOTER.ORIGIN_REPOSITORY_LINK}`} className='underline pl-2'>
+              {repositoryName}
+            </a>
           </p>
         </div>
       </footer>
