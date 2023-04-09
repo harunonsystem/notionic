@@ -1,5 +1,5 @@
 import Container from '@/components/Container'
-import NewsletterHero from "@/components/Hero/newsletter";
+import NewsletterHero from "@/components/Hero/Newsletter";
 import BlogPost from '@/components/BlogPost'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
