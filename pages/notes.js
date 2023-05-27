@@ -2,7 +2,7 @@ import Container from '@/components/Container'
 import NotesHero from '@/components/Hero/Notes'
 import { getPostBlocks, getAllPosts } from '@/lib/notion'
 import BLOG from '@/blog.config'
-import NotePost from '@/components/NotePost'
+import BlogPost from '@/components/BlogPost'
 
 export async function getStaticProps() {
   const notes = await getAllPosts({ onlyNotes: true })
@@ -31,7 +31,7 @@ const Notes = ({ notes, blockMap }) => {
     <Container title={BLOG.news} description={BLOG.description}>
       <NotesHero blockMap={blockMap} />
       {notes.map((note) => (
-        <NotePost key={note.id} note={note} />
+        <BlogPost key={note.id} post={note} />
       ))}
     </Container>
   )
