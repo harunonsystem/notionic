@@ -7,11 +7,11 @@ import Link from 'next/link'
 
 export default function Loading({ notionSlug }) {
   const { locale } = useRouter()
-  const [showNotion, setshowNotion] = useState(false)
+  const [showNotion, setShowNotion] = useState(false)
 
   if (notionSlug) {
     setTimeout(() => {
-      setshowNotion(true)
+      setShowNotion(true)
     }, 3000)
   }
 

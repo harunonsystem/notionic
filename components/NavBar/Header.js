@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
@@ -15,8 +15,8 @@ import Social from '../Common/Social.js'
 import ThemeSwitcher from './ThemeSwitcher.js'
 import LangSwitcher from './LangSwitcher.js'
 import { motion } from 'framer-motion'
-import ProfileFile from '@/public/harunon_refia_crop.png'
 import Image from 'next/image'
+import ProfileFile from '@/public/harunon_refia_crop.png'
 
 const NavBar = () => {
   const router = useRouter()
@@ -91,8 +91,10 @@ const NavBar = () => {
         )}
       </ul>
 
-      <ThemeSwitcher />
-      <LangSwitcher />
+      <div className='nav-func-btn block'>
+        <ThemeSwitcher />
+        <LangSwitcher />
+      </div>
 
       {/* Mobile Phone Menu */}
       <div className='md:hidden mr-2 block '>
@@ -105,21 +107,19 @@ const NavBar = () => {
           <MenuIcon className='inline-block mb-1 h-5 w-5' />
         </button>
         {showMenu && (
-          <div className='absolute right-0 w-40 mr-4 mt-2 origin-top-right bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600 rounded-md shadow-lg outline-none'>
+          <div className='absolute right-0 w-40 mr-4 mt-2 bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600 rounded-md shadow-lg outline-none'>
             <div className='py-1'>
               {links.map(
                 (link) =>
                   link.show && (
-                    <Link
-                      passHref
-                      key={link.id}
-                      href={link.to}
-                      scroll={false}
-                      onClick={() => setShowMenu((showMenu) => !showMenu)}
-                      className='hover:bg-gray-100 dark:hover:bg-gray-600 font-light block justify-between w-full px-4 py-2 leading-5'
-                    >
-                      {link.icon}
-                      <span className='m-1'>{link.name}</span>
+                    <Link passHref key={link.id} href={link.to} scroll={false}>
+                      <button
+                        onClick={() => setShowMenu((showMenu) => !showMenu)}
+                        className='text-left hover:bg-gray-100 dark:hover:bg-gray-600 font-light block justify-between w-full px-4 py-2 leading-5'
+                      >
+                        {link.icon}
+                        <span className='m-1'>{link.name}</span>
+                      </button>
                     </Link>
                   )
               )}
@@ -137,36 +137,38 @@ const NavBar = () => {
 const Header = ({ navBarTitle, fullWidth }) => {
   const [showTitle, setShowTitle] = useState(false)
   const useSticky = !BLOG.autoCollapsedNavBar
-  const navRef = useRef(null)
-  const sentinelRef = useRef([])
-  const handler = ([entry]) => {
-    if (navRef && navRef.current && useSticky) {
-      if (!entry.isIntersecting) {
-        navRef.current?.classList.add('sticky-nav-full')
+  const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
+  const sentinelRef = useRef(/** @type {HTMLDivElement} */ undefined)
+  const handler = useCallback(
+    ([entry]) => {
+      if (useSticky && navRef.current) {
+        navRef.current?.classList.toggle(
+          'sticky-nav-full',
+          !entry.isIntersecting
+        )
       } else {
-        navRef.current?.classList.remove('sticky-nav-full')
+        navRef.current?.classList.add('remove-sticky')
       }
-    } else {
-      navRef.current?.classList.add('remove-sticky')
-    }
-  }
+    },
+    [useSticky]
+  )
+
   useEffect(() => {
+    const sentinelEl = sentinelRef.current
+    const observer = new window.IntersectionObserver(handler)
+    observer.observe(sentinelEl)
+
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 100) {
+      if (window.pageYOffset > 400) {
         setShowTitle(true)
       } else {
         setShowTitle(false)
       }
     })
-
-    const observer = new window.IntersectionObserver(handler)
-    observer.observe(sentinelRef.current)
-    // Don't touch this, I have no idea how it works XD
-    // return () => {
-    //   if (sentinelRef.current) obvserver.unobserve(sentinelRef.current)
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sentinelRef])
+    return () => {
+      sentinelEl && observer.unobserve(sentinelEl)
+    }
+  }, [handler, sentinelRef])
   return (
     <>
       <div className='observer-element h-4 md:h-12' ref={sentinelRef}></div>
@@ -179,8 +181,13 @@ const Header = ({ navBarTitle, fullWidth }) => {
       >
         <div className='flex items-center'>
           <Link passHref href='/' scroll={false} aria-label={BLOG.title}>
-            <motion.div className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current'>
-              <Image src={ProfileFile} alt={BLOG.title} width={40} height={40} />
+            <motion.div>
+              <Image
+                src={ProfileFile}
+                alt={BLOG.title}
+                width={40}
+                height={40}
+              />
             </motion.div>
           </Link>
           {navBarTitle ? (

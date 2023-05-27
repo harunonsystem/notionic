@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  dayjs:
+    specifier: ^1.11.7
+    version: 1.11.7
   feed:
     specifier: ^4.2.2
     version: 4.2.2
@@ -61,7 +64,7 @@ devDependencies:
     specifier: ^17.0.39
     version: 17.0.56
   autoprefixer:
-    specifier: ^10.4.0
+    specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.21)
   eslint:
     specifier: ^8.36.0
@@ -73,17 +76,20 @@ devDependencies:
     specifier: ^8.0.1
     version: 8.0.3
   next-sitemap:
-    specifier: ^3.1.29
-    version: 3.1.29(@next/env@13.3.0)(next@13.3.0)
+    specifier: ^4.0.6
+    version: 4.0.6(@next/env@13.3.0)(next@13.3.0)
   postcss:
-    specifier: ^8.4.18
+    specifier: ^8.4.21
     version: 8.4.21
   prettier:
     specifier: ^2.7.1
     version: 2.8.7
   tailwindcss:
-    specifier: ^3.2.3
+    specifier: ^3.2.7
     version: 3.3.1(postcss@8.4.21)
+  typescript:
+    specifier: ^5.0.3
+    version: 5.0.4
 
 packages:
 
@@ -1108,6 +1114,10 @@ packages:
   /damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: true
+
+  /dayjs@1.11.7:
+    resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
+    dev: false
 
   /debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -2632,8 +2642,8 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: false
 
-  /next-sitemap@3.1.29(@next/env@13.3.0)(next@13.3.0):
-    resolution: {integrity: sha512-7UQyfpI7obOdB11aCswWYfqRn5CR0YSmWHo1r/uarrFfZD5PyyAWtQlgP6jNqDW0eX1ZJWERBwmJ2dLjl4nT8Q==}
+  /next-sitemap@4.0.6(@next/env@13.3.0)(next@13.3.0):
+    resolution: {integrity: sha512-pZ9tynYe6mRR189qZqcOlWVgM1Gxo07BJQW0AjerKmLwQOt+6FQMdaDgifgCt6jDT3Y3EG/+NUDDZRcd0gbPkA==}
     engines: {node: '>=14.18'}
     hasBin: true
     peerDependencies:

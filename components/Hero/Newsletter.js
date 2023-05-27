@@ -5,12 +5,7 @@ import { useState } from 'react'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { NewspaperIcon, ClipboardCheckIcon } from '@heroicons/react/outline'
-import dynamic from 'next/dynamic'
-import { NotionRenderer } from 'react-notion-x'
-
-const Collection = dynamic(() =>
-  import('react-notion-x/build/third-party/collection').then((m) => m.Collection), { ssr: true }
-)
+import NotionRenderer from '@/components/Post/NotionRenderer'
 
 const NewsletterHero = ({ blockMap }) => {
   const [showCopied, setShowCopied] = useState(false)
@@ -18,7 +13,7 @@ const NewsletterHero = ({ blockMap }) => {
   const t = lang[locale]
 
   const clickCopy = async () => {
-    // setShowCopied(true)
+    setShowCopied(true)
     await navigator.clipboard.writeText(BLOG.link + '/feed')
     setTimeout(() => {
       setShowCopied(false)
@@ -31,8 +26,9 @@ const NewsletterHero = ({ blockMap }) => {
         <div className='flex flex-col md:w-4/5 md:items-start mb-6 md:mb-0 md:text-left'>
           <NotionRenderer
             className='md:ml-0'
-            recordMap={blockMap}
-            components={{ Collection }}
+            blockMap={blockMap}
+            frontMatter={{}}
+            subPageTitle={null}
           />
           <Social />
           <h2 className='text-xl pt-8 pb-4 font-light text-gray-500 dark:text-day'>
@@ -40,12 +36,17 @@ const NewsletterHero = ({ blockMap }) => {
           </h2>
 
           <div className='flex flex-col sm:flex-row sm:justify-center gap-4'>
-            {/*<Link passHref href={BLOG.telegramChannelUrl} scroll={false}>*/}
-            {/*  <button className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>*/}
+            {/*<Link*/}
+            {/*  passHref*/}
+            {/*  href={BLOG.telegramChannelUrl}*/}
+            {/*  scroll={false}*/}
+            {/*  className='flex'*/}
+            {/*>*/}
+            {/*  <button className='w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>*/}
             {/*    <svg*/}
             {/*      xmlns='http://www.w3.org/2000/svg'*/}
             {/*      fill='currentColor'*/}
-            {/*      className='text-gray-600 dark:text-day w-7 h-7'*/}
+            {/*      className='text-gray-600 dark:text-day w-7 h-7 mt-1'*/}
             {/*      viewBox='0 0 24 24'*/}
             {/*    >*/}
             {/*      <path fill='none' d='M0 0h24v24H0z' />*/}
@@ -55,7 +56,9 @@ const NewsletterHero = ({ blockMap }) => {
             {/*      <span className='text-xs text-gray-600 dark:text-day mb-1'>*/}
             {/*        {t.HERO.NEWSLETTER.TG_CHANNEL}*/}
             {/*      </span>*/}
-            {/*      <span className='font-medium'>@{BLOG.telegramChannelName}</span>*/}
+            {/*      <span className='font-medium'>*/}
+            {/*        @{BLOG.telegramChannelName}*/}
+            {/*      </span>*/}
             {/*    </span>*/}
             {/*  </button>*/}
             {/*</Link>*/}
@@ -69,7 +72,9 @@ const NewsletterHero = ({ blockMap }) => {
                   <span className='text-xs text-gray-600 dark:text-day mb-1'>
                     {t.HERO.RSS_BUTTON_DES_COPIED}
                   </span>
-                  <span className='font-medium'>{t.HERO.RSS_BUTTON_COPIED}</span>
+                  <span className='font-medium'>
+                    {t.HERO.RSS_BUTTON_COPIED}
+                  </span>
                 </span>
               </button>
             ) : (
@@ -90,7 +95,9 @@ const NewsletterHero = ({ blockMap }) => {
                   <span className='text-xs text-gray-600 dark:text-day mb-1'>
                     {t.HERO.RSS_BUTTON_DES}
                   </span>
-                  <span className='font-medium text-gray-500'>{t.HERO.NEWSLETTER.RSS_BUTTON}</span>
+                  <span className='font-medium'>
+                    {t.HERO.NEWSLETTER.RSS_BUTTON}
+                  </span>
                 </span>
               </button>
             )}
