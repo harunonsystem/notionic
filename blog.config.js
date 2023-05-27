@@ -30,7 +30,9 @@ const BLOG = {
   socialLink: {
     twitter: 'https://twitter.com/harunonsystem',
     github: 'https://github.com/harunonsystem',
-    twitter_dm: 'https://www.twitter.com/messages/compose?recipient_id=harunonsystem'
+    twitter_dm:
+      'https://www.twitter.com/messages/compose?recipient_id=harunonsystem',
+    keybase: 'https://keybase.io/harunon'
     // telegram: 'https://t.me/zuolan'
   },
   seo: {

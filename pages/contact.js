@@ -19,10 +19,10 @@ export const Contact = () => {
         <p className='max-w-screen-md font-light md:text-lg text-center mx-auto'>
           {t.CONTACT.TWITTER_DM_DESCRIPTION}
           <a
-            href={BLOG.socialLink.twitter_dm}
+            href={`${t.CONTACT.TWITTER_DM_LINK}${t.CONTACT.TWITTER_DM_USERID}`}
             className='hover:text-indigo-500 active:text-indigo-600 underline transition duration-100'
           >
-            @{BLOG.socialLink.twitter}
+            @{t.CONTACT.TWITTER_USERNAME}
           </a>
         </p>
       </div>
