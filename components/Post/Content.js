@@ -8,7 +8,7 @@ import NotionRenderer from '@/components/Post/NotionRenderer'
 
 import { ChevronLeftIcon } from '@heroicons/react/outline'
 
-export default function Content(props) {
+export default function Content (props) {
   const { frontMatter, blockMap, pageTitle } = props
 
   return (
@@ -41,7 +41,7 @@ export default function Content(props) {
           )}
         </nav>
       )}
-      <div className='-mt-4 relative'>
+      <div className="-mt-4 relative">
         <NotionRenderer
           blockMap={blockMap}
           previewImages={BLOG.previewImagesEnabled}
