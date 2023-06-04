@@ -45,7 +45,7 @@ const Layout = ({
           pageTitle={showSubPageTitle ? pageTitle : null}
         />
       </motion.div>
-      <PostFooter />
+      <PostFooter title={frontMatter.title} />
       <Comments frontMatter={frontMatter} />
     </Container>
   )
