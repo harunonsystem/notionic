@@ -4,14 +4,16 @@ import Link from 'next/link'
 import { ChevronLeftIcon } from '@heroicons/react/outline'
 import BLOG from '@/blog.config'
 
-export default function TableOfContents ({ blockMap, frontMatter, pageTitle }) {
+export default function TableOfContents({ blockMap, frontMatter, pageTitle }) {
   let collectionId, page
   if (pageTitle) {
     collectionId = Object.keys(blockMap.block)[0]
     page = blockMap.block[collectionId].value
   } else {
     collectionId = Object.keys(blockMap.collection)[0]
-    page = Object.values(blockMap.block).find(block => block.value.parent_id === collectionId).value
+    page = Object.values(blockMap.block).find(
+      (block) => block.value.parent_id === collectionId
+    ).value
   }
   const nodes = getPageTableOfContents(page, blockMap)
   if (!nodes.length) return null
@@ -19,13 +21,16 @@ export default function TableOfContents ({ blockMap, frontMatter, pageTitle }) {
   /**
    * @param {string} id - The ID of target heading block (could be in UUID format)
    */
-  function scrollTo (id) {
+  function scrollTo(id) {
     id = id.replaceAll('-', '')
     const target = document.querySelector(`.notion-block-${id}`)
     if (!target) return
     // `65` is the height of expanded nav
     // TODO: Remove the magic number
-    const top = document.documentElement.scrollTop + target.getBoundingClientRect().top - 65
+    const top =
+      document.documentElement.scrollTop +
+      target.getBoundingClientRect().top -
+      65
     document.documentElement.scrollTo({
       top,
       behavior: 'smooth'
@@ -33,9 +38,7 @@ export default function TableOfContents ({ blockMap, frontMatter, pageTitle }) {
   }
 
   return (
-    <div
-      className='hidden xl:block xl:fixed ml-4 text-sm text-gray-500 dark:text-gray-400 whitespace'
-    >
+    <div className='hidden xl:block xl:fixed ml-4 text-sm text-gray-500 dark:text-gray-400 whitespace'>
       {pageTitle && (
         <Link
           passHref
@@ -47,8 +50,11 @@ export default function TableOfContents ({ blockMap, frontMatter, pageTitle }) {
           <span className='ml-1'>{frontMatter.title}</span>
         </Link>
       )}
-      {nodes.map(node => (
-        <div key={node.id} className='px-2 hover:bg-gray-200 hover:dark:bg-gray-700 rounded-lg'>
+      {nodes.map((node) => (
+        <div
+          key={node.id}
+          className='px-2 hover:bg-gray-200 hover:dark:bg-gray-700 rounded-lg'
+        >
           <a
             data-target-id={node.id}
             className='block py-1 cursor-pointer'

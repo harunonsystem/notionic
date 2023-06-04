@@ -4,9 +4,11 @@ import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 
 import WechatPay from '@/components/Post/WechatPay'
+import ShareButton from '@/components/Post/ShareButton'
 import { MailIcon, ThumbUpIcon } from '@heroicons/react/outline'
 
-const PostFooter = () => {
+const PostFooter = (props) => {
+  const { title } = props
   const [showPay, setShowPay] = useState(false)
   const { locale } = useRouter()
   const router = useRouter()
@@ -37,6 +39,7 @@ const PostFooter = () => {
           </button>
         </div>
       </div>
+      <ShareButton title={title} />
       {showPay && <WechatPay />}
     </div>
   )

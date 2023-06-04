@@ -2,8 +2,6 @@ import { lang } from '@/lib/lang'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Logo from '@/components/Common/Logo'
-
 const Page404 = ({ statusCode }) => {
   const { locale } = useRouter()
   const t = lang[locale]
@@ -12,7 +10,7 @@ const Page404 = ({ statusCode }) => {
       <div className='max-w-screen-2xl px-4 md:px-8 mx-auto'>
         <div className='flex flex-col items-center'>
           <div className='inline-flex items-center gap-2.5 mb-8'>
-            <Logo className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current' />
+            <p>{'><'}</p>
           </div>
 
           <p className='text-sm md:text-base font-semibold uppercase mb-4'>

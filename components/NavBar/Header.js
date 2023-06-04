@@ -14,8 +14,9 @@ import {
 import Social from '../Common/Social.js'
 import ThemeSwitcher from './ThemeSwitcher.js'
 import LangSwitcher from './LangSwitcher.js'
-import Logo from '@/components/Common/Logo'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+import ProfileFile from '@/public/harunon_refia_crop.png'
 
 const NavBar = () => {
   const router = useRouter()
@@ -41,7 +42,7 @@ const NavBar = () => {
     {
       id: 1,
       name: t.NAV.NEWSLETTER,
-      to: '/newsletter',
+      to: '/news',
       icon: <NewspaperIcon className='inline-block mb-1 h-5 w-5' />,
       show: BLOG.pagesShow.newsletter
     },
@@ -86,7 +87,6 @@ const NavBar = () => {
                   </div>
                 </li>
               </Link>
-
             )
         )}
       </ul>
@@ -99,7 +99,8 @@ const NavBar = () => {
       {/* Mobile Phone Menu */}
       <div className='md:hidden mr-2 block '>
         <button
-          type='button' aria-label='Menu'
+          type='button'
+          aria-label='Menu'
           onClick={() => setShowMenu((showMenu) => !showMenu)}
           className='hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block p-2 -mr-3 md:pb-3'
         >
@@ -138,13 +139,19 @@ const Header = ({ navBarTitle, fullWidth }) => {
   const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
   const sentinelRef = useRef(/** @type {HTMLDivElement} */ undefined)
-  const handler = useCallback(([entry]) => {
-    if (useSticky && navRef.current) {
-      navRef.current?.classList.toggle('sticky-nav-full', !entry.isIntersecting)
-    } else {
-      navRef.current?.classList.add('remove-sticky')
-    }
-  }, [useSticky])
+  const handler = useCallback(
+    ([entry]) => {
+      if (useSticky && navRef.current) {
+        navRef.current?.classList.toggle(
+          'sticky-nav-full',
+          !entry.isIntersecting
+        )
+      } else {
+        navRef.current?.classList.add('remove-sticky')
+      }
+    },
+    [useSticky]
+  )
 
   useEffect(() => {
     const sentinelEl = sentinelRef.current
@@ -175,7 +182,12 @@ const Header = ({ navBarTitle, fullWidth }) => {
         <div className='flex items-center'>
           <Link passHref href='/' scroll={false} aria-label={BLOG.title}>
             <motion.div>
-              <Logo className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current' />
+              <Image
+                src={ProfileFile}
+                alt={BLOG.title}
+                width={40}
+                height={40}
+              />
             </motion.div>
           </Link>
           {navBarTitle ? (

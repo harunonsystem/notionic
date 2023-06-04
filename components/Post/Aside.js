@@ -4,7 +4,11 @@ import Link from 'next/link'
 
 import TableOfContents from '@/components/Post/TableOfContents'
 import WechatPay from '@/components/Post/WechatPay'
-import { ThumbUpIcon, ChevronLeftIcon, ArrowUpIcon } from '@heroicons/react/outline'
+import {
+  ThumbUpIcon,
+  ChevronLeftIcon,
+  ArrowUpIcon
+} from '@heroicons/react/outline'
 
 const Aside = ({ pageTitle, blockMap, frontMatter }) => {
   const [showPay, setShowPay] = useState(false)
@@ -44,9 +48,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }) => {
             )}
             {showScrollElement && (
               <button
-                onClick={() =>
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className='text-gray-600 dark:text-day hover:text-gray-400 dark:hover:text-gray-400'
               >
                 <ArrowUpIcon className='w-5 h-5' />
@@ -55,9 +57,9 @@ const Aside = ({ pageTitle, blockMap, frontMatter }) => {
           </div>
         </div>
         {showScrollElement && (
-          <div className="absolute left-full toc-fade-in">
+          <div className='absolute left-full toc-fade-in'>
             <TableOfContents
-              className="sticky"
+              className='sticky'
               blockMap={blockMap}
               pageTitle={pageTitle}
               frontMatter={frontMatter}

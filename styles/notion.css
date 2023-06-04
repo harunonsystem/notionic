@@ -151,3 +151,9 @@ svg + .notion-page-title-text {
 .notion-collection-row {
   @apply hidden;
 }
+.notion-external {
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+.notion-external-subtitle {
+  @apply text-gray-400 dark:text-gray-500;
+}

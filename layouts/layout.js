@@ -8,7 +8,12 @@ import Aside from '@/components/Post/Aside'
 import Comments from '@/components/Post/Comments'
 import PostFooter from '@/components/Post/PostFooter'
 
-const Layout = ({ blockMap, frontMatter, fullWidth = false, subPage = false }) => {
+const Layout = ({
+  blockMap,
+  frontMatter,
+  fullWidth = false,
+  subPage = false
+}) => {
   const [showSubPageTitle, setShowSubPageTitle] = useState(false)
 
   const pageTitle = getPageTitle(blockMap)
@@ -20,7 +25,9 @@ const Layout = ({ blockMap, frontMatter, fullWidth = false, subPage = false }) =
 
   return (
     <Container
-      title={`${frontMatter.title}${frontMatter.title === pageTitle ? '' : ' | ' + pageTitle}`}
+      title={`${frontMatter.title}${
+        frontMatter.title === pageTitle ? '' : ' | ' + pageTitle
+      }`}
       description={frontMatter.summary}
       // date={new Date(frontMatter.publishedAt).toISOString()}
       type='article'
@@ -38,7 +45,7 @@ const Layout = ({ blockMap, frontMatter, fullWidth = false, subPage = false }) =
           pageTitle={showSubPageTitle ? pageTitle : null}
         />
       </motion.div>
-      <PostFooter />
+      <PostFooter title={frontMatter.title} />
       <Comments frontMatter={frontMatter} />
     </Container>
   )
