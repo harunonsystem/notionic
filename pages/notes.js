@@ -1,13 +1,14 @@
 import Container from '@/components/Container'
-import NotesHero from '@/components/Hero/Notes'
 import { getPostBlocks, getAllPosts } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
 
 export async function getStaticProps() {
+  const allowSlug = ['notes', 'weekly']
   const notes = await getAllPosts({ onlyNotes: true })
+  const weekly = await getAllPosts({ onlyWeekly: true })
   const heros = await getAllPosts({ onlyHidden: true })
-  const hero = heros.find((t) => t.slug === 'notes')
+  const hero = heros.find((t) => allowSlug.includes(t.slug))
 
   let blockMap
   try {
@@ -17,21 +18,21 @@ export async function getStaticProps() {
     // return { props: { post: null, blockMap: null } }
   }
 
+  const posts = [...notes, ...weekly]
   return {
     props: {
-      notes,
+      posts,
       blockMap
     },
     revalidate: 1
   }
 }
 
-const Notes = ({ notes, blockMap }) => {
+const Notes = ({ posts, blockMap }) => {
   return (
     <Container title={BLOG.news} description={BLOG.description}>
-      <NotesHero blockMap={blockMap} />
-      {notes.map((note) => (
-        <BlogPost key={note.id} post={note} />
+      {posts?.map((post) => (
+        <BlogPost key={post.id} post={post} />
       ))}
     </Container>
   )
