@@ -18,7 +18,8 @@ export async function getStaticProps() {
     // return { props: { post: null, blockMap: null } }
   }
 
-  const posts = [...notes, ...weekly]
+  const posts = [...notes]
+  // const posts = [...notes, ...weekly]
   return {
     props: {
       posts,
