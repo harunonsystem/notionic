@@ -7,6 +7,7 @@ import TagItem from '@/components/Common/TagItem'
 import NotionRenderer from '@/components/Post/NotionRenderer'
 
 import { ChevronLeftIcon } from '@heroicons/react/outline'
+import PastOneYear from '@/components/Post/PastOneYear'
 
 export default function Content (props) {
   const { frontMatter, blockMap, pageTitle } = props
@@ -41,6 +42,7 @@ export default function Content (props) {
           )}
         </nav>
       )}
+      <PastOneYear date={frontMatter.date} />
       <div className="-mt-4 relative">
         <NotionRenderer
           blockMap={blockMap}
