@@ -26,7 +26,7 @@
     "feed": "^4.2.2",
     "framer-motion": "6.4.3",
     "got": "^12.5.3",
-    "next": "^13.2.4",
+    "next": "14.2.10",
     "next-themes": "^0.1.1",
     "notion-client": "^6.16.0",
     "notion-utils": "^6.16.0",
@@ -38,8 +38,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-notion-x": "^6.16.0",
-    "sharp": "^0.30.5",
-    "use-ackee": "^3.0.0"
+    "sharp": "0.32.6",
+    "use-ackee": "^3.1.0"
   },
   "devDependencies": {
     "@heroicons/react": "^1.0.5",
@@ -49,7 +49,7 @@
     "eslint-config-next": "^13.2.4",
     "husky": "^8.0.1",
     "next-sitemap": "^4.0.6",
-    "postcss": "^8.4.21",
+    "postcss": "8.4.31",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.2.7",
     "typescript": "^5.0.3"
