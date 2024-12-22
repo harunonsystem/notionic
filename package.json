@@ -46,8 +46,10 @@
   "devDependencies": {
     "@heroicons/react": "^1.0.5",
     "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/react": "^17.0.39",
+    "@types/testing-library__jest-dom": "^6.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/ui": "2.1.8",
     "autoprefixer": "^10.4.14",
