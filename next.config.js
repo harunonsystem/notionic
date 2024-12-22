@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   i18n: {
     locales: ['en', 'ja'],
@@ -84,5 +86,9 @@ module.exports = {
       //   destination: 'https://www.craft.do/404'
       // }
     ]
+  },
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname)
+    return config
   }
 }
