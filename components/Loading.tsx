@@ -1,31 +1,30 @@
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ExternalLinkIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
-import Image from 'next/image'
-import ProfileFile from '@/public/harunon_refia_crop.png'
 
-export default function Loading({ notionSlug }) {
+interface LoadingProps {
+  notionSlug: string
+}
+
+export default function Loading({ notionSlug }: LoadingProps) {
   const { locale } = useRouter()
   const [showNotion, setShowNotion] = useState(false)
 
-  if (notionSlug) {
-    setTimeout(() => {
-      setShowNotion(true)
-    }, 3000)
-  }
+  useEffect(() => {
+    if (notionSlug) {
+      const timer = setTimeout(() => setShowNotion(true), 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [notionSlug])
 
   const t = lang[locale]
   return (
     <div className='py-6 sm:py-8 lg:py-12'>
       <div className='max-w-screen-2xl px-4 md:px-8 mx-auto'>
         <div className='flex flex-col items-center'>
-          <div className='inline-flex items-center gap-2.5 mb-8'>
-            <Image src={ProfileFile} alt={BLOG.title} width={40} height={40} />
-          </div>
-
           <p className='inline-flex items-center text-sm md:text-base font-semibold uppercase mb-4'>
             <svg
               className='animate-spin -ml-1 mr-3 h-5 w-5 text-gray-400'
