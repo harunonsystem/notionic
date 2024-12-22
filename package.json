@@ -5,12 +5,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/izuolan/notionic.git"
+    "url": "https://github.com/harunonsystem/notionic.git"
   },
   "author": {
-    "name": "Zuo Lan",
-    "email": "i@zuolan.me",
-    "url": "https://zuolan.me"
+    "name": "harunonsystem"
   },
   "scripts": {
     "dev": "next dev",
@@ -53,9 +51,5 @@
     "prettier": "^2.7.1",
     "tailwindcss": "^3.2.7",
     "typescript": "^5.0.3"
-  },
-  "bugs": {
-    "url": "https://github.com/izuolan/notionic/issues",
-    "email": "i@zuolan.me"
   }
 }
