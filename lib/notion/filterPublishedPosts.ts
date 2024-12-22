@@ -1,4 +1,4 @@
-interface filterPublishedPostsProps {
+export interface filterPublishedPostsProps {
   posts: Array<{
     title: string
     slug: string
