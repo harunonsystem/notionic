@@ -1,16 +1,19 @@
-import BLOG from '@/blog.config'
-import { HashtagIcon, LinkIcon } from '@heroicons/react/outline'
+import { LinkIcon } from '@heroicons/react/outline'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-const ShareButton = (props) => {
+interface ShareButtonProps {
+  title?: string
+}
+
+export default function ShareButton(props: ShareButtonProps) {
   const { title } = props
   const { locale } = useRouter()
   const t = lang[locale]
 
   const [showCopied, setShowCopied] = useState(false)
-  const copyTitleAndUrl = (title, url) => {
+  const copyTitleAndUrl = (title: string, url: string) => {
     setShowCopied(true)
     const text = `${title} ${url}`
     navigator.clipboard.writeText(text).then((r) => r)
@@ -18,7 +21,7 @@ const ShareButton = (props) => {
       setShowCopied(false)
     }, 1000)
   }
-  const shareOnTwitter = (title, url) => {
+  const shareOnTwitter = (title: string, url: string) => {
     const text = encodeURIComponent(title)
     const href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
     window.open(href, 'twitter', 'width=600,height=400')
@@ -37,6 +40,7 @@ const ShareButton = (props) => {
           </button>
         ) : (
           <button
+            data-testid='copy-title-and-url'
             onClick={() => copyTitleAndUrl(title, window.location.href)}
             className='flex gap-1 bg-gray-400 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 hover:text-gray-600 dark:hover:text-gray-400 text-sm rounded-lg px-4 py-2'
           >
@@ -45,6 +49,7 @@ const ShareButton = (props) => {
           </button>
         )}
         <button
+          data-testid='share-twitter'
           onClick={() => shareOnTwitter(title, window.location.href)}
           className='flex gap-1 bg-gray-400 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 hover:text-gray-600 dark:hover:text-gray-400 text-sm rounded-lg px-4 py-2'
         >
@@ -65,5 +70,3 @@ const ShareButton = (props) => {
     </div>
   )
 }
-
-export default ShareButton

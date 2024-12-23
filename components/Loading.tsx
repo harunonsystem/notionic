@@ -6,7 +6,7 @@ import { ExternalLinkIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 
 interface LoadingProps {
-  notionSlug: string
+  notionSlug?: string
 }
 
 export default function Loading({ notionSlug }: LoadingProps) {
