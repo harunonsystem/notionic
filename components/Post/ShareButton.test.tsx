@@ -1,4 +1,5 @@
-import { act, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 import ShareButton from './ShareButton'
 import { describe, expect, test, vi } from 'vitest'
 

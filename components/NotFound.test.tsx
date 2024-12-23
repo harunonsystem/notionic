@@ -13,14 +13,14 @@ describe('NotFound', () => {
     render(<NotFound statusCode={props} />)
     expect(true).toBeTruthy()
     expect(
-      screen.getByText((content, el) => content.startsWith('404 - '))
+      screen.getByText((content) => content.startsWith('404 - '))
     ).toBeInTheDocument()
   })
 
   it('without props statusCode', () => {
     render(<NotFound statusCode='' />)
     expect(
-      screen.getByText((content, el) => content.startsWith('Error - '))
+      screen.getByText((content) => content.startsWith('Error - '))
     ).toBeInTheDocument()
   })
 })
