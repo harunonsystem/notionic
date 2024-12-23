@@ -2,7 +2,11 @@ import { lang } from '@/lib/lang'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const Page404 = ({ statusCode }) => {
+interface Page404Props {
+  statusCode: string
+}
+
+export default function Page404({ statusCode }: Page404Props) {
   const { locale } = useRouter()
   const t = lang[locale]
   return (
@@ -38,5 +42,3 @@ const Page404 = ({ statusCode }) => {
     </div>
   )
 }
-
-export default Page404

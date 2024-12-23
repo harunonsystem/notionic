@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   i18n: {
     locales: ['en', 'ja'],
@@ -6,7 +8,26 @@ module.exports = {
   },
   transpilePackages: ['dayjs'],
   images: {
-    domains: ['www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.notion.so',
+        port: '',
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.us-west-2.amazonaws.com',
+        port: '',
+        pathname: '/**'
+      }
+    ]
   },
   async headers() {
     return [
@@ -34,7 +55,7 @@ module.exports = {
       {
         source: '/notes/:pathname/x/:slug*',
         destination: '/api/htmlrewrite?pathname=:pathname&slug=/x/:slug*'
-      },
+      }
       // {
       //   source: '/api/:slug*',
       //   destination: 'https://www.craft.do/api/:slug*'
@@ -65,5 +86,9 @@ module.exports = {
       //   destination: 'https://www.craft.do/404'
       // }
     ]
+  },
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname)
+    return config
   }
 }

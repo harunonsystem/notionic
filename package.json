@@ -19,14 +19,16 @@
     "format": "prettier --write .",
     "lint": "next lint",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "dayjs": "^1.11.7",
     "feed": "^4.2.2",
     "framer-motion": "6.4.3",
     "got": "^12.5.3",
-    "next": "^13.2.4",
+    "next": "14.2.10",
     "next-themes": "^0.1.1",
     "notion-client": "^6.16.0",
     "notion-utils": "^6.16.0",
@@ -38,21 +40,30 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-notion-x": "^6.16.0",
-    "sharp": "^0.30.5",
-    "use-ackee": "^3.0.0"
+    "sharp": "0.32.6",
+    "use-ackee": "^3.1.0"
   },
   "devDependencies": {
     "@heroicons/react": "^1.0.5",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
     "@types/react": "^17.0.39",
+    "@types/testing-library__jest-dom": "^6.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/ui": "2.1.8",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.2.4",
     "husky": "^8.0.1",
+    "jsdom": "^25.0.1",
     "next-sitemap": "^4.0.6",
-    "postcss": "^8.4.21",
+    "postcss": "8.4.31",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.2.7",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^2.1.8"
   },
   "bugs": {
     "url": "https://github.com/izuolan/notionic/issues",
