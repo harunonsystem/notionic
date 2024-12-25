@@ -4,6 +4,9 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 
 import { NotionRenderer as Renderer } from 'react-notion-x'
+import Prism from 'prismjs'
+import 'prismjs/components/prism-js-templates'
+import { useEffect } from 'react'
 
 // Lazy-load some heavy components & override the renderers of some block types
 const components = {
@@ -67,6 +70,11 @@ export default function NotionRenderer(props) {
       return '/' + locale + '/s/' + id.replace(/-/g, '')
     }
   }
+
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
+
   return (
     <Renderer
       components={components}

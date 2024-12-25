@@ -3,8 +3,12 @@ import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import { useRouter } from 'next/router'
 
-import { getAllPagesInSpace, getPageBreadcrumbs, idToUuid } from 'notion-utils'
-import { defaultMapPageUrl } from 'react-notion-x'
+import {
+  defaultMapPageUrl,
+  getAllPagesInSpace,
+  getPageBreadcrumbs,
+  idToUuid
+} from 'notion-utils'
 
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
@@ -12,9 +16,7 @@ import NotFound from '@/components/NotFound'
 const Post = ({ post, blockMap }) => {
   const router = useRouter()
   if (router.isFallback) {
-    return (
-      <Loading notionSlug={router.asPath.split('/')[2]} />
-    )
+    return <Loading notionSlug={router.asPath.split('/')[2]} />
   }
   if (!post) {
     return <NotFound statusCode={404} />
@@ -42,14 +44,20 @@ export async function getStaticPaths() {
 
   // Remove post id
   const posts = await getAllPosts({ onlyNewsletter: false })
-  const postIds = Object.values(posts)
-    .map((postId) => '/s' + mapPageUrl(postId.id))
-  const noPostsIds = subpageIds.concat(postIds).filter(v => !subpageIds.includes(v) || !postIds.includes(v))
+  const postIds = Object.values(posts).map(
+    (postId) => '/s' + mapPageUrl(postId.id)
+  )
+  const noPostsIds = subpageIds
+    .concat(postIds)
+    .filter((v) => !subpageIds.includes(v) || !postIds.includes(v))
 
   const heros = await getAllPosts({ onlyHidden: true })
-  const heroIds = Object.values(heros)
-    .map((heroId) => '/s' + mapPageUrl(heroId.id))
-  const paths = noPostsIds.concat(heroIds).filter(v => !noPostsIds.includes(v) || !heroIds.includes(v))
+  const heroIds = Object.values(heros).map(
+    (heroId) => '/s' + mapPageUrl(heroId.id)
+  )
+  const paths = noPostsIds
+    .concat(heroIds)
+    .filter((v) => !noPostsIds.includes(v) || !heroIds.includes(v))
 
   return {
     paths,
@@ -89,7 +97,7 @@ export async function getStaticProps({ params: { subpage } }) {
   const pageAllowed = (page) => {
     // When page block space_id = NOTION_SPACES_ID
     let allowed = false
-    Object.values(page.block).forEach(block => {
+    Object.values(page.block).forEach((block) => {
       if (!allowed && block.value && block.value.space_id) {
         allowed = NOTION_SPACES_ID.includes(block.value.space_id)
       }
