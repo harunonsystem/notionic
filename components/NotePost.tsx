@@ -2,7 +2,15 @@ import BLOG from '@/blog.config.js'
 import Link from 'next/link'
 import ImageFallback from './Common/ImageFallback.js'
 
-const NotePost = ({ note }) => {
+interface NotePostProps {
+  note: {
+    title: string
+    slug: string
+    url: string
+  }
+}
+
+const NotePost = ({ note }: NotePostProps) => {
   const craftSlug = note.url.slice(23)
   return (
     <Link

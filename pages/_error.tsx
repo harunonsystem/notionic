@@ -1,6 +1,6 @@
 import NotFound from '@/components/NotFound'
 
-function Error({ statusCode }) {
+function Error({ statusCode }: { statusCode: number }) {
   return <NotFound statusCode={statusCode} />
 }
 

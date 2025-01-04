@@ -7,7 +7,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ProfileFile from '@/public/harunon_refia_crop.png'
 
-export default function Loading({ notionSlug }) {
+interface LoadingProps {
+  notionSlug?: string
+}
+
+export default function Loading({ notionSlug }: LoadingProps) {
   const { locale } = useRouter()
   const [showNotion, setShowNotion] = useState(false)
 

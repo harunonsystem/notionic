@@ -6,20 +6,21 @@ import getAllPageIds from './getAllPageIds'
 import getPageProperties from './getPageProperties'
 import filterPublishedPosts from './filterPublishedPosts'
 
-/**
- * @param {{ onlyNewsletter: boolean }} - false: all types / true: newsletter only
- * @param {{ onlyPost: boolean }} - false: all types / true: post only
- * @param {{ onlyNotes: boolean }} - false: all types / true: notes only
- * @param {{ onlyHidden: boolean }} - false: all types / true: hidden only
- * @param {{ onlyWeekly: boolean }} - false: all types / true: weekly only
- */
+interface GetAllPostsProps {
+  onlyNewsletter?: boolean
+  onlyPost?: boolean
+  onlyNotes?: boolean
+  onlyHidden?: boolean
+  onlyWeekly?: boolean
+}
+
 export async function getAllPosts({
-  onlyNewsletter = false,
-  onlyPost = false,
-  onlyNotes = false,
-  onlyHidden = false,
-  onlyWeekly = false
-}) {
+  onlyNewsletter,
+  onlyPost,
+  onlyWeekly,
+  onlyNotes,
+  onlyHidden
+}: GetAllPostsProps) {
   let id = BLOG.notionPageId
   const authToken = BLOG.notionAccessToken || null
   const api = new NotionAPI({ authToken })

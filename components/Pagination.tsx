@@ -2,9 +2,14 @@ import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/outline'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 
-const Pagination = ({ page, showNext }) => {
+interface PaginationProps {
+  page: string
+  showNext: boolean
+}
+
+const Pagination = ({ page, showNext }: PaginationProps) => {
   const { locale } = useRouter()
   const t = lang[locale]
   const currentPage = +page
@@ -16,7 +21,8 @@ const Pagination = ({ page, showNext }) => {
       className={`flex font-medium text-black dark:text-gray-100 ${additionalClassName}`}
     >
       {currentPage !== 1 && (
-        <Link scroll={false}
+        <Link
+          scroll={false}
           href={
             currentPage - 1 === 1
               ? `${BLOG.path || '/'}`

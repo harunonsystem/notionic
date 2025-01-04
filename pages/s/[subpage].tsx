@@ -45,7 +45,7 @@ export async function getStaticPaths() {
   // Remove post id
   const posts = await getAllPosts({ onlyNewsletter: false })
   const postIds = Object.values(posts).map(
-    (postId) => '/s' + mapPageUrl(postId.id)
+    (postId: { id: string }) => '/s' + mapPageUrl(postId.id)
   )
   const noPostsIds = subpageIds
     .concat(postIds)
@@ -53,7 +53,7 @@ export async function getStaticPaths() {
 
   const heros = await getAllPosts({ onlyHidden: true })
   const heroIds = Object.values(heros).map(
-    (heroId) => '/s' + mapPageUrl(heroId.id)
+    (heroId: { id: string }) => '/s' + mapPageUrl(heroId.id)
   )
   const paths = noPostsIds
     .concat(heroIds)
@@ -98,8 +98,9 @@ export async function getStaticProps({ params: { subpage } }) {
     // When page block space_id = NOTION_SPACES_ID
     let allowed = false
     Object.values(page.block).forEach((block) => {
-      if (!allowed && block.value && block.value.space_id) {
-        allowed = NOTION_SPACES_ID.includes(block.value.space_id)
+      const spaceId = (block as { value: { space_id: string } }).value?.space_id
+      if (!allowed && spaceId) {
+        allowed = NOTION_SPACES_ID.includes(spaceId)
       }
     })
     return allowed
