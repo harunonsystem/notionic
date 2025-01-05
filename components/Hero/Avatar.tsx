@@ -1,27 +1,13 @@
-// https://react-svgr.com/playground/
-import * as React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { lang } from '@/lib/lang'
 import ProfileFile from '@/public/harunon_refia_crop.png'
 
-// const Avatar = (props) => (
-//   <div>
-//     <Image
-//       src={ProfileFile}
-//       alt='Harunon Icon Designed By Refia'
-//       className='rounded-full'
-//       {...props}
-//     />
-//     <p>{t.AVATAR.ICON_DESIGNED_DES}</p>
-//   </div>
-// )
-
-const Avatar = ({}) => {
+const Avatar = ({ className }: { className: string }) => {
   const { locale } = useRouter()
   const t = lang[locale]
   return (
-    <div>
+    <div className={className}>
       <Image
         src={ProfileFile}
         alt='Harunon Icon Designed By Refia'

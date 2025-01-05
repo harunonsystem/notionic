@@ -2,16 +2,15 @@ import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import {
-  UserIcon,
-  UsersIcon,
-  BookOpenIcon,
-  MailIcon
-} from '@heroicons/react/outline'
+import { MailIcon } from '@heroicons/react/outline'
 import Social from '../Common/Social.js'
 import { motion } from 'framer-motion'
 
-const Footer = ({ fullWidth }) => {
+interface FooterProps {
+  fullWidth: boolean
+}
+
+const Footer = ({ fullWidth }: FooterProps) => {
   const router = useRouter()
   const { locale } = useRouter()
   const t = lang[locale]
@@ -59,7 +58,10 @@ const Footer = ({ fullWidth }) => {
   ]
 
   // splice https://
-  const repositoryName = t.FOOTER.ORIGIN_REPOSITORY_LINK.replace(/(^\w+:|^)\/\//, '')
+  const repositoryName = t.FOOTER.ORIGIN_REPOSITORY_LINK.replace(
+    /(^\w+:|^)\/\//,
+    ''
+  )
 
   return (
     <motion.div
@@ -74,7 +76,8 @@ const Footer = ({ fullWidth }) => {
               (link) =>
                 link.show && (
                   <Link passHref key={link.id} href={link.to} scroll={false}>
-                    <li key={link.id}
+                    <li
+                      key={link.id}
                       className={`${
                         activeMenu === link.to
                           ? 'bg-gray-200 dark:bg-gray-700'
@@ -106,7 +109,10 @@ const Footer = ({ fullWidth }) => {
           </p>
           <p className='md:flex block py-1'>
             {t.FOOTER.ORIGIN_REPOSITORY_DESCRIPTION}
-            <a href={`${t.FOOTER.ORIGIN_REPOSITORY_LINK}`} className='underline pl-2'>
+            <a
+              href={`${t.FOOTER.ORIGIN_REPOSITORY_LINK}`}
+              className='underline pl-2'
+            >
               {repositoryName}
             </a>
           </p>

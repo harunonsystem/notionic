@@ -1,10 +1,15 @@
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import Social from '../Common/Social.js'
-import Avatar from './Avatar.js'
+import Avatar from './Avatar'
 import NotionRenderer from '@/components/Post/NotionRenderer'
+import { ExtendedRecordMap } from 'notion-types'
 
-const NoteHero = ({ blockMap }) => {
+interface NoteHeroProps {
+  blockMap: ExtendedRecordMap
+}
+
+const NoteHero = ({ blockMap }: NoteHeroProps) => {
   const { locale } = useRouter()
   const t = lang[locale]
   return (

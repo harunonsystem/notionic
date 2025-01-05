@@ -1,22 +1,22 @@
-import { useEffect, useCallback, useState, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import {
-  HomeIcon,
-  NewspaperIcon,
   CollectionIcon,
-  SparklesIcon,
+  HomeIcon,
+  MenuIcon,
+  NewspaperIcon,
   SearchIcon,
-  MenuIcon
+  SparklesIcon
 } from '@heroicons/react/outline'
 import Social from '../Common/Social.js'
-import ThemeSwitcher from './ThemeSwitcher.js'
-import LangSwitcher from './LangSwitcher.js'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ProfileFile from '@/public/harunon_refia_crop.png'
+import ThemeSwitcher from '@/components/NavBar/ThemeSwitcher'
+import LangSwitcher from '@/components/NavBar/LangSwitcher'
 
 const NavBar = () => {
   const router = useRouter()

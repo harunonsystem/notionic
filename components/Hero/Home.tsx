@@ -1,14 +1,19 @@
 import BLOG from '@/blog.config'
 import Link from 'next/link'
-import Avatar from './Avatar.js'
+import Avatar from './Avatar'
 import Social from '../Common/Social.js'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { MailIcon, RssIcon, ClipboardCheckIcon } from '@heroicons/react/outline'
+import { ClipboardCheckIcon, MailIcon, RssIcon } from '@heroicons/react/outline'
 import NotionRenderer from '@/components/Post/NotionRenderer'
+import { ExtendedRecordMap } from 'notion-types'
 
-const Hero = ({ blockMap }) => {
+interface HeroProps {
+  blockMap: ExtendedRecordMap
+}
+
+const Hero = ({ blockMap }: HeroProps) => {
   const [showCopied, setShowCopied] = useState(false)
   const { locale } = useRouter()
   const t = lang[locale]

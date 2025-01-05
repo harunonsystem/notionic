@@ -65,12 +65,16 @@ interface NotionRendererProps {
   frontMatter?: any
   previewImages?: boolean
   props?: React.ComponentProps<typeof NotionRenderer>
+  className?: string
+  subPageTitle?: null
 }
 
 export default function NotionRenderer({
   previewImages,
   blockMap,
-  props
+  props,
+  className,
+  subPageTitle
 }: NotionRendererProps) {
   const { locale } = useRouter()
   const mapPageUrl = (id) => {
@@ -92,6 +96,8 @@ export default function NotionRenderer({
       mapPageUrl={mapPageUrl}
       recordMap={blockMap}
       previewImages={previewImages}
+      pageTitle={subPageTitle}
+      className={className}
       {...props}
     />
   )
