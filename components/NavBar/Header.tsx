@@ -11,7 +11,7 @@ import {
   SearchIcon,
   SparklesIcon
 } from '@heroicons/react/outline'
-import Social from '../Common/Social.js'
+import Social from '../Common/Social'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ProfileFile from '@/public/harunon_refia_crop.png'

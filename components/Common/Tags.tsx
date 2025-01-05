@@ -1,6 +1,11 @@
 import Link from 'next/link'
 
-const Tags = ({ tags, currentTag }) => {
+interface TagsProps {
+  tags: any
+  currentTag: string
+}
+
+const Tags = ({ tags, currentTag }: TagsProps) => {
   if (!tags) return null
   return (
     <div className='tag-container'>
@@ -16,7 +21,9 @@ const Tags = ({ tags, currentTag }) => {
                   : 'text-gray-400 bg-gray-100 dark:bg-night'
               }`}
             >
-              <Link key={key} scroll={false}
+              <Link
+                key={key}
+                scroll={false}
                 href={selected ? '/search' : `/tag/${encodeURIComponent(key)}`}
                 className='px-4 py-2 block'
               >

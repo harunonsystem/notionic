@@ -1,7 +1,20 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-export default function ImageFallback({ src, fallbackSrc, alt, ...rest }) {
+interface ImageFallbackProps {
+  src: string
+  fallbackSrc: string
+  alt: string
+
+  [key: string]: any
+}
+
+export default function ImageFallback({
+  src,
+  fallbackSrc,
+  alt,
+  ...rest
+}: ImageFallbackProps) {
   const [imgSrc, setImgSrc] = useState(src)
 
   useEffect(() => {

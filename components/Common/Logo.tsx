@@ -1,7 +1,8 @@
-// https://react-svgr.com/playground/
-import * as React from 'react'
+interface LogoProps {
+  [key: string]: any
+}
 
-const Logo = (props) => (
+const Logo = ({ props }: LogoProps) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='24'

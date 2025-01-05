@@ -1,9 +1,6 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import BLOG from '@/blog.config'
-
-import dayjs from 'dayjs'
-import localizedFormat from 'dayjs/plugin/localizedFormat'
 
 // Set the default language to BLOG.lang
 // dayjs.extend(localizedFormat)
@@ -14,7 +11,7 @@ import localizedFormat from 'dayjs/plugin/localizedFormat'
 //   })
 //   .catch(() => console.warn(`dayjs locale \`${lang}\` not found`))
 
-export default function FormattedDate({ date }) {
+export default function FormattedDate({ date }: { date: any }) {
   const [hasMounted, setHasMounted] = useState(false)
   const { locale } = useRouter()
   // When switching languages, the date format will also change correspondingly.
@@ -38,9 +35,12 @@ export default function FormattedDate({ date }) {
   date = date && date.start_date ? date.start_date : date
   const formattedDate = useMemo(() => {
     const dateLang = BLOG.lang === 'ja-JP' ? 'ja-JP' : 'en-US'
-    const options = { year: 'numeric', month: 'short', day: 'numeric' }
-
-    return new Date(date).toLocaleDateString(dateLang, options)
+    
+    return new Date(date).toLocaleDateString(dateLang, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
   }, [date])
 
   useEffect(() => {

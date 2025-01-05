@@ -3,7 +3,7 @@ import BLOG from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { MailIcon } from '@heroicons/react/outline'
-import Social from '../Common/Social.js'
+import Social from '../Common/Social'
 import { motion } from 'framer-motion'
 
 interface FooterProps {

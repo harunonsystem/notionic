@@ -2,7 +2,11 @@ import BLOG from '@/blog.config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-const SEO = ({ meta }) => {
+interface MetaProps {
+  meta: any
+}
+
+const SEO = ({ meta }: MetaProps) => {
   const ogImage = `https://${BLOG.ogImageGenerateHost}/api/default?logo=${
     BLOG.link
   }/favicon.png&siteName=${encodeURIComponent(
@@ -40,24 +44,15 @@ const SEO = ({ meta }) => {
         property='og:url'
         content={meta.slug ? `${url}/${meta.slug}` : `${url}${router.asPath}`}
       />
-      <meta
-        property='og:image'
-        content={ogImage || BLOG.defaultCover}
-      />
+      <meta property='og:image' content={ogImage || BLOG.defaultCover} />
       <meta property='og:type' content={meta.type} />
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:description' content={meta.description} />
       <meta name='twitter:title' content={meta.title} />
-      <meta
-        name='twitter:image'
-        content={ogImage || BLOG.defaultCover}
-      />
+      <meta name='twitter:image' content={ogImage || BLOG.defaultCover} />
       {meta.type === 'article' && (
         <>
-          <meta
-            property='article:published_time'
-            content={meta.date}
-          />
+          <meta property='article:published_time' content={meta.date} />
           <meta property='article:author' content={BLOG.author} />
         </>
       )}
