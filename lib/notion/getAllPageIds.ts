@@ -1,5 +1,10 @@
 import { idToUuid } from 'notion-utils'
-export default function getAllPageIds(collectionQuery, viewId) {
+import { ExtendedRecordMap } from 'notion-types'
+
+export default function getAllPageIds(
+  collectionQuery: ExtendedRecordMap['collection_query'],
+  viewId?: string
+) {
   const views = Object.values(collectionQuery)[0]
   let pageIds = []
   if (viewId) {
@@ -8,10 +13,12 @@ export default function getAllPageIds(collectionQuery, viewId) {
   } else {
     const pageSet = new Set()
     Object.values(views).forEach((view) => {
-      view?.collection_group_results?.blockIds?.forEach(id => pageSet.add(id))
+      view?.collection_group_results?.blockIds?.forEach((id: string) =>
+        pageSet.add(id)
+      )
       // view?.blockIds?.forEach((id) => pageSet.add(id))
     })
-    pageIds = [...pageSet]
+    pageIds = [...(pageSet as any)]
   }
   return pageIds
 }

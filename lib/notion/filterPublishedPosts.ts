@@ -1,3 +1,12 @@
+interface FilterPublishedPostsProps {
+  posts: any[]
+  onlyNewsletter: boolean
+  onlyPost: boolean
+  onlyNotes: boolean
+  onlyHidden: boolean
+  onlyWeekly: boolean
+}
+
 export default function filterPublishedPosts({
   posts,
   onlyNewsletter,
@@ -5,7 +14,7 @@ export default function filterPublishedPosts({
   onlyNotes,
   onlyHidden,
   onlyWeekly
-}) {
+}: FilterPublishedPostsProps) {
   if (!posts || !posts.length) return []
   return posts
     .filter((post) =>

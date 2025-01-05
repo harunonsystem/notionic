@@ -12,6 +12,7 @@ import {
 
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
+import { ExtendedRecordMap } from 'notion-types'
 
 const Post = ({ post, blockMap }) => {
   const router = useRouter()
@@ -72,7 +73,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { subpage } }) {
   const posts = await getAllPosts({ onlyNewsletter: false })
 
-  let blockMap, post
+  let blockMap: ExtendedRecordMap, post: any
   try {
     blockMap = await getPostBlocks(subpage)
     const id = idToUuid(subpage)

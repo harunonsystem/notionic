@@ -5,6 +5,7 @@ import pMap from 'p-map'
 import pMemoize from 'p-memoize'
 
 import { defaultMapImageUrl, getPageImageUrls } from 'notion-utils'
+import { ExtendedRecordMap, RecordMap } from 'notion-types'
 
 // NOTE: this is just an example of how to pre-compute preview images.
 // Depending on how many images you're working with, this can potentially be
@@ -12,8 +13,8 @@ import { defaultMapImageUrl, getPageImageUrls } from 'notion-utils'
 // the preview image results in a key-value database of your choosing.
 // If you're not sure where to start, check out https://github.com/jaredwray/keyv
 
-export async function getPreviewImageMap(recordMap) {
-  const urls = getPageImageUrls(recordMap, {
+export async function getPreviewImageMap(recordMap: RecordMap) {
+  const urls = getPageImageUrls(<ExtendedRecordMap>recordMap, {
     mapImageUrl: defaultMapImageUrl
   }).filter(
     (url) =>
@@ -22,19 +23,23 @@ export async function getPreviewImageMap(recordMap) {
       !url.includes(`${BLOG.ogImageGenerateHost}`)
   ) // not include svg
 
-  const previewImagesMap = Object.fromEntries(
+  return Object.fromEntries(
     await pMap(urls, async (url) => [url, await getPreviewImage(url)], {
       concurrency: 8
     })
   )
-
-  return previewImagesMap
 }
 
 async function createPreviewImage(url) {
   try {
     const { body } = await got(url, { responseType: 'buffer' })
-    const result = await lqip(body)
+    const result = (await lqip(body)) as {
+      metadata: {
+        originalWidth: number
+        originalHeight: number
+        dataURIBase64: string
+      }
+    }
     // console.log('lqip', { originalUrl: url, ...result.metadata })
 
     return {
