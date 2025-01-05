@@ -9,7 +9,7 @@ const SupaComments = () => {
     const anchor = document.getElementById('comments')
     script.setAttribute('src', `/comments/comments-${locale}.js`)
     script.setAttribute('crossorigin', 'anonymous')
-    script.setAttribute('async', true)
+    script.setAttribute('async', String(true))
     anchor.appendChild(script)
     return () => {
       anchor.innerHTML = ''

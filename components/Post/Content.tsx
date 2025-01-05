@@ -1,5 +1,5 @@
 import BLOG from '@/blog.config'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import Link from 'next/link'
 
 import FormattedDate from '@/components/Common/FormattedDate'
@@ -8,10 +8,22 @@ import NotionRenderer from '@/components/Post/NotionRenderer'
 
 import { ChevronLeftIcon } from '@heroicons/react/outline'
 import PastOneYear from '@/components/Post/PastOneYear'
+import React from 'react'
+import { ExtendedRecordMap } from 'notion-types'
 
-export default function Content (props) {
-  const { frontMatter, blockMap, pageTitle } = props
+interface ContentProps {
+  frontMatter: any
+  blockMap: ExtendedRecordMap
+  pageTitle?: string
+  props: React.ComponentProps<typeof NotionRenderer>
+}
 
+export default function Content({
+  frontMatter,
+  blockMap,
+  pageTitle,
+  props
+}: ContentProps) {
   return (
     <article className='flex-none md:overflow-x-visible overflow-x-scroll w-full'>
       {pageTitle && (
@@ -43,7 +55,7 @@ export default function Content (props) {
         </nav>
       )}
       <PastOneYear date={frontMatter.date} />
-      <div className="-mt-4 relative">
+      <div className='-mt-4 relative'>
         <NotionRenderer
           blockMap={blockMap}
           previewImages={BLOG.previewImagesEnabled}
@@ -54,8 +66,8 @@ export default function Content (props) {
   )
 }
 
-Content.propTypes = {
-  frontMatter: PropTypes.object.isRequired,
-  blockMap: PropTypes.object.isRequired,
-  pageTitle: PropTypes.string
-}
+// Content.propTypes = {
+//   frontMatter: PropTypes.object.isRequired,
+//   blockMap: PropTypes.object.isRequired,
+//   pageTitle: PropTypes.string
+// }

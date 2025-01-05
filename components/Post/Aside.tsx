@@ -5,10 +5,17 @@ import Link from 'next/link'
 import TableOfContents from '@/components/Post/TableOfContents'
 import WechatPay from '@/components/Post/WechatPay'
 import {
-  ThumbUpIcon,
+  ArrowUpIcon,
   ChevronLeftIcon,
-  ArrowUpIcon
+  ThumbUpIcon
 } from '@heroicons/react/outline'
+import { ExtendedRecordMap } from 'notion-types'
+
+interface AsideProps {
+  pageTitle: string
+  blockMap: ExtendedRecordMap
+  frontMatter: any
+}
 
 const Aside = ({ pageTitle, blockMap, frontMatter }) => {
   const [showPay, setShowPay] = useState(false)

@@ -18,7 +18,7 @@ const Comments = ({ frontMatter }) => {
   return (
     <div>
       {BLOG.comment && BLOG.comment.provider === 'utterances' && (
-        <UtterancesComponent issueTerm={frontMatter.id} />
+        <UtterancesComponent issueTerm={frontMatter.id} layout={undefined} />
       )}
       {BLOG.comment && BLOG.comment.provider === 'supacomments' && (
         <SupaCommentsComponent />

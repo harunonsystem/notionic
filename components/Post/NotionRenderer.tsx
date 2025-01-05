@@ -1,12 +1,12 @@
 import BLOG from '@/blog.config'
-import PropTypes from 'prop-types'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 
 import { NotionRenderer as Renderer } from 'react-notion-x'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-js-templates'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { ExtendedRecordMap } from 'notion-types'
 
 // Lazy-load some heavy components & override the renderers of some block types
 const components = {
@@ -16,24 +16,24 @@ const components = {
       async (module) => {
         // Additional prismjs syntax
         await Promise.all([
-          import('prismjs/components/prism-bash'),
-          import('prismjs/components/prism-c'),
-          import('prismjs/components/prism-cpp'),
-          import('prismjs/components/prism-docker'),
-          import('prismjs/components/prism-js-templates'),
-          import('prismjs/components/prism-diff'),
-          import('prismjs/components/prism-git'),
-          import('prismjs/components/prism-go'),
-          import('prismjs/components/prism-graphql'),
-          import('prismjs/components/prism-makefile'),
-          import('prismjs/components/prism-markdown'),
-          import('prismjs/components/prism-python'),
-          import('prismjs/components/prism-rust'),
-          import('prismjs/components/prism-solidity'),
-          import('prismjs/components/prism-sql'),
-          import('prismjs/components/prism-swift'),
-          import('prismjs/components/prism-wasm'),
-          import('prismjs/components/prism-yaml')
+          import('prismjs/components/prism-bash' as any),
+          import('prismjs/components/prism-c' as any),
+          import('prismjs/components/prism-cpp' as any),
+          import('prismjs/components/prism-docker' as any),
+          import('prismjs/components/prism-js-templates' as any),
+          import('prismjs/components/prism-diff' as any),
+          import('prismjs/components/prism-git' as any),
+          import('prismjs/components/prism-go' as any),
+          import('prismjs/components/prism-graphql' as any),
+          import('prismjs/components/prism-makefile' as any),
+          import('prismjs/components/prism-markdown' as any),
+          import('prismjs/components/prism-python' as any),
+          import('prismjs/components/prism-rust' as any),
+          import('prismjs/components/prism-solidity' as any),
+          import('prismjs/components/prism-sql' as any),
+          import('prismjs/components/prism-swift' as any),
+          import('prismjs/components/prism-wasm' as any),
+          import('prismjs/components/prism-yaml' as any)
         ])
         return module.Code
       }
@@ -60,7 +60,18 @@ const components = {
  *
  * @param props - Anything that react-notion-x/NotionRenderer supports
  */
-export default function NotionRenderer(props) {
+interface NotionRendererProps {
+  blockMap: ExtendedRecordMap
+  frontMatter?: any
+  previewImages?: boolean
+  props?: React.ComponentProps<typeof NotionRenderer>
+}
+
+export default function NotionRenderer({
+  previewImages,
+  blockMap,
+  props
+}: NotionRendererProps) {
   const { locale } = useRouter()
   const mapPageUrl = (id) => {
     // console.log('mapPageUrl', BLOG.lang.split('-')[0])
@@ -79,13 +90,14 @@ export default function NotionRenderer(props) {
     <Renderer
       components={components}
       mapPageUrl={mapPageUrl}
-      recordMap={props.blockMap}
+      recordMap={blockMap}
+      previewImages={previewImages}
       {...props}
     />
   )
 }
 
-NotionRenderer.propTypes = {
-  frontMatter: PropTypes.object.isRequired,
-  blockMap: PropTypes.object.isRequired
-}
+// NotionRenderer.propTypes = {
+//   frontMatter: PropTypes.object.isRequired,
+//   blockMap: PropTypes.object.isRequired
+// }

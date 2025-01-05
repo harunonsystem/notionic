@@ -1,16 +1,18 @@
-import BLOG from '@/blog.config'
-import { HashtagIcon, LinkIcon } from '@heroicons/react/outline'
+import { LinkIcon } from '@heroicons/react/outline'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-const ShareButton = (props) => {
-  const { title } = props
+interface ShareButtonProps {
+  title: string
+}
+
+const ShareButton = ({ title }: ShareButtonProps) => {
   const { locale } = useRouter()
   const t = lang[locale]
 
   const [showCopied, setShowCopied] = useState(false)
-  const copyTitleAndUrl = (title, url) => {
+  const copyTitleAndUrl = (title: string, url: string) => {
     setShowCopied(true)
     const text = `${title} ${url}`
     navigator.clipboard.writeText(text).then((r) => r)
@@ -18,7 +20,7 @@ const ShareButton = (props) => {
       setShowCopied(false)
     }, 1000)
   }
-  const shareOnTwitter = (title, url) => {
+  const shareOnTwitter = (title: string | number | boolean, url: string) => {
     const text = encodeURIComponent(title)
     const href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
     window.open(href, 'twitter', 'width=600,height=400')

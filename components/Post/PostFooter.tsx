@@ -7,8 +7,11 @@ import WechatPay from '@/components/Post/WechatPay'
 import ShareButton from '@/components/Post/ShareButton'
 import { MailIcon, ThumbUpIcon } from '@heroicons/react/outline'
 
-const PostFooter = (props) => {
-  const { title } = props
+interface PostFooterProps {
+  title: string
+}
+
+const PostFooter = ({ title }: PostFooterProps) => {
   const [showPay, setShowPay] = useState(false)
   const { locale } = useRouter()
   const router = useRouter()
