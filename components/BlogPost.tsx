@@ -5,10 +5,22 @@ import { motion } from 'framer-motion'
 
 import FormattedDate from '@/components/Common/FormattedDate'
 
-const BlogPost = ({ post }) => {
+interface BlogPostProps {
+  post: {
+    id: string
+    title: string
+    slug: string
+    date: string
+    summary: string
+    page_cover: string
+  }
+}
+
+const BlogPost = ({ post }: BlogPostProps) => {
+  const href = `${BLOG.path}/${post.slug}`
   return (
     <motion.div>
-      <Link passHref href={`${BLOG.path}/${post.slug}`} scroll={false}>
+      <Link passHref href={href} scroll={false}>
         <article
           key={post.id}
           className='group flex flex-col overflow-hidden relative mb-5 md:mb-8 cursor-pointer rounded-xl p-5'

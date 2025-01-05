@@ -1,8 +1,19 @@
 import SEO from '@/components/Common/SEO'
 import BLOG from '@/blog.config'
-import PropTypes from 'prop-types'
+import React from 'react'
 
-const Container = ({ children, fullWidth, ...customMeta }) => {
+// import PropTypes from 'prop-types'
+
+interface ContainerProps {
+  children: React.ReactNode
+  fullWidth?: boolean
+  customMeta?: {
+    title: string
+    type: string
+  }
+}
+
+const Container = ({ children, fullWidth, ...customMeta }: ContainerProps) => {
   const meta = {
     title: BLOG.title,
     type: 'website',
@@ -22,8 +33,8 @@ const Container = ({ children, fullWidth, ...customMeta }) => {
   )
 }
 
-Container.propTypes = {
-  children: PropTypes.node
-}
+// Container.propTypes = {
+//   children: PropTypes.node
+// }
 
 export default Container
