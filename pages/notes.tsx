@@ -1,16 +1,16 @@
 import Container from '@/components/Container'
-import { getPostBlocks, getAllPosts } from '@/lib/notion'
+import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
+import { ExtendedRecordMap } from 'notion-types'
 
 export async function getStaticProps() {
   const allowSlug = ['notes', 'weekly']
   const notes = await getAllPosts({ onlyNotes: true })
-  const weekly = await getAllPosts({ onlyWeekly: true })
   const heros = await getAllPosts({ onlyHidden: true })
   const hero = heros.find((t) => allowSlug.includes(t.slug))
 
-  let blockMap
+  let blockMap: ExtendedRecordMap = null
   try {
     blockMap = await getPostBlocks(hero.id)
   } catch (err) {
@@ -29,9 +29,9 @@ export async function getStaticProps() {
   }
 }
 
-const Notes = ({ posts, blockMap }) => {
+const Notes = ({ posts }) => {
   return (
-    <Container title={BLOG.news} description={BLOG.description}>
+    <Container title={BLOG.notes} description={BLOG.description}>
       {posts?.map((post) => (
         <BlogPost key={post.id} post={post} />
       ))}

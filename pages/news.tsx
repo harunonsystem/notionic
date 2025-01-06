@@ -3,6 +3,7 @@ import NewsletterHero from '@/components/Hero/Newsletter'
 import BlogPost from '@/components/BlogPost'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
+import { ExtendedRecordMap } from 'notion-types'
 
 export async function getStaticProps() {
   const posts = await getAllPosts({ onlyNewsletter: true })
@@ -10,7 +11,7 @@ export async function getStaticProps() {
   const heros = await getAllPosts({ onlyHidden: true })
   const hero = heros.find((t) => t.slug === 'newsletter')
 
-  let blockMap
+  let blockMap: ExtendedRecordMap = null
   try {
     blockMap = await getPostBlocks(hero.id)
   } catch (err) {

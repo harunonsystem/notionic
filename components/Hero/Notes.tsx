@@ -1,6 +1,6 @@
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
-import Social from '../Common/Social.js'
+import Social from '../Common/Social'
 import Avatar from './Avatar'
 import NotionRenderer from '@/components/Post/NotionRenderer'
 import { ExtendedRecordMap } from 'notion-types'

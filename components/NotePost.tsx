@@ -15,7 +15,7 @@ const NotePost = ({ note }: NotePostProps) => {
   return (
     <Link
       passHref
-      href={`/notes/${note.slug}`}
+      href={`/notes.tsx/${note.slug}`}
       key={craftSlug}
       className='mb-10 group h-60 flex items-end bg-gray-100 rounded-lg overflow-hidden relative p-4'
     >

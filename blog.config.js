@@ -4,6 +4,7 @@ const BLOG = {
   email: 'harunonsystem@gmail.com',
   link: 'https://harunonsystem.com',
   news: 'News',
+  notes: 'Notes',
   description: 'A static blog build on top of Notion and Next.js',
   lang: 'ja-JP', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   timezone: 'Asia/Tokyo',

@@ -11,11 +11,20 @@ interface ContainerProps {
     title: string
     type: string
   }
+  title?: string
+  description?: string
 }
 
-const Container = ({ children, fullWidth, ...customMeta }: ContainerProps) => {
+const Container = ({
+  children,
+  fullWidth,
+  title,
+  description,
+  ...customMeta
+}: ContainerProps) => {
   const meta = {
-    title: BLOG.title,
+    title: title || BLOG.title,
+    description: description || BLOG.description,
     type: 'website',
     ...customMeta
   }

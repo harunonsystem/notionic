@@ -4,6 +4,7 @@ import Hero from '@/components/Hero/Home'
 import Pagination from '@/components/Pagination'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
+import { ExtendedRecordMap } from 'notion-types'
 
 export async function getStaticProps() {
   const posts = await getAllPosts({ onlyPost: true })
@@ -11,7 +12,7 @@ export async function getStaticProps() {
   const heros = await getAllPosts({ onlyHidden: true })
   const hero = heros.find((t) => t.slug === 'index')
 
-  let blockMap
+  let blockMap: ExtendedRecordMap = null
   try {
     blockMap = await getPostBlocks(hero.id)
   } catch (err) {
