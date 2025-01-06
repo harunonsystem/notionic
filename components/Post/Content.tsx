@@ -15,7 +15,7 @@ interface ContentProps {
   frontMatter: any
   blockMap: ExtendedRecordMap
   pageTitle?: string
-  props: React.ComponentProps<typeof NotionRenderer>
+  props?: React.ComponentProps<typeof NotionRenderer>
 }
 
 export default function Content({
