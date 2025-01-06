@@ -1,4 +1,4 @@
-const BLOG = require('../blog.config')
+import { BLOG } from '../blog.config'
 
 export default function cjk() {
   switch (BLOG.lang.toLowerCase()) {

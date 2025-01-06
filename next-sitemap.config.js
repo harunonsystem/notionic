@@ -1,7 +1,8 @@
-const BLOG = require('./blog.config')
+// const BLOG = require('./blog.config')
 
 module.exports = {
-  siteUrl: BLOG.link,
+  // siteUrl: BLOG.link,
+  siteUrl: 'https://harunonsystem.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   sitemapSize: 7000
