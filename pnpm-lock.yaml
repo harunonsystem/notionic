@@ -29,6 +29,9 @@ importers:
       notion-client:
         specifier: ^7.1.5
         version: 7.1.5
+      notion-types:
+        specifier: ^7.1.5
+        version: 7.1.5
       notion-utils:
         specifier: ^7.1.5
         version: 7.1.5
@@ -47,6 +50,9 @@ importers:
       prism-theme-vars:
         specifier: ^0.2.4
         version: 0.2.4
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -74,10 +80,19 @@ importers:
         version: 6.6.3
       '@testing-library/react':
         specifier: ^16.1.0
-        version: 16.1.0(@testing-library/dom@10.4.0)(@types/react@17.0.56)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2(@types/react@17.0.56))(@types/react@17.0.56)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@types/prismjs':
+        specifier: ^1.26.5
+        version: 1.26.5
       '@types/react':
         specifier: ^17.0.56
         version: 17.0.56
+      '@types/react-dom':
+        specifier: ^19.0.2
+        version: 19.0.2(@types/react@17.0.56)
+      '@types/use-ackee':
+        specifier: ^2.0.3
+        version: 2.0.3
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.3.4(vite@5.4.11(@types/node@22.10.2)(terser@5.37.0))
@@ -657,6 +672,9 @@ packages:
       '@types/react-dom':
         optional: true
 
+  '@types/ackee-tracker@5.0.4':
+    resolution: {integrity: sha512-WzQyQmV+hQEV2XptOepaQNPuV9XwAk4J39Ep7VjO5Bl6BNLugEFXj7r0jg6Qk0OQtNDgxJ2FpFxPAfi45sduog==}
+
   '@types/aria-query@5.0.4':
     resolution: {integrity: sha512-rfT93uj5s0PRL7EzccGMs3brplhcrghnDoV26NqKhCAS1hVo+WdNsPvE/yb6ilfr5hi2MEk6d5EWJTKdxg8jVw==}
 
@@ -687,14 +705,25 @@ packages:
   '@types/node@22.10.2':
     resolution: {integrity: sha512-Xxr6BBRCAOQixvonOye19wnzyDiUtTeqldOOmj3CkeblonbccA12PFwlufvRdrpjXxqnmUaeiU5EOA+7s5diUQ==}
 
+  '@types/prismjs@1.26.5':
+    resolution: {integrity: sha512-AUZTa7hQ2KY5L7AmtSiqxlhWxb4ina0yd8hNbl4TWuqnv/pFP0nDMb3YrfSBf4hJVGLh2YEIBfKaBW/9UEl6IQ==}
+
   '@types/prop-types@15.7.5':
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+
+  '@types/react-dom@19.0.2':
+    resolution: {integrity: sha512-c1s+7TKFaDRRxr1TxccIX2u7sfCnc3RxkVyBIUA2lCpyqCF+QoAwQ/CBg7bsMdVwP120HEH143VQezKtef5nCg==}
+    peerDependencies:
+      '@types/react': ^19.0.0
 
   '@types/react@17.0.56':
     resolution: {integrity: sha512-Z13f9Qz7Hg8f2g2NsBjiJSVWmON2b3K8RIqFK8mMKCIgvD0CD0ZChTukz87H3lI28X3ukXoNFGzo3ZW1ICTtPA==}
 
   '@types/scheduler@0.16.3':
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
+
+  '@types/use-ackee@2.0.3':
+    resolution: {integrity: sha512-Zuo3egKP0orr33SVMWazBTyWp0QTdDVSvOK/y4F+/PS5qgopKVes8GXw705hPkO5hyU3cBuIfN/lyjRjiPG0xA==}
 
   '@typescript-eslint/parser@5.57.1':
     resolution: {integrity: sha512-hlA0BLeVSA/wBPKdPGxoVr9Pp6GutGoY380FEhbVi0Ph4WNe8kLvqIRx76RSQt1lynZKfrXKs0/XeEk4zZycuA==}
@@ -3340,7 +3369,7 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
 
-  '@testing-library/react@16.1.0(@testing-library/dom@10.4.0)(@types/react@17.0.56)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@testing-library/react@16.1.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.2(@types/react@17.0.56))(@types/react@17.0.56)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.21.0
       '@testing-library/dom': 10.4.0
@@ -3348,6 +3377,9 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
     optionalDependencies:
       '@types/react': 17.0.56
+      '@types/react-dom': 19.0.2(@types/react@17.0.56)
+
+  '@types/ackee-tracker@5.0.4': {}
 
   '@types/aria-query@5.0.4': {}
 
@@ -3385,7 +3417,13 @@ snapshots:
       undici-types: 6.20.0
     optional: true
 
+  '@types/prismjs@1.26.5': {}
+
   '@types/prop-types@15.7.5': {}
+
+  '@types/react-dom@19.0.2(@types/react@17.0.56)':
+    dependencies:
+      '@types/react': 17.0.56
 
   '@types/react@17.0.56':
     dependencies:
@@ -3394,6 +3432,10 @@ snapshots:
       csstype: 3.1.2
 
   '@types/scheduler@0.16.3': {}
+
+  '@types/use-ackee@2.0.3':
+    dependencies:
+      '@types/ackee-tracker': 5.0.4
 
   '@typescript-eslint/parser@5.57.1(eslint@8.38.0)(typescript@5.0.4)':
     dependencies:
