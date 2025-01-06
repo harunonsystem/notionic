@@ -1,6 +1,6 @@
 const BLOG = require('../blog.config')
 
-function cjk() {
+export default function cjk() {
   switch (BLOG.lang.toLowerCase()) {
     case 'zh-cn':
     case 'zh-sg':

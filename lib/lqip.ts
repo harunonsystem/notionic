@@ -12,19 +12,40 @@ import sharp from 'sharp'
  * @param {Object} [opts.outputOptions] - Output options passed to either `sharp.webp` or `sharp.jpeg` dependent on `opts.outputFormat`.
  * @param {number|any[]} [opts.resize] - Options to pass to `sharp.resize`. Defaults to resizing inputs to a max dimension of `16`, with the other dimension being calculated to maintain aspect ratio. If you want more control, you can pass an array of args here which will be forwarded to `sharp.resize`.
  */
-export default async function lqipModern(input, opts = {}) {
+
+interface LqipModernOptions {
+  input: Buffer | string | Buffer[] | string[]
+  opts: {
+    concurrency?: number // 4
+    outputFormat?: string // webp | jpg | jpeg
+    outputOptions?: object
+    resize?: number | any[]
+  }
+}
+
+export default async function lqipModern(
+  input: LqipModernOptions['input'],
+  opts: LqipModernOptions['opts'] = {}
+) {
   const { concurrency = 4, ...rest } = opts
 
   if (Array.isArray(input)) {
-    return pMap(input, async (image) => computeLqipImage(image, rest), {
-      concurrency
-    })
+    return pMap(
+      input as Buffer[],
+      async (image) => computeLqipImage(image, rest),
+      {
+        concurrency
+      }
+    )
   } else {
     return computeLqipImage(input, opts)
   }
 }
 
-async function computeLqipImage(input, opts = {}) {
+async function computeLqipImage(
+  input: string | Buffer,
+  opts: LqipModernOptions['opts'] = {}
+) {
   const { resize = 16, outputFormat = 'webp', outputOptions } = opts
 
   const image = sharp(input).rotate()

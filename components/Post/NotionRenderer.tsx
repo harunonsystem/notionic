@@ -61,12 +61,13 @@ const components = {
  * @param props - Anything that react-notion-x/NotionRenderer supports
  */
 interface NotionRendererProps {
-  blockMap: ExtendedRecordMap
+  blockMap?: ExtendedRecordMap
   frontMatter?: any
   previewImages?: boolean
   props?: React.ComponentProps<typeof NotionRenderer>
   className?: string
   subPageTitle?: null
+  recordMap?: ExtendedRecordMap
 }
 
 export default function NotionRenderer({
@@ -74,7 +75,8 @@ export default function NotionRenderer({
   blockMap,
   props,
   className,
-  subPageTitle
+  subPageTitle,
+  recordMap
 }: NotionRendererProps) {
   const { locale } = useRouter()
   const mapPageUrl = (id) => {
@@ -94,7 +96,7 @@ export default function NotionRenderer({
     <Renderer
       components={components}
       mapPageUrl={mapPageUrl}
-      recordMap={blockMap}
+      recordMap={recordMap ? recordMap : blockMap}
       previewImages={previewImages}
       pageTitle={subPageTitle}
       className={className}
