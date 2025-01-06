@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 import Social from '../Common/Social'
 import { useState } from 'react'
 import { lang } from '@/lib/lang'

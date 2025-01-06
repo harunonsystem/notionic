@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'

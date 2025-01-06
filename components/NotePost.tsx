@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config.js'
+import { BLOG } from '@/blog.config.js'
 import Link from 'next/link'
 import ImageFallback from './Common/ImageFallback.js'
 

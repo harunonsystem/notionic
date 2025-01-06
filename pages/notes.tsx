@@ -1,6 +1,6 @@
 import Container from '@/components/Container'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
 import { ExtendedRecordMap } from 'notion-types'
 

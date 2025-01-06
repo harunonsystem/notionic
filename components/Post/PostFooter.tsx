@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 import { useState } from 'react'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'

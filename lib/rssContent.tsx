@@ -1,5 +1,5 @@
 import { Feed } from 'feed'
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 import ReactDOMServer from 'react-dom/server'
 import { getPostBlocks } from '@/lib/notion'
 import NotionRenderer from '@/components/Post/NotionRenderer'

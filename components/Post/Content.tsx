@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 // import PropTypes from 'prop-types'
 import Link from 'next/link'
 

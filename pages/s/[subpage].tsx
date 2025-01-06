@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import { useRouter } from 'next/router'

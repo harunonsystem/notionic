@@ -1,8 +1,8 @@
-const BLOG = {
+export const BLOG = {
   title: 'harunonsystem.com',
   author: 'harunonsystem',
   email: 'harunonsystem@gmail.com',
-  link: 'https://harunonsystem.com',
+  link: 'https://harunonsystem.com', // if you change this, also replace in next-sitemap.config.js
   news: 'News',
   notes: 'Notes',
   description: 'A static blog build on top of Notion and Next.js',
@@ -83,4 +83,4 @@ const BLOG = {
   isProd: process.env.VERCEL_ENV === 'production' // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
 }
 // export default BLOG
-module.exports = BLOG
+// module.exports = BLOG

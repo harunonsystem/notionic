@@ -1,4 +1,4 @@
-const BLOG = require('./blog.config')
+const { BLOG } = require('./blog.config')
 const { fontFamily } = require('tailwindcss/defaultTheme')
 const CJK = require('./lib/cjk')
 const fontSansCJK = !CJK()

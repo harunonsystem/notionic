@@ -1,4 +1,4 @@
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 
 // 从 Config 页面的 API 获取两个表格的内容, 并处理成两个 json 返回给 htmlrewrite.ts
 export async function getBlocksMaps() {

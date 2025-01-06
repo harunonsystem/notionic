@@ -2,7 +2,7 @@
 import { getPageTableOfContents, TableOfContentsEntry } from 'notion-utils'
 import Link from 'next/link'
 import { ChevronLeftIcon } from '@heroicons/react/outline'
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 import { Block, ExtendedRecordMap, PageBlock } from 'notion-types'
 
 interface TableOfContentsProps {

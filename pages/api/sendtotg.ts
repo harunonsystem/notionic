@@ -1,8 +1,7 @@
-import BLOG from '@/blog.config'
-
+// TODO
 export default async function sendtotg(req, res) {
-  const TG_TOKEN = BLOG.telegramToken
-  const TG_CHAT_ID = BLOG.telegramChatId
+  const TG_TOKEN = null // BLOG.telegramToken
+  const TG_CHAT_ID = null // BLOG.telegramChatId
   const tgUrl = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage'
   const init = {
     method: 'POST',

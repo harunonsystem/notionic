@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 
 // Set the default language to BLOG.lang
 // dayjs.extend(localizedFormat)
@@ -35,7 +35,7 @@ export default function FormattedDate({ date }: { date: any }) {
   date = date && date.start_date ? date.start_date : date
   const formattedDate = useMemo(() => {
     const dateLang = BLOG.lang === 'ja-JP' ? 'ja-JP' : 'en-US'
-    
+
     return new Date(date).toLocaleDateString(dateLang, {
       year: 'numeric',
       month: 'short',

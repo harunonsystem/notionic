@@ -29,7 +29,7 @@ deployment.
 - Duplicate [Notionic template](https://izuolan.notion.site/87d5fa7c98e04cb79ef55f60989dc765), and share it to the
   public
 - [Fork](https://github.com/izuolan/notionic/fork) this project
-- **Customize `blog.config.js` file**
+- **Customize `blog.config.ts` file**
 - _(Optional)_ Replace `favicon.svg/png/ico` in `public` folder with your own
 - Modify `lib/lang.ts` with your self introduction
 - Deploy on [Vercel](https://vercel.com), set following environment variables：

@@ -1,6 +1,6 @@
 import { defaultMapImageUrl, getDateValue, getTextContent } from 'notion-utils'
 import { NotionAPI } from 'notion-client'
-import BLOG from '@/blog.config'
+import { BLOG } from '@/blog.config'
 import { BlockMap, CollectionPropertySchemaMap } from 'notion-types'
 
 interface GetPagePropertiesProps {
