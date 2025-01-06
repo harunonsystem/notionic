@@ -1,6 +1,6 @@
 import BLOG from '@/blog.config'
 import got from 'got'
-import lqip from '../lqip.js'
+import lqip from '../lqip'
 import pMap from 'p-map'
 import pMemoize from 'p-memoize'
 
