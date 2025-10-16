@@ -10,21 +10,7 @@ const Scripts = () => (
         data-cf-beacon={BLOG.analytics.cfConfig.token}
       />
     )}
-    {BLOG.analytics && BLOG.analytics.provider === 'umami' && (
-      <Script
-        src={BLOG.analytics.umamiConfig.scriptUrl}
-        strategy='afterInteractive'
-        data-website-id={BLOG.analytics.umamiConfig.websiteId}
-      />
-    )}
-    {BLOG.analytics && BLOG.analytics.provider === 'ackee' && (
-      <Script
-        src={BLOG.analytics.ackeeConfig.tracker}
-        strategy='afterInteractive'
-        data-ackee-server={BLOG.analytics.ackeeConfig.dataAckeeServer}
-        data-ackee-domain-id={BLOG.analytics.ackeeConfig.domainId}
-      />
-    )}
+    
     {BLOG.analytics && BLOG.analytics.provider === 'ga' && (
       <>
         <Script

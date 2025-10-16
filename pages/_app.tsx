@@ -24,7 +24,6 @@ import '@/styles/nprogress.css'
 import Header from '@/components/NavBar/Header'
 import Footer from '@/components/NavBar/Footer'
 
-const Ackee = dynamic(() => import('@/components/Common/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Common/Gtag'), { ssr: false })
 
 function MyApp({ Component, pageProps }) {
@@ -54,12 +53,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Scripts />
-      {BLOG.isProd && BLOG?.analytics?.provider === 'ackee' && (
-        <Ackee
-          ackeeServerUrl={BLOG.analytics.ackeeConfig.dataAckeeServer}
-          ackeeDomainId={BLOG.analytics.ackeeConfig.domainId}
-        />
-      )}
+
       {BLOG.isProd && BLOG?.analytics?.provider === 'ga' && <Gtag />}
       <ThemeProvider attribute='class'>
         <Header
