@@ -10,7 +10,7 @@ const Scripts = () => (
         data-cf-beacon={BLOG.analytics.cfConfig.token}
       />
     )}
-    
+
     {BLOG.analytics && BLOG.analytics.provider === 'ga' && (
       <>
         <Script

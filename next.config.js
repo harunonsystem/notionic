@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   devIndicators: {
-    buildActivity: false,
+    buildActivity: false
   },
   i18n: {
     locales: ['en', 'ja'],
