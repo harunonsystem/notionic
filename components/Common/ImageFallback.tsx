@@ -6,7 +6,7 @@ interface ImageFallbackProps {
   fallbackSrc: string
   alt: string
 
-  [key: string]: any
+  [key: string]: string | number | boolean
 }
 
 export default function ImageFallback({

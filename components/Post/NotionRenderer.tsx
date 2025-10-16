@@ -1,12 +1,13 @@
-import { BLOG } from '@/blog.config'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import Prism from 'prismjs'
 
 import { NotionRenderer as Renderer } from 'react-notion-x'
-import Prism from 'prismjs'
+import { BLOG } from '@/blog.config'
 import 'prismjs/components/prism-js-templates'
-import React, { useEffect } from 'react'
-import { ExtendedRecordMap } from 'notion-types'
+import type { ExtendedRecordMap } from 'notion-types'
+import type React from 'react'
+import { useEffect } from 'react'
 
 // Lazy-load some heavy components & override the renderers of some block types
 const components = {
@@ -82,9 +83,9 @@ export default function NotionRenderer({
   const mapPageUrl = (id) => {
     // console.log('mapPageUrl', BLOG.lang.split('-')[0])
     if (locale === BLOG.lang.split('-')[0]) {
-      return '/s/' + id.replace(/-/g, '')
+      return `/s/${id.replace(/-/g, '')}`
     } else {
-      return '/' + locale + '/s/' + id.replace(/-/g, '')
+      return `/${locale}/s/${id.replace(/-/g, '')}`
     }
   }
 

@@ -1,5 +1,5 @@
-import { BLOG } from '@/blog.config'
 import dynamic from 'next/dynamic'
+import { BLOG } from '@/blog.config'
 
 const UtterancesComponent = dynamic(
   () => {

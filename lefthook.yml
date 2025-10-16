@@ -14,4 +14,4 @@ pre-commit:
       run: bun typecheck
     test:
       glob: '*.{js,jsx,ts,tsx}'
-      run: npx vitest run
+      run: bun run test

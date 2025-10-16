@@ -1,5 +1,5 @@
-import { BLOG } from '@/blog.config.js'
 import Link from 'next/link'
+import { BLOG } from '@/blog.config.js'
 import ImageFallback from './Common/ImageFallback.js'
 
 interface NotePostProps {

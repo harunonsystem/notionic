@@ -1,7 +1,7 @@
-import { defaultMapImageUrl, getDateValue, getTextContent } from 'notion-utils'
 import { NotionAPI } from 'notion-client'
+import type { BlockMap, CollectionPropertySchemaMap } from 'notion-types'
+import { defaultMapImageUrl, getDateValue, getTextContent } from 'notion-utils'
 import { BLOG } from '@/blog.config'
-import { BlockMap, CollectionPropertySchemaMap } from 'notion-types'
 
 interface GetPagePropertiesProps {
   id: string
@@ -82,7 +82,7 @@ export default async function getPageProperties({
     if (!pageCover) return BLOG?.defaultCover || ''
     else {
       if (pageCover.startsWith('/')) {
-        return 'https://www.notion.so' + pageCover
+        return `https://www.notion.so${pageCover}`
       } else if (pageCover.startsWith('http')) {
         return defaultMapImageUrl(pageCover, block[id].value)
       }

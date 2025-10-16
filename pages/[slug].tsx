@@ -1,9 +1,9 @@
-import Layout from '@/layouts/layout'
-import { getAllPosts, getPostBlocks } from '@/lib/notion'
-import { BLOG } from '@/blog.config'
 import { useRouter } from 'next/router'
+import { BLOG } from '@/blog.config'
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
+import Layout from '@/layouts/layout'
+import { getAllPosts, getPostBlocks } from '@/lib/notion'
 
 const Post = ({ post, blockMap }) => {
   const router = useRouter()

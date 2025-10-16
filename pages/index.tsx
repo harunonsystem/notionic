@@ -1,10 +1,10 @@
-import Container from '@/components/Container'
+import type { ExtendedRecordMap } from 'notion-types'
+import { BLOG } from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
+import Container from '@/components/Container'
 import Hero from '@/components/Hero/Home'
 import Pagination from '@/components/Pagination'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
-import { BLOG } from '@/blog.config'
-import { ExtendedRecordMap } from 'notion-types'
 
 export async function getStaticProps() {
   const posts = await getAllPosts({ onlyPost: true })

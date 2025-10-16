@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
-  if (req.query && req.query.url) {
-    url = 'https://www.craft.do/api/' + req.query.url
+  if (req.query?.url) {
+    url = `https://www.craft.do/api/${req.query.url}`
   }
 
   try {

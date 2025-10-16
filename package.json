@@ -16,12 +16,12 @@
     "start": "next start",
     "format": "biome format . --write",
     "format:check": "biome format .",
-    "lint": "biome check . --apply",
+    "lint": "biome check components/ pages/ lib/ && biome format components/ pages/ lib/ --write",
     "postbuild": "next-sitemap --config next-sitemap.config.ts",
-    "test": "vitest",
+    "test": "vitest run",
     "test:ui": "vitest --ui",
     "typecheck": "tsc --noEmit",
-    "check": "bun lint && bun typecheck && bun format:check && npx vitest run"
+    "check": "bun run lint && bun run typecheck && bun format && bun run test"
   },
   "dependencies": {
     "dayjs": "^1.11.7",

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React from 'react'
+import type React from 'react'
 
 const variants = {
   in: {

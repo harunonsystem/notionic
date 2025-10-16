@@ -7,7 +7,7 @@ interface Metadata {
   last_edited_time: number
 }
 
-export default function getMetadata(rawMetadata) {
+export default function getMetadata(rawMetadata): Metadata {
   return {
     locked: rawMetadata?.format?.block_locked,
     page_full_width: rawMetadata?.format?.page_full_width,

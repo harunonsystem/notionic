@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
-import ThemeSwitcher from '@/components/NavBar/ThemeSwitcher'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useTheme } from 'next-themes'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import ThemeSwitcher from '@/components/NavBar/ThemeSwitcher'
 
 vi.mock('next-themes', () => ({
   useTheme: vi.fn()
@@ -13,7 +13,7 @@ const ThemeProviderMock = ({ children }) => {
 
 describe('ThemeSwitcher', () => {
   beforeEach(() => {
-    // @ts-ignore
+    // @ts-expect-error
     ;(useTheme as vi.Mock).mockReturnValue({
       theme: 'light',
       setTheme: vi.fn()

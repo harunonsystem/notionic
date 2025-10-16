@@ -12,17 +12,17 @@ import 'react-notion-x/src/styles.css'
 import 'katex/dist/katex.min.css'
 import '@/styles/globals.css'
 import '@/styles/notion.css'
-import { BLOG } from '@/blog.config'
 import dynamic from 'next/dynamic'
-import Scripts from '@/components/Common/Scripts'
-import { ThemeProvider } from 'next-themes'
-import TransitionEffect from '@/components/Common/TransitionEffect'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { ThemeProvider } from 'next-themes'
 import NProgress from 'nprogress'
+import { useEffect } from 'react'
+import { BLOG } from '@/blog.config'
+import Scripts from '@/components/Common/Scripts'
+import TransitionEffect from '@/components/Common/TransitionEffect'
 import '@/styles/nprogress.css'
-import Header from '@/components/NavBar/Header'
 import Footer from '@/components/NavBar/Footer'
+import Header from '@/components/NavBar/Header'
 
 const Gtag = dynamic(() => import('@/components/Common/Gtag'), { ssr: false })
 
@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
   useEffect(() => {
-    const handleStart = (url) => {
+    const handleStart = (_url) => {
       // console.log(`Loading: ${url}`)
       NProgress.start()
     }

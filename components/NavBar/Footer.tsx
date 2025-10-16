@@ -1,10 +1,10 @@
+import { MailIcon } from '@heroicons/react/outline'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { BLOG } from '@/blog.config'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
-import { MailIcon } from '@heroicons/react/outline'
 import Social from '../Common/Social'
-import { motion } from 'framer-motion'
 
 interface FooterProps {
   fullWidth: boolean
@@ -17,7 +17,7 @@ const Footer = ({ fullWidth }: FooterProps) => {
 
   let activeMenu = ''
   if (router.query.slug) {
-    activeMenu = '/' + router.query.slug
+    activeMenu = `/${router.query.slug}`
   } else {
     activeMenu = router.pathname
   }

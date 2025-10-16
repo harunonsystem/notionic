@@ -1,8 +1,8 @@
-import Container from '@/components/Container'
-import ContactForm from '@/components/ContactForm'
-import { BLOG } from '@/blog.config'
-import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
+import { BLOG } from '@/blog.config'
+import ContactForm from '@/components/ContactForm'
+import Container from '@/components/Container'
+import { lang } from '@/lib/lang'
 
 export const Contact = () => {
   const { locale } = useRouter()

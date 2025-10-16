@@ -1,9 +1,8 @@
-// import PropTypes from 'prop-types'
-import { getPageTableOfContents, TableOfContentsEntry } from 'notion-utils'
-import Link from 'next/link'
 import { ChevronLeftIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
+import type { Block, ExtendedRecordMap, PageBlock } from 'notion-types'
+import { getPageTableOfContents, type TableOfContentsEntry } from 'notion-utils'
 import { BLOG } from '@/blog.config'
-import { Block, ExtendedRecordMap, PageBlock } from 'notion-types'
 
 interface TableOfContentsProps {
   blockMap: ExtendedRecordMap
@@ -70,21 +69,16 @@ export default function TableOfContents({
           key={node.id}
           className='px-2 hover:bg-gray-200 hover:dark:bg-gray-700 rounded-lg'
         >
-          <a
+          <button
+            type='button'
             data-target-id={node.id}
             className='block py-1 cursor-pointer'
             onClick={() => scrollTo(node.id)}
           >
             {node.text}
-          </a>
+          </button>
         </div>
       ))}
     </div>
   )
 }
-
-// TableOfContents.propTypes = {
-//   blockMap: PropTypes.object.isRequired,
-//   frontMatter: PropTypes.object.isRequired,
-//   pageTitle: PropTypes.string
-// }

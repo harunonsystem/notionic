@@ -3,8 +3,7 @@ import { BLOG } from '@/blog.config'
 // 从 Config 页面的 API 获取两个表格的内容, 并处理成两个 json 返回给 htmlrewrite.ts
 export async function getBlocksMaps() {
   const craftConfigSecret = BLOG.craftConfigShareUrl.slice(23)
-  const craftConfigApiUrl =
-    'https://www.craft.do/api/share/' + craftConfigSecret
+  const craftConfigApiUrl = `https://www.craft.do/api/share/${craftConfigSecret}`
   const init = {
     headers: {
       'content-type': 'application/json;charset=UTF-8'
@@ -24,7 +23,7 @@ export async function getBlocksMaps() {
 
   // 转换成对象之后方便查询
   const responseObj = {}
-  responseJson.blocks.forEach(function (v) {
+  responseJson.blocks.forEach((v) => {
     responseObj[v.id] = v
   })
 
@@ -56,7 +55,7 @@ function getAllTables(responseJson) {
 // 处理 页面表格
 function parsePagesMap(responseObj, tableMap) {
   const mapJson = []
-  let titleColumId, craftUrlColumId, slugColumId
+  let titleColumId: any, craftUrlColumId: any, slugColumId: any
   for (let i = 0; i < tableMap.length; i++) {
     const blockId = tableMap[i].blockId
     const content = responseObj[blockId].content
@@ -89,7 +88,7 @@ function getPagesJson(mapJson, titleColumId, craftUrlColumId, slugColumId) {
   for (let i = 0; i < mapJson.length; i++) {
     if (mapJson[i].columnId === titleColumId) {
       const nowRowId = mapJson[i].rowId
-      let url, slug
+      let url: any, slug: any
 
       for (let j = 0; j < mapJson.length; j++) {
         if (
@@ -117,7 +116,7 @@ function getPagesJson(mapJson, titleColumId, craftUrlColumId, slugColumId) {
 // 处理 设置表格
 function parseSiteConfigMap(responseObj, tableMap) {
   const mapJson = []
-  let configColumId, valueColumId
+  let configColumId: any, valueColumId: any
   for (let i = 0; i < tableMap.length; i++) {
     const blockId = tableMap[i].blockId
     const content = responseObj[blockId].content
@@ -143,7 +142,7 @@ function getSiteConfigObj(mapJson, configColumId, valueColumId) {
   for (let i = 0; i < mapJson.length; i++) {
     if (mapJson[i].columnId === configColumId) {
       const nowRowId = mapJson[i].rowId
-      let value
+      let value: any
 
       for (let j = 0; j < mapJson.length; j++) {
         if (
@@ -160,7 +159,7 @@ function getSiteConfigObj(mapJson, configColumId, valueColumId) {
     }
   }
   const siteConfigObj = {}
-  siteConfigJson.forEach(function (v) {
+  siteConfigJson.forEach((v) => {
     siteConfigObj[v.key] = v.value
   })
   return siteConfigObj

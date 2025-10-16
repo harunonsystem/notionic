@@ -1,10 +1,10 @@
-import { BLOG } from '@/blog.config'
 import { NotionAPI } from 'notion-client'
 import { idToUuid } from 'notion-utils'
+import { BLOG } from '@/blog.config'
 import dayjs from '@/lib/day'
+import filterPublishedPosts from './filterPublishedPosts'
 import getAllPageIds from './getAllPageIds'
 import getPageProperties from './getPageProperties'
-import filterPublishedPosts from './filterPublishedPosts'
 
 interface GetAllPostsProps {
   onlyNewsletter?: boolean

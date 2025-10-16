@@ -15,7 +15,7 @@ async function getBlockItem(path) {
 module.exports = async (req, res) => {
   // const { pathname, slug } = req.query
   const { pathname } = req.query
-  let realPath
+  let realPath: string
   if (pathname.includes('/b/')) {
     realPath = pathname.split('/b/')[0]
   } else if (pathname.includes('/x/')) {
@@ -103,8 +103,8 @@ module.exports = async (req, res) => {
       '<script async src="https://www.craft.do/assets/js/analytics2.js"></script>',
       ''
     )
-    .replace('</head><body', headStr + '</head><body')
-    .replace('</body></html>', bodyStr + '</body></html>')
+    .replace('</head><body', `${headStr}</head><body`)
+    .replace('</body></html>', `${bodyStr}</body></html>`)
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8')
   res.send(modifyResText)

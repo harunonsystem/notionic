@@ -1,18 +1,16 @@
-import { BLOG } from '@/blog.config'
-import Layout from '@/layouts/layout'
-import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import { useRouter } from 'next/router'
-
+import type { ExtendedRecordMap } from 'notion-types'
 import {
   defaultMapPageUrl,
   getAllPagesInSpace,
   getPageBreadcrumbs,
   idToUuid
 } from 'notion-utils'
-
+import { BLOG } from '@/blog.config'
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
-import { ExtendedRecordMap } from 'notion-types'
+import Layout from '@/layouts/layout'
+import { getAllPosts, getPostBlocks } from '@/lib/notion'
 
 const Post = ({ post, blockMap }) => {
   const router = useRouter()
@@ -40,13 +38,13 @@ export async function getStaticPaths() {
   )
 
   const subpageIds = Object.keys(pages)
-    .map((pageId) => '/s' + mapPageUrl(pageId))
+    .map((pageId) => `/s${mapPageUrl(pageId)}`)
     .filter((path) => path && path !== '/s/')
 
   // Remove post id
   const posts = await getAllPosts({ onlyNewsletter: false })
   const postIds = Object.values(posts).map(
-    (postId: { id: string }) => '/s' + mapPageUrl(postId.id)
+    (postId: { id: string }) => `/s${mapPageUrl(postId.id)}`
   )
   const noPostsIds = subpageIds
     .concat(postIds)
@@ -54,7 +52,7 @@ export async function getStaticPaths() {
 
   const heros = await getAllPosts({ onlyHidden: true })
   const heroIds = Object.values(heros).map(
-    (heroId: { id: string }) => '/s' + mapPageUrl(heroId.id)
+    (heroId: { id: string }) => `/s${mapPageUrl(heroId.id)}`
   )
   const paths = noPostsIds
     .concat(heroIds)

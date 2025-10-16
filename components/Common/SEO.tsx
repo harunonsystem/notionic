@@ -1,6 +1,6 @@
-import { BLOG } from '@/blog.config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { BLOG } from '@/blog.config'
 
 interface MetaProps {
   meta: any

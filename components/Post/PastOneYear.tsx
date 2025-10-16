@@ -1,6 +1,6 @@
-import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
 import { ExclamationCircleIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
+import { lang } from '@/lib/lang'
 
 function isOneYearPassed(setDate: PastOneYearProps['date']) {
   const now = new Date()
@@ -29,7 +29,5 @@ export default function PastOneYear({ date }: PastOneYearProps) {
         </div>
       </div>
     </div>
-  ) : (
-    <></>
-  )
+  ) : null
 }

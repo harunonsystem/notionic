@@ -1,8 +1,8 @@
 import { Feed } from 'feed'
-import { BLOG } from '@/blog.config'
 import ReactDOMServer from 'react-dom/server'
-import { getPostBlocks } from '@/lib/notion'
+import { BLOG } from '@/blog.config'
 import NotionRenderer from '@/components/Post/NotionRenderer'
+import { getPostBlocks } from '@/lib/notion'
 
 // const mapPageUrl = (id) => 'https://www.notion.so/' + id.replace(/-/g, '')
 

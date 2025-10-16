@@ -1,10 +1,10 @@
-import { BLOG } from '@/blog.config'
-import { lang } from '@/lib/lang'
+import { ExternalLinkIcon } from '@heroicons/react/outline'
+import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { ExternalLinkIcon } from '@heroicons/react/outline'
-import Link from 'next/link'
-import Image from 'next/image'
+import { BLOG } from '@/blog.config'
+import { lang } from '@/lib/lang'
 import ProfileFile from '@/public/harunon_refia_crop.png'
 
 interface LoadingProps {
@@ -45,6 +45,7 @@ export default function Loading({ notionSlug }: LoadingProps) {
                 stroke='currentColor'
                 strokeWidth='4'
               ></circle>
+              <title>Loading</title>
               <path
                 className='opacity-75'
                 fill='currentColor'

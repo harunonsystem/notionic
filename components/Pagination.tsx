@@ -1,8 +1,8 @@
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { BLOG } from '@/blog.config'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 
 interface PaginationProps {
   page: string
@@ -29,7 +29,7 @@ const Pagination = ({ page, showNext }: PaginationProps) => {
               : `/page/${currentPage - 1}`
           }
         >
-          <button rel='prev' className='block cursor-pointer'>
+          <button type='button' rel='prev' className='block cursor-pointer'>
             <ChevronLeftIcon className='inline-block mb-1 h-5 w-5' />{' '}
             {t.PAGINATION.PREV}
           </button>
@@ -37,7 +37,7 @@ const Pagination = ({ page, showNext }: PaginationProps) => {
       )}
       {showNext && (
         <Link href={`/page/${currentPage + 1}`} scroll={false}>
-          <button rel='next' className='block cursor-pointer'>
+          <button type='button' rel='next' className='block cursor-pointer'>
             {t.PAGINATION.NEXT}{' '}
             <ChevronRightIcon className='inline-block mb-1 h-5 w-5' />
           </button>

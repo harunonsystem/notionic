@@ -6,21 +6,20 @@ const LangSwitcher = () => {
   const { locale, asPath } = useRouter()
 
   return (
-    <>
-      <Link
-        passHref
-        href={asPath}
-        locale={locale === 'en' ? 'ja' : 'en'}
-        scroll={false}
+    <Link
+      passHref
+      href={asPath}
+      locale={locale === 'en' ? 'ja' : 'en'}
+      scroll={false}
+    >
+      <button
+        type='button'
+        aria-label='LangSwitcher'
+        className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg dark:text-gray-100'
       >
-        <button
-          aria-label='LangSwitcher'
-          className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg dark:text-gray-100'
-        >
-          <TranslateIcon className='h-5 w-5' />
-        </button>
-      </Link>
-    </>
+        <TranslateIcon className='h-5 w-5' />
+      </button>
+    </Link>
   )
 }
 

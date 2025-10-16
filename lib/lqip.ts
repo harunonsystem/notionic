@@ -60,7 +60,7 @@ async function computeLqipImage(
           { fit: 'inside' }
         ])
   )
-  let output
+  let output: any
 
   if (outputFormat === 'webp') {
     output = resized.webp({

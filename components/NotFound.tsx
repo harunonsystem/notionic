@@ -1,6 +1,6 @@
-import { lang } from '@/lib/lang'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { lang } from '@/lib/lang'
 
 interface Page404Props {
   statusCode?: number

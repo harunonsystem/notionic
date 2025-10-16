@@ -1,7 +1,8 @@
+import { useEffect, useId } from 'react'
 import { BLOG } from '@/blog.config'
-import { useEffect } from 'react'
 
 const Utterances = ({ issueTerm, layout }) => {
+  const utterancId = useId()
   useEffect(() => {
     const theme =
       BLOG.appearance === 'auto'
@@ -23,14 +24,12 @@ const Utterances = ({ issueTerm, layout }) => {
     }
   })
   return (
-    <>
-      <div
-        id='comments'
-        className={layout && layout === 'fullWidth' ? '' : 'md:-ml-16'}
-      >
-        <div className='utterances-frame'></div>
-      </div>
-    </>
+    <div
+      id={utterancId}
+      className={layout && layout === 'fullWidth' ? '' : 'md:-ml-16'}
+    >
+      <div className='utterances-frame'></div>
+    </div>
   )
 }
 

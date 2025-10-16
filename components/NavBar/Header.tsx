@@ -1,8 +1,3 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
-import { BLOG } from '@/blog.config'
-import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
 import {
   CollectionIcon,
   HomeIcon,
@@ -11,12 +6,17 @@ import {
   SearchIcon,
   SparklesIcon
 } from '@heroicons/react/outline'
-import Social from '../Common/Social'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import ProfileFile from '@/public/harunon_refia_crop.png'
-import ThemeSwitcher from '@/components/NavBar/ThemeSwitcher'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { BLOG } from '@/blog.config'
 import LangSwitcher from '@/components/NavBar/LangSwitcher'
+import ThemeSwitcher from '@/components/NavBar/ThemeSwitcher'
+import { lang } from '@/lib/lang'
+import ProfileFile from '@/public/harunon_refia_crop.png'
+import Social from '../Common/Social'
 
 const NavBar = () => {
   const router = useRouter()
@@ -26,7 +26,7 @@ const NavBar = () => {
 
   let activeMenu = ''
   if (router.query.slug) {
-    activeMenu = '/' + router.query.slug
+    activeMenu = `/${router.query.slug}`
   } else {
     activeMenu = router.pathname
   }
@@ -114,6 +114,7 @@ const NavBar = () => {
                   link.show && (
                     <Link passHref key={link.id} href={link.to} scroll={false}>
                       <button
+                        type='button'
                         onClick={() => setShowMenu((showMenu) => !showMenu)}
                         className='text-left hover:bg-gray-100 dark:hover:bg-gray-600 font-light block justify-between w-full px-4 py-2 leading-5'
                       >
@@ -135,6 +136,7 @@ const NavBar = () => {
 }
 
 const Header = ({ navBarTitle, fullWidth }) => {
+  const navId = useId()
   const [showTitle, setShowTitle] = useState(false)
   const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
@@ -168,7 +170,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
     return () => {
       sentinelEl && observer.unobserve(sentinelEl)
     }
-  }, [handler, sentinelRef])
+  }, [handler])
   return (
     <>
       <div className='observer-element h-4 md:h-12' ref={sentinelRef}></div>
@@ -176,7 +178,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
         className={`sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60 ${
           !fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24'
         }`}
-        id='sticky-nav'
+        id={`sticky-nav-${navId}`}
         ref={navRef}
       >
         <div className='flex items-center'>

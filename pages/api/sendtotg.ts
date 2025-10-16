@@ -2,7 +2,7 @@
 export default async function sendtotg(req, res) {
   const TG_TOKEN = null // BLOG.telegramToken
   const TG_CHAT_ID = null // BLOG.telegramChatId
-  const tgUrl = 'https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage'
+  const tgUrl = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`
   const init = {
     method: 'POST',
     headers: {

@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   let { url } = req.query
   const { siteConfigObj } = await getBlocksMaps()
 
-  if (req.query && req.query.url) {
+  if (req.query?.url) {
     url = req.query.url
   }
 

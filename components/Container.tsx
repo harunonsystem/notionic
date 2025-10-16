@@ -1,6 +1,6 @@
-import SEO from '@/components/Common/SEO'
+import type React from 'react'
 import { BLOG } from '@/blog.config'
-import React from 'react'
+import SEO from '@/components/Common/SEO'
 
 // import PropTypes from 'prop-types'
 

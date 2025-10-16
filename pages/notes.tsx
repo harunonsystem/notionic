@@ -1,8 +1,8 @@
-import Container from '@/components/Container'
-import { getAllPosts, getPostBlocks } from '@/lib/notion'
+import type { ExtendedRecordMap } from 'notion-types'
 import { BLOG } from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
-import { ExtendedRecordMap } from 'notion-types'
+import Container from '@/components/Container'
+import { getAllPosts, getPostBlocks } from '@/lib/notion'
 
 export async function getStaticProps() {
   const allowSlug = ['notes', 'weekly']

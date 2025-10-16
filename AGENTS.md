@@ -2,6 +2,8 @@
 
 ## Build/Lint/Test Commands
 
+using [Bun](https://bun.sh/) for package management and scripts.
+
 - Build: `next build`
 - Lint: `next lint`
 - Format: `prettier --write .`

@@ -1,15 +1,13 @@
-import { BLOG } from '@/blog.config'
+import { ChevronLeftIcon } from '@heroicons/react/outline'
 // import PropTypes from 'prop-types'
 import Link from 'next/link'
-
+import type { ExtendedRecordMap } from 'notion-types'
+import type React from 'react'
+import { BLOG } from '@/blog.config'
 import FormattedDate from '@/components/Common/FormattedDate'
 import TagItem from '@/components/Common/TagItem'
 import NotionRenderer from '@/components/Post/NotionRenderer'
-
-import { ChevronLeftIcon } from '@heroicons/react/outline'
 import PastOneYear from '@/components/Post/PastOneYear'
-import React from 'react'
-import { ExtendedRecordMap } from 'notion-types'
 
 interface ContentProps {
   frontMatter: any

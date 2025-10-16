@@ -1,11 +1,10 @@
-import { BLOG } from '@/blog.config'
 import got from 'got'
-import lqip from '../lqip'
+import type { ExtendedRecordMap, RecordMap } from 'notion-types'
+import { defaultMapImageUrl, getPageImageUrls } from 'notion-utils'
 import pMap from 'p-map'
 import pMemoize from 'p-memoize'
-
-import { defaultMapImageUrl, getPageImageUrls } from 'notion-utils'
-import { ExtendedRecordMap, RecordMap } from 'notion-types'
+import { BLOG } from '@/blog.config'
+import lqip from '../lqip'
 
 // NOTE: this is just an example of how to pre-compute preview images.
 // Depending on how many images you're working with, this can potentially be

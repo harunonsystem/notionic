@@ -1,14 +1,15 @@
-import Container from '@/components/Container'
+import { BLOG } from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
+import Container from '@/components/Container'
 import Pagination from '@/components/Pagination'
 import { getAllPosts } from '@/lib/notion'
-import { BLOG } from '@/blog.config'
 
 const Page = ({ postsToShow, page, showNext }) => {
   return (
     <Container>
-      {postsToShow &&
-        postsToShow.map((post) => <BlogPost key={post.id} post={post} />)}
+      {postsToShow?.map((post) => (
+        <BlogPost key={post.id} post={post} />
+      ))}
       <Pagination page={page} showNext={showNext} />
     </Container>
   )
@@ -40,7 +41,7 @@ export async function getStaticPaths() {
   return {
     // remove first page, we 're not gonna handle that.
     paths: Array.from({ length: totalPages - 1 }, (_, i) => ({
-      params: { page: '' + (i + 2) }
+      params: { page: `${i + 2}` }
     })),
     fallback: true
   }
