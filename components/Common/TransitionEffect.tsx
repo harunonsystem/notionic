@@ -37,7 +37,7 @@ const TransitionEffect = ({ children }: TransitionEffectProps) => {
     <div className='effect-1'>
       <AnimatePresence
         initial={false}
-        exitBeforeEnter
+        mode='wait'
         onExitComplete={() => window.scrollTo(0, 0)}
       >
         <motion.div
