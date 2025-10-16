@@ -20,6 +20,12 @@
       "recommended": true,
       "suspicious": {
         "noExplicitAny": "off"
+      },
+      "style": {
+        "useConst": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "error"
       }
     }
   },
