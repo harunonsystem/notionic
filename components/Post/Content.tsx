@@ -1,8 +1,7 @@
 import { ChevronLeftIcon } from '@heroicons/react/outline'
-// import PropTypes from 'prop-types'
 import Link from 'next/link'
 import type { ExtendedRecordMap } from 'notion-types'
-import type React from 'react'
+import React from 'react'
 import { BLOG } from '@/blog.config'
 import FormattedDate from '@/components/Common/FormattedDate'
 import TagItem from '@/components/Common/TagItem'
@@ -16,7 +15,7 @@ interface ContentProps {
   props?: React.ComponentProps<typeof NotionRenderer>
 }
 
-export default function Content({
+const Content = React.memo(function Content({
   frontMatter,
   blockMap,
   pageTitle,
@@ -62,10 +61,6 @@ export default function Content({
       </div>
     </article>
   )
-}
+})
 
-// Content.propTypes = {
-//   frontMatter: PropTypes.object.isRequired,
-//   blockMap: PropTypes.object.isRequired,
-//   pageTitle: PropTypes.string
-// }
+export default Content

@@ -1,4 +1,8 @@
-module.exports = {
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
+
+module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   i18n: {
     locales: ['en', 'ja'],
@@ -70,5 +74,8 @@ module.exports = {
       //   destination: 'https://www.craft.do/404'
       // }
     ]
+  },
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'dayjs']
   }
-}
+})

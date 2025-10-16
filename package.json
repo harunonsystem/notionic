@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
     "format": "biome format . --write",
     "format:check": "biome format .",
@@ -21,7 +22,8 @@
     "test": "vitest run",
     "test:ui": "vitest --ui",
     "typecheck": "tsc --noEmit",
-    "check": "bun run lint && bun run typecheck && bun format && bun run test"
+    "check": "bun run lint && bun run typecheck && bun format && bun run test",
+    "performance:build": "bun run build && echo 'Build analysis:' && ls -la .next/static/chunks/pages/"
   },
   "dependencies": {
     "dayjs": "^1.11.7",
@@ -46,6 +48,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.2.6",
     "@heroicons/react": "^1.0.6",
+    "@next/bundle-analyzer": "^15.5.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^14.3.1",

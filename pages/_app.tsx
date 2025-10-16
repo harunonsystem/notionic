@@ -1,24 +1,20 @@
-// import 'prismjs'
-// import 'prismjs/components/prism-bash'
-// import 'prismjs/components/prism-diff'
-// import 'prismjs/components/prism-go'
-// import 'prismjs/components/prism-yaml'
-// import 'prismjs/components/prism-rust'
-// import 'prismjs/components/prism-javascript'
-// import 'prismjs/components/prism-markup'
-// import 'prismjs/components/prism-typescript'
-// import 'prismjs/themes/prism-tomorrow.min.css' // prism-okaidia.min.css
-import 'react-notion-x/src/styles.css'
+import dynamic from 'next/dynamic'
 import 'katex/dist/katex.min.css'
 import '@/styles/globals.css'
 import '@/styles/notion.css'
-import dynamic from 'next/dynamic'
+
+// Dynamic imports for better bundle splitting
+const NotionStyles = dynamic(() => import('@/components/NotionStyles'), {
+  ssr: false,
+  loading: () => null
+})
+
 import { useRouter } from 'next/router'
 import { ThemeProvider } from 'next-themes'
 import NProgress from 'nprogress'
 import { useEffect } from 'react'
 import { BLOG } from '@/blog.config'
-import Scripts from '@/components/Common/Scripts'
+import { Scripts } from '@/components/Common/Scripts'
 import TransitionEffect from '@/components/Common/TransitionEffect'
 import '@/styles/nprogress.css'
 import Footer from '@/components/NavBar/Footer'
@@ -53,7 +49,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Scripts />
-
+      <NotionStyles />
       {BLOG.isProd && BLOG?.analytics?.provider === 'ga' && <Gtag />}
       <ThemeProvider attribute='class'>
         <Header

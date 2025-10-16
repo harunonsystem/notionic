@@ -10,7 +10,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { BLOG } from '@/blog.config'
 import LangSwitcher from '@/components/NavBar/LangSwitcher'
 import ThemeSwitcher from '@/components/NavBar/ThemeSwitcher'
@@ -18,7 +18,7 @@ import { lang } from '@/lib/lang'
 import ProfileFile from '@/public/harunon_refia_crop.png'
 import Social from '../Common/Social'
 
-const NavBar = () => {
+const NavBar = React.memo(() => {
   const router = useRouter()
   const { locale } = useRouter()
   const t = lang[locale]
@@ -133,9 +133,14 @@ const NavBar = () => {
       </div>
     </motion.div>
   )
+})
+
+interface HeaderProps {
+  navBarTitle?: string
+  fullWidth?: boolean
 }
 
-const Header = ({ navBarTitle, fullWidth }) => {
+const Header = React.memo(({ navBarTitle, fullWidth }: HeaderProps) => {
   const navId = useId()
   const [showTitle, setShowTitle] = useState(false)
   const useSticky = !BLOG.autoCollapsedNavBar
@@ -215,6 +220,6 @@ const Header = ({ navBarTitle, fullWidth }) => {
       </div>
     </>
   )
-}
+})
 
 export default Header

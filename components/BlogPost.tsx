@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import React from 'react'
 import { BLOG } from '@/blog.config'
 
 import FormattedDate from '@/components/Common/FormattedDate'
@@ -16,7 +17,7 @@ interface BlogPostProps {
   }
 }
 
-const BlogPost = ({ post }: BlogPostProps) => {
+const BlogPost = React.memo(({ post }: BlogPostProps) => {
   const href = `${BLOG.path}/${post.slug}`
   return (
     <motion.div>
@@ -51,6 +52,6 @@ const BlogPost = ({ post }: BlogPostProps) => {
       </Link>
     </motion.div>
   )
-}
+})
 
 export default BlogPost
