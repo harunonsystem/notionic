@@ -15,10 +15,13 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "next lint",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "typecheck": "tsc --noEmit",
+    "check": "bun run lint && bun run typecheck && bun run test && bun run format --check"
   },
   "dependencies": {
     "dayjs": "^1.11.7",
@@ -47,6 +50,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
+    "@types/node": "^24.7.2",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^17.0.56",
     "@types/react-dom": "^19.0.2",

@@ -33,9 +33,9 @@ deployment.
 - _(Optional)_ Replace `favicon.svg/png/ico` in `public` folder with your own
 - Modify `lib/lang.ts` with your self introduction
 - Deploy on [Vercel](https://vercel.com), set following environment variables：
-    - `NOTION_PAGE_ID` (Required): The ID of the Notion page you previously shared to the web, usually has 32 digits
-      after your workspace address
-    - eg: `https://your-username.notion.site/<NOTION_PAGE_ID>?v=<view_id>`
+  - `NOTION_PAGE_ID` (Required): The ID of the Notion page you previously shared to the web, usually has 32 digits
+    after your workspace address
+  - eg: `https://your-username.notion.site/<NOTION_PAGE_ID>?v=<view_id>`
 
 More details about Notionic deployment:
 

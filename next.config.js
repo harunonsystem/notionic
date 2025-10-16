@@ -6,7 +6,11 @@ module.exports = {
   },
   transpilePackages: ['dayjs'],
   images: {
-    domains: ['www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com']
+    domains: [
+      'www.notion.so',
+      'images.unsplash.com',
+      's3.us-west-2.amazonaws.com'
+    ]
   },
   async headers() {
     return [
@@ -34,7 +38,7 @@ module.exports = {
       {
         source: '/notes/:pathname/x/:slug*',
         destination: '/api/htmlrewrite?pathname=:pathname&slug=/x/:slug*'
-      },
+      }
       // {
       //   source: '/api/:slug*',
       //   destination: 'https://www.craft.do/api/:slug*'
