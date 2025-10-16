@@ -3,15 +3,15 @@ pre-commit:
   commands:
     lint:
       glob: '*.{js,jsx,ts,tsx}'
-      run: bun run lint --fix
+      run: bun lint
       stage_fixed: true
     format:
       glob: '*.{js,jsx,ts,tsx,json,md,yml,yaml}'
-      run: bun run format {staged_files}
+      run: bun format
       stage_fixed: true
     typecheck:
       glob: '*.{js,jsx,ts,tsx}'
-      run: bun run typecheck
+      run: bun typecheck
     test:
       glob: '*.{js,jsx,ts,tsx}'
-      run: bun run test run
+      run: npx vitest run
