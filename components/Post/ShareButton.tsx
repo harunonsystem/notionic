@@ -19,7 +19,6 @@ const ShareButton = ({ title }: ShareButtonProps) => {
       if (navigator?.clipboard?.writeText) {
         await navigator.clipboard.writeText(text)
       } else {
-      } else {
         // Fallback to execCommand
         const textArea = document.createElement('textarea')
         textArea.value = text
