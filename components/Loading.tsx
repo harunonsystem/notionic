@@ -11,6 +11,14 @@ interface LoadingProps {
   notionSlug?: string
 }
 
+/**
+ * ローディング状態の UI を表示し、指定された Notion スラッグがある場合は 3 秒後に該当 Notion ページへのリンクを表示するコンポーネント。
+ *
+ * 指定された `notionSlug` が存在するとレンダリング時にタイマーが開始され、3 秒後に Notion へのリンクが表示されます。
+ *
+ * @param notionSlug - 表示する Notion ページのスラッグ（省略時はリンクを表示しない）
+ * @returns レンダリングされたローディング UI（JSX 要素）
+ */
 export default function Loading({ notionSlug }: LoadingProps) {
   const { locale } = useRouter()
   const [showNotion, setShowNotion] = useState(false)
