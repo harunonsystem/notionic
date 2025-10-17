@@ -1,8 +1,8 @@
 import {
   ArrowUpIcon,
   ChevronLeftIcon,
-  ThumbUpIcon
-} from '@heroicons/react/outline'
+  HandThumbUpIcon
+} from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import type { ExtendedRecordMap } from 'notion-types'
 import { useEffect, useState } from 'react'
@@ -49,7 +49,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }: AsideProps) => {
                 onClick={() => setShowPay((showPay) => !showPay)}
                 className='text-gray-600 dark:text-day hover:text-gray-400 dark:hover:text-gray-400'
               >
-                <ThumbUpIcon className='w-5 h-5' />
+                <HandThumbUpIcon className='w-5 h-5' />
               </button>
             )}
             {pageTitle && (

@@ -1,4 +1,4 @@
-import { ExclamationCircleIcon } from '@heroicons/react/outline'
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 import { lang } from '@/lib/lang'
 

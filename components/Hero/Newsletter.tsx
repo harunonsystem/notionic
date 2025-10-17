@@ -1,4 +1,7 @@
-import { ClipboardCheckIcon, NewspaperIcon } from '@heroicons/react/outline'
+import {
+  ClipboardDocumentCheckIcon,
+  NewspaperIcon
+} from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 import type { ExtendedRecordMap } from 'notion-types'
 import { useState } from 'react'
@@ -71,7 +74,7 @@ const NewsletterHero = ({ blockMap }: NewsletterHeroProps) => {
               disabled
               className='bg-gray-200 dark:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
             >
-              <ClipboardCheckIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
+              <ClipboardDocumentCheckIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
               <span className='ml-4 flex items-start flex-col leading-none'>
                 <span className='text-xs text-gray-600 dark:text-day mb-1'>
                   {t.HERO.RSS_BUTTON_DES_COPIED}

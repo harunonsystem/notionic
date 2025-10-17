@@ -1,9 +1,9 @@
-import { MoonIcon, SunIcon } from '@heroicons/react/outline'
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
 const ThemeSwitcher = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
@@ -12,16 +12,20 @@ const ThemeSwitcher = () => {
   return (
     <button
       type='button'
-      // title={`Toggle theme - current ${theme}`}
       aria-label='ThemeSwitcher'
-      onClick={() =>
-        setTheme(
-          theme === 'light' ? 'dark' : theme === 'system' ? 'dark' : 'light'
-        )
-      }
+      onClick={() => {
+        const currentTheme = theme || 'system'
+        if (currentTheme === 'light') {
+          setTheme('dark')
+        } else if (currentTheme === 'dark') {
+          setTheme('system')
+        } else {
+          setTheme('light')
+        }
+      }}
       className='p-2 ml-1 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg dark:text-gray-100'
     >
-      {hasMounted && theme === 'dark' ? (
+      {hasMounted && resolvedTheme === 'dark' ? (
         <MoonIcon className='h-5 w-5' />
       ) : (
         <SunIcon className='h-5 w-5' />

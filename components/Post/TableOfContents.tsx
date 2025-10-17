@@ -1,4 +1,4 @@
-import { ChevronLeftIcon } from '@heroicons/react/outline'
+import { ChevronLeftIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import type { Block, ExtendedRecordMap, PageBlock } from 'notion-types'
 import { getPageTableOfContents, type TableOfContentsEntry } from 'notion-utils'

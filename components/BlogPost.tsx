@@ -17,7 +17,7 @@ interface BlogPostProps {
   }
 }
 
-const BlogPost = React.memo(({ post }: BlogPostProps) => {
+export default React.memo(function BlogPost({ post }: BlogPostProps) {
   const href = `${BLOG.path}/${post.slug}`
   return (
     <motion.div>
@@ -53,5 +53,3 @@ const BlogPost = React.memo(({ post }: BlogPostProps) => {
     </motion.div>
   )
 })
-
-export default BlogPost

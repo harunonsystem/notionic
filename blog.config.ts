@@ -1,11 +1,11 @@
 export const BLOG = {
-  title: 'harunonsystem.com',
+  title: 'harunonsystem blog',
   author: 'harunonsystem',
   email: 'harunonsystem@gmail.com',
   link: 'https://harunonsystem.com', // if you change this, also replace in next-sitemap.config.js
   news: 'News',
   notes: 'Notes',
-  description: 'A static blog build on top of Notion and Next.js',
+  description: 'happy coding :)',
   lang: 'ja-JP', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   timezone: 'Asia/Tokyo',
   appearance: 'auto', // ['light', 'dark', 'auto'],
@@ -30,10 +30,9 @@ export const BLOG = {
   ogImageGenerateHost: 'og-zl.vercel.app', // The link to generate OG image, don't end with a slash
   defaultCover: '/cover.jpg',
   socialLink: {
-    twitter: 'https://twitter.com/harunonsystem',
+    twitter: 'https://x.com/harunonsystem',
     github: 'https://github.com/harunonsystem',
-    twitter_dm:
-      'https://www.twitter.com/messages/compose?recipient_id=harunonsystem',
+    twitter_dm: 'https://www.x.com/messages/compose?recipient_id=harunonsystem',
     keybase: 'https://keybase.io/harunon'
     // telegram: 'https://t.me/zuolan'
   },

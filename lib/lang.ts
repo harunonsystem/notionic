@@ -59,7 +59,7 @@ export const lang = {
       DESCRIPTION:
         'If you have any questions or suggestions, please contact me.',
       TWITTER_DM_DESCRIPTION: 'Or you can contact me via X(Twitter) DM: ',
-      TWITTER_DM_LINK: 'https://twitter.com/messages/compose?recipient_id=',
+      TWITTER_DM_LINK: 'https://x.com/messages/compose?recipient_id=',
       TWITTER_DM_USERID: '795973980721004546',
       TWITTER_USERNAME: 'harunonsystem',
       SUCCESS_MESSAGE: 'Message sent, I will reply to you as soon as possible.',
@@ -151,7 +151,7 @@ export const lang = {
       DESCRIPTION:
         'If you have any questions or suggestions, please contact me.',
       TWITTER_DM_DESCRIPTION: 'Or you can contact me via X(Twitter) DM: ',
-      TWITTER_DM_LINK: 'https://twitter.com/messages/compose?recipient_id=',
+      TWITTER_DM_LINK: 'https://x.com/messages/compose?recipient_id=',
       TWITTER_DM_USERID: '795973980721004546',
       TWITTER_USERNAME: 'harunonsystem',
       SUCCESS_MESSAGE: 'Message sent, I will reply to you as soon as possible.',
