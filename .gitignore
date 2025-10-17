@@ -39,3 +39,9 @@ public/sitemap.xml
 
 # JetBrains
 .idea
+
+# Docs
+docs/
+
+# TypeScript
+tsconfig.tsbuildinfo
