@@ -12,17 +12,25 @@ const ShareButton = ({ title }: ShareButtonProps) => {
   const t = lang[locale]
 
   const [showCopied, setShowCopied] = useState(false)
+
   const copyTitleAndUrl = async (title: string, url: string) => {
-    const text = `${title} ${url}`
     try {
-      await navigator.clipboard.writeText(text)
+      const text = `${title} ${url}`
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text)
+      } else {
+        // Fallback to execCommand
+        const textArea = document.createElement('textarea')
+        textArea.value = text
+        document.body.appendChild(textArea)
+        textArea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textArea)
+      }
       setShowCopied(true)
-      setTimeout(() => {
-        setShowCopied(false)
-      }, 1000)
+      setTimeout(() => setShowCopied(false), 1000)
     } catch (err) {
       console.error('clipboard write failed: ', err)
-      setShowCopied(false)
     }
   }
   const shareOnTwitter = (title: string, url: string) => {
