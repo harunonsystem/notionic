@@ -22,7 +22,7 @@ const ShareButton = ({ title }: ShareButtonProps) => {
   }
   const shareOnTwitter = (title: string | number | boolean, url: string) => {
     const text = encodeURIComponent(title)
-    const href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`
+    const href = `https://x.com/intent/tweet?text=${text}&url=${url}`
     window.open(href, 'twitter', 'width=600,height=400')
   }
 
