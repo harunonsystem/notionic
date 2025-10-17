@@ -23,6 +23,13 @@ import Header from '@/components/NavBar/Header'
 
 const Gtag = dynamic(() => import('@/components/Common/Gtag'), { ssr: false })
 
+/**
+ * アプリ全体のレイアウトを組み立て、ルート遷移時のプログレス表示、テーマ適用、共通ヘッダー・フッター、解析コンポーネントをレンダリングする。
+ *
+ * @param Component - 現在のページコンポーネント
+ * @param pageProps - ページに渡されるプロパティ。`post` が含まれる場合、`post.title` をヘッダーのタイトルに、`post.fullWidth` をレイアウト幅に反映する
+ * @returns ルートにマウントされる React 要素
+ */
 function MyApp({ Component, pageProps }) {
   // https://github.com/vercel/next.js/blob/canary/examples/with-loading/pages/_app.js
   const router = useRouter()
