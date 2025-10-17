@@ -1,11 +1,11 @@
 export const BLOG = {
-  title: 'harunonsystem.com',
+  title: 'harunonsystem blog',
   author: 'harunonsystem',
   email: 'harunonsystem@gmail.com',
   link: 'https://harunonsystem.com', // if you change this, also replace in next-sitemap.config.js
   news: 'News',
   notes: 'Notes',
-  description: 'A static blog build on top of Notion and Next.js',
+  description: 'happy coding :)',
   lang: 'ja-JP', // ['en-US', 'zh-CN', 'zh-HK', 'zh-TW', 'ja-JP', 'es-ES']
   timezone: 'Asia/Tokyo',
   appearance: 'auto', // ['light', 'dark', 'auto'],
