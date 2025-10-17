@@ -18,7 +18,7 @@ import { lang } from '@/lib/lang'
 import ProfileFile from '@/public/harunon_refia_crop.png'
 import Social from '../Common/Social'
 
-const NavBar = React.memo(() => {
+const NavBarComponent = React.memo(function NavBarComponent() {
   const router = useRouter()
   const { locale } = useRouter()
   const t = lang[locale]
@@ -140,7 +140,11 @@ interface HeaderProps {
   fullWidth?: boolean
 }
 
-const Header = React.memo(({ navBarTitle, fullWidth }: HeaderProps) => {
+export { NavBarComponent as NavBar }
+export default React.memo(function Header({
+  navBarTitle,
+  fullWidth
+}: HeaderProps) {
   const navId = useId()
   const [showTitle, setShowTitle] = useState(false)
   const useSticky = !BLOG.autoCollapsedNavBar
@@ -216,10 +220,8 @@ const Header = React.memo(({ navBarTitle, fullWidth }: HeaderProps) => {
             </p>
           )}
         </div>
-        <NavBar />
+        <NavBarComponent />
       </div>
     </>
   )
 })
-
-export default Header
