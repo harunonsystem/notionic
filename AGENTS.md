@@ -7,7 +7,7 @@ Using [Bun](https://bun.sh/) for package management and scripts.
 - Build: `next build`
 - Lint: `biome check components/ pages/ lib/ && biome format components/ pages/ lib/ --write`
 - Test all: `vitest run`
-- Single test: `vitest run <file>` (e.g., `vitest run ThemeSwither.test.tsx`)
+- Single test: `vitest run <file>` (e.g., `vitest run ThemeSwitcher.test.tsx`)
 - Typecheck: `tsc --noEmit`
 - Full check: `bun run check` (lint + typecheck + format + test)
 - Dev: `next dev` | Start: `next start`

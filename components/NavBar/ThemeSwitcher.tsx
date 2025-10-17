@@ -13,9 +13,16 @@ const ThemeSwitcher = () => {
     <button
       type='button'
       aria-label='ThemeSwitcher'
-      onClick={() =>
-        setTheme(theme === 'light' || theme === 'system' ? 'dark' : 'light')
-      }
+      onClick={() => {
+        const currentTheme = theme || 'system'
+        if (currentTheme === 'light') {
+          setTheme('dark')
+        } else if (currentTheme === 'dark') {
+          setTheme('system')
+        } else {
+          setTheme('light')
+        }
+      }}
       className='p-2 ml-1 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg dark:text-gray-100'
     >
       {hasMounted && theme === 'dark' ? (
