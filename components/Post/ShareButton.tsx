@@ -19,17 +19,20 @@ const ShareButton = ({ title }: ShareButtonProps) => {
       if (navigator?.clipboard?.writeText) {
         await navigator.clipboard.writeText(text)
       } else {
+      } else {
         // Fallback to execCommand
         const textArea = document.createElement('textarea')
         textArea.value = text
         document.body.appendChild(textArea)
         textArea.select()
-        document.execCommand('copy')
-        const ok = document.execCommand('copy')
-        if (!ok) {
-          throw new Error('Copy command was unsuccessful')
+        try {
+          const ok = document.execCommand('copy')
+          if (!ok) {
+            throw new Error('Copy command was unsuccessful')
+          }
+        } finally {
+          document.body.removeChild(textArea)
         }
-        document.body.removeChild(textArea)
       }
       setShowCopied(true)
       setTimeout(() => setShowCopied(false), 1000)
