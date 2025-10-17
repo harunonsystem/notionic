@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
 const ThemeSwitcher = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const ThemeSwitcher = () => {
       }}
       className='p-2 ml-1 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg dark:text-gray-100'
     >
-      {hasMounted && theme === 'dark' ? (
+      {hasMounted && resolvedTheme === 'dark' ? (
         <MoonIcon className='h-5 w-5' />
       ) : (
         <SunIcon className='h-5 w-5' />
