@@ -1,27 +1,20 @@
-import { useEffect, useState } from 'react'
-import { getPageTitle } from 'notion-utils'
 import { motion } from 'framer-motion'
-
+import type { ExtendedRecordMap } from 'notion-types'
+import { getPageTitle } from 'notion-utils'
+import { useEffect, useState } from 'react'
 import Container from '@/components/Container'
-import Content from '@/components/Post/Content'
 import Aside from '@/components/Post/Aside'
 import Comments from '@/components/Post/Comments'
+import Content from '@/components/Post/Content'
 import PostFooter from '@/components/Post/PostFooter'
-import { ExtendedRecordMap } from 'notion-types'
 
 interface LayoutProps {
   blockMap: ExtendedRecordMap
   frontMatter: any
   fullWidth?: boolean
-  subPage?: boolean
 }
 
-const Layout = ({
-  blockMap,
-  frontMatter,
-  fullWidth = false,
-  subPage = false
-}: LayoutProps) => {
+const Layout = ({ blockMap, frontMatter, fullWidth = false }: LayoutProps) => {
   const [showSubPageTitle, setShowSubPageTitle] = useState(false)
 
   const pageTitle = getPageTitle(blockMap)
@@ -29,12 +22,12 @@ const Layout = ({
     if (frontMatter.title !== pageTitle) {
       setShowSubPageTitle(true)
     }
-  }, [frontMatter, pageTitle, subPage])
+  }, [frontMatter, pageTitle])
 
   return (
     <Container
       title={`${frontMatter.title}${
-        frontMatter.title === pageTitle ? '' : ' | ' + pageTitle
+        frontMatter.title === pageTitle ? '' : ` | ${pageTitle}`
       }`}
       description={frontMatter.summary}
       // date={new Date(frontMatter.publishedAt).toISOString()}

@@ -3,6 +3,7 @@ import { BLOG } from '@/blog.config'
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 import Layout from '@/layouts/layout'
+import { CACHE_CONFIG } from '@/lib/cache'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 
 const Post = ({ post, blockMap }) => {
@@ -30,6 +31,12 @@ export async function getStaticProps({ params: { slug } }) {
   const posts = await getAllPosts({ onlyNewsletter: false })
   const post = posts.find((t) => t.slug === slug)
 
+  if (!post) {
+    return {
+      notFound: true
+    }
+  }
+
   try {
     const blockMap = await getPostBlocks(post.id)
     return {
@@ -37,7 +44,7 @@ export async function getStaticProps({ params: { slug } }) {
         post,
         blockMap
       },
-      revalidate: 1
+      revalidate: CACHE_CONFIG.ISR.SLUG
     }
   } catch (err) {
     console.error(err)
@@ -45,7 +52,8 @@ export async function getStaticProps({ params: { slug } }) {
       props: {
         post: null,
         blockMap: null
-      }
+      },
+      revalidate: CACHE_CONFIG.ISR.ERROR
     }
   }
 }

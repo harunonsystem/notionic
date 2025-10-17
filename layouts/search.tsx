@@ -1,9 +1,9 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import BlogPost from '@/components/BlogPost'
-import Container from '@/components/Container'
 import Tags from '@/components/Common/Tags'
+import Container from '@/components/Container'
 import { lang } from '@/lib/lang'
-import { useRouter } from 'next/router'
 
 interface SearchLayoutProps {
   tags: any[]
@@ -45,6 +45,7 @@ const SearchLayout = ({ tags, posts, currentTag }: SearchLayoutProps) => {
           viewBox='0 0 24 24'
           stroke='currentColor'
         >
+          <title>Search</title>
           <path
             strokeLinecap='round'
             strokeLinejoin='round'

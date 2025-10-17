@@ -1,5 +1,6 @@
 import { NotionAPI } from 'notion-client'
 import { idToUuid } from 'notion-utils'
+import pMemoize from 'p-memoize'
 import { BLOG } from '@/blog.config'
 import dayjs from '@/lib/day'
 import filterPublishedPosts from './filterPublishedPosts'
@@ -14,13 +15,13 @@ interface GetAllPostsProps {
   onlyWeekly?: boolean
 }
 
-export async function getAllPosts({
+const rawGetAllPosts = async ({
   onlyNewsletter,
   onlyPost,
   onlyWeekly,
   onlyNotes,
   onlyHidden
-}: GetAllPostsProps) {
+}: GetAllPostsProps) => {
   let id = BLOG.notionPageId
   const authToken = BLOG.notionAccessToken || null
   const api = new NotionAPI({ authToken })
@@ -77,3 +78,9 @@ export async function getAllPosts({
     return posts
   }
 }
+
+// Enhanced memoization with cache control
+export const getAllPosts = pMemoize(rawGetAllPosts, {
+  cache: new Map(),
+  cacheKey: (...args) => JSON.stringify(args)
+})

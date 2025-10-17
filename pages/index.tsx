@@ -4,6 +4,7 @@ import BlogPost from '@/components/BlogPost'
 import Container from '@/components/Container'
 import Hero from '@/components/Hero/Home'
 import Pagination from '@/components/Pagination'
+import { CACHE_CONFIG } from '@/lib/cache'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 
 export async function getStaticProps() {
@@ -30,7 +31,7 @@ export async function getStaticProps() {
       showNext,
       blockMap
     },
-    revalidate: 1
+    revalidate: CACHE_CONFIG.ISR.HOME
   }
 }
 

@@ -1,8 +1,9 @@
 import { NotionAPI } from 'notion-client'
+import pMemoize from 'p-memoize'
 import { BLOG } from '@/blog.config'
 import { getPreviewImageMap } from './previewImages'
 
-export async function getPostBlocks(id: string) {
+const rawGetPostBlocks = async (id: string) => {
   const authToken = BLOG?.notionAccessToken
   const api = new NotionAPI({ authToken })
   const pageBlock = await api.getPage(id)
@@ -11,3 +12,9 @@ export async function getPostBlocks(id: string) {
   }
   return pageBlock
 }
+
+// Enhanced memoization with longer cache for static content
+export const getPostBlocks = pMemoize(rawGetPostBlocks, {
+  cache: new Map(),
+  cacheKey: (id) => `post-blocks-${id}`
+})

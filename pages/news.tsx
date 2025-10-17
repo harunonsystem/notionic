@@ -3,6 +3,7 @@ import { BLOG } from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
 import Container from '@/components/Container'
 import NewsletterHero from '@/components/Hero/Newsletter'
+import { CACHE_CONFIG } from '@/lib/cache'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 
 export async function getStaticProps() {
@@ -24,7 +25,7 @@ export async function getStaticProps() {
       posts,
       blockMap
     },
-    revalidate: 1
+    revalidate: CACHE_CONFIG.ISR.NEWS
   }
 }
 

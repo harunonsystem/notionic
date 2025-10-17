@@ -15,9 +15,19 @@ module.exports = withBundleAnalyzer({
       'www.notion.so',
       'images.unsplash.com',
       's3.us-west-2.amazonaws.com'
-    ]
+    ],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
   async headers() {
+    // Cache configuration
+    const CACHE_CONFIG = {
+      ASSETS: 31536000, // 1 year
+      IMAGES: 86400 // 24 hours
+    }
+
     return [
       {
         source: '/:path*{/}?',
@@ -25,6 +35,24 @@ module.exports = withBundleAnalyzer({
           {
             key: 'Permissions-Policy',
             value: 'interest-cohort=()'
+          }
+        ]
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: `public, max-age=${CACHE_CONFIG.ASSETS}, immutable`
+          }
+        ]
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: `public, max-age=${CACHE_CONFIG.IMAGES}`
           }
         ]
       }
