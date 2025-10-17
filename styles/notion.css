@@ -37,8 +37,120 @@
   @apply self-center;
 }
 
+/* Dark theme table styling */
+.notion-collection,
+.notion-table-view,
+.notion-collection-row,
+.notion-collection-row-body,
+.notion-collection-row-property,
+.notion-collection-row-value {
+  @apply dark:border-gray-600;
+}
+
+.notion-collection .notion-collection-row:nth-child(even) {
+  @apply dark:bg-gray-800;
+}
+
+.notion-collection .notion-collection-row:nth-child(odd) {
+  @apply dark:bg-gray-700;
+}
+
+.notion-collection .notion-collection-row:hover {
+  @apply dark:bg-gray-600;
+}
+
+/* Table headers */
+.notion-table-header,
+.notion-collection-header,
+.notion-collection-column-title {
+  @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600;
+}
+
+/* Table cells */
+.notion-collection-row-property,
+.notion-collection-row-value {
+  @apply dark:text-gray-300;
+}
+
+.notion-collection-column-title-body {
+  @apply dark:text-gray-200;
+}
+
+/* Table borders */
+.notion-collection-row {
+  @apply dark:border-b dark:border-gray-600;
+}
+
+/* Simple table styling for dark theme */
+.notion-simple-table table {
+  @apply dark:border-gray-600;
+}
+
+.notion-simple-table th {
+  @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600;
+}
+
+.notion-simple-table td {
+  @apply dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600;
+}
+
+.notion-simple-table tr:nth-child(even) td {
+  @apply dark:bg-gray-800;
+}
+
+.notion-simple-table tr:hover td {
+  @apply dark:bg-gray-600;
+}
+
+/* Additional table styling for react-notion-x collections */
+.notion-table,
+.notion-table-view,
+.notion-collection-view-table {
+  @apply dark:bg-gray-700;
+}
+
+.notion-table th,
+.notion-table-view th,
+.notion-collection-row:first-child {
+  @apply dark:bg-gray-600 dark:text-gray-700;
+}
+
+.notion-table td,
+.notion-table-view td {
+  @apply dark:text-gray-300 dark:border-gray-400;
+}
+
+.notion-table tr:hover td,
+.notion-table-view tr:hover td {
+  @apply dark:bg-gray-400;
+}
+
+/* Ensure table readability */
+.dark .notion-collection,
+.dark .notion-table,
+.dark .notion-simple-table table {
+  @apply bg-gray-800 border-gray-600;
+}
+
+.dark .notion-collection th,
+.dark .notion-table th,
+.dark .notion-simple-table th {
+  @apply bg-gray-800 text-gray-200 border-gray-600;
+}
+
+.dark .notion-collection td,
+.dark .notion-table td,
+.dark .notion-simple-table td {
+  @apply text-gray-300 border-gray-600 bg-gray-700;
+}
+
+.notion-page-title,
+.notion-page-icon-inline {
+  @apply dark:text-gray-200;
+}
+
 svg.notion-page-icon {
-  @apply hidden;
+  @apply hidden dark:text-gray-400;
 }
 
 svg + .notion-page-title-text {
