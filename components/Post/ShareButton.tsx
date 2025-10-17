@@ -25,6 +25,10 @@ const ShareButton = ({ title }: ShareButtonProps) => {
         document.body.appendChild(textArea)
         textArea.select()
         document.execCommand('copy')
+        const ok = document.execCommand('copy')
+        if (!ok) {
+          throw new Error('Copy command was unsuccessful')
+        }
         document.body.removeChild(textArea)
       }
       setShowCopied(true)
