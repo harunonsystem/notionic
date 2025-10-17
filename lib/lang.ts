@@ -1,4 +1,94 @@
-export const lang = {
+interface LangType {
+  [key: string]: {
+    NAV: {
+      INDEX: string
+      SEARCH: string
+      ABOUT: string
+      FRIENDS: string
+      PROJECTS: string
+      NOTES: string
+      NEWSLETTER: string
+      BOOKS: string
+      CONTACT: string
+    }
+    PAGINATION: {
+      PREV: string
+      NEXT: string
+    }
+    LAYOUT: {
+      NOTICE_TEXT: string
+      COPY_TITLE_AND_URL_BUTTON_TEXT: string
+      COPY_TITLE_AND_URL_BUTTON_TEXT_COPIED: string
+      SHARE_TWITTER_BUTTON_TEXT: string
+      PAY_BUTTON: string
+      NOTICE_BUTTON: string
+      COMMENT_TITLE: string
+      PAST_ONE_YEAR_COMMENT: string
+    }
+    SEARCH: {
+      ONLY_SEARCH: string
+      PLACEHOLDER: string
+      NOT_FOUND: string
+    }
+    HERO: {
+      HOME: {
+        CONTACT_BUTTON: string
+        CONTACT_BUTTON_DES: string
+        RSS_BUTTON: string
+      }
+      NEWSLETTER: {
+        SUBSCRIPTION_HEAD: string
+        // TG_CHANNEL: string
+        RSS_BUTTON: string
+      }
+      NOTES: {
+        TEXT_FOOTER: string
+      }
+      RSS_BUTTON_DES: string
+      RSS_BUTTON_COPIED: string
+      RSS_BUTTON_DES_COPIED: string
+    }
+    AVATAR: {
+      ICON_DESIGNED_DES: string
+      ICON_DESIGNED_LINK: string
+      ICON_DESIGNED_NAME: string
+    }
+    CONTACT: {
+      TITLE: string
+      DESCRIPTION: string
+      TWITTER_DM_DESCRIPTION: string
+      TWITTER_DM_LINK: string
+      TWITTER_DM_USERID: string
+      TWITTER_USERNAME: string
+      SUCCESS_MESSAGE: string
+      FORM_USERNAME: string
+      FORM_EMAIL: string
+      FORM_CONTENT: string
+      SEND_BUTTON: string
+      FORM_EMAIL_REQUIRED: string
+      FAILED_MESSAGE: string
+    }
+    FOOTER: {
+      COPYRIGHT_START: string
+      COPYRIGHT_NAME: string
+      COPYRIGHT_LINK: string
+      COPYRIGHT_END: string
+      ORIGIN_REPOSITORY_DESCRIPTION: string
+      ORIGIN_REPOSITORY_LINK: string
+    }
+    ERROR: {
+      MESSAGE: string
+      TITLE: string
+      HELP_TEXT: string
+      BACK_TO_HOME: string
+      CRAFTDOCS_ERROR: string
+      LOADING: string
+      TIMEOUT_TEXT: string
+    }
+  }
+}
+
+export const lang: LangType = {
   en: {
     NAV: {
       INDEX: 'Home',
@@ -182,6 +272,5 @@ export const lang = {
       LOADING: 'Loading....',
       TIMEOUT_TEXT: 'Waiting too long? Click to visit the Notion page directly.'
     }
-  },
-  es: {}
+  }
 }

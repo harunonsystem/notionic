@@ -1,15 +1,29 @@
 import '@testing-library/jest-dom'
-import { TextDecoder, TextEncoder } from 'util'
-import { vi } from 'vitest'
+import { TextDecoder, TextEncoder } from 'node:util'
+import { vi, afterEach } from 'vitest'
+import { cleanup } from '@testing-library/react'
 import { createMockRouter } from './testUtils/mocks/nextRouter'
 
 // Setup testing globals
 global.TextEncoder = TextEncoder as any
 global.TextDecoder = TextDecoder as typeof global.TextDecoder
 
+// Mock IntersectionObserver
+global.IntersectionObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn()
+}))
+
+// Cleanup after each test
+afterEach(() => {
+  cleanup()
+  vi.clearAllMocks()
+})
+
 // Mock next/router globally
 vi.mock('next/router', () => ({
-  useRouter: vi.fn(() => createMockRouter('en')),
+  useRouter: vi.fn(() => createMockRouter({ locale: 'en' })),
   Router: {
     events: {
       on: vi.fn(),

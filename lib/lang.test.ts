@@ -28,9 +28,8 @@ describe('lang configuration', () => {
     expect(lang.ja.ERROR).toBeDefined()
   })
 
-  it('should have Spanish language structure (but empty)', () => {
-    expect(lang.es).toBeDefined()
-    expect(lang.es).toEqual({})
+  it('should handle accessing undefined languages gracefully', () => {
+    expect(lang.es).toBeUndefined()
   })
 
   it('should have English navigation items', () => {
