@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: '*.{js,jsx,ts,tsx}'
+      run: bun lint
+      stage_fixed: true
+    format:
+      glob: '*.{js,jsx,ts,tsx,json,md,yml,yaml}'
+      run: bun format
+      stage_fixed: true
+    typecheck:
+      glob: '*.{js,jsx,ts,tsx}'
+      run: bun typecheck
+    test:
+      glob: '*.{js,jsx,ts,tsx}'
+      run: bun run test

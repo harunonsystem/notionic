@@ -1,0 +1,30 @@
+name: 'Setup Node.js Environment'
+description: 'Setup Bun and install dependencies'
+inputs:
+  cache-key-suffix:
+    description: 'Suffix for cache key'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.bun/install/cache
+          ~/.bun/store
+          ~/.node_modules
+        key: ${{ runner.os }}-bun-v1-${{ hashFiles('bun.lockb') }}${{ inputs.cache-key-suffix }}
+        restore-keys: |
+          ${{ runner.os }}-bun-v1-
+
+    - name: Install dependencies
+      run: bun install --frozen-lockfile
+      shell: bash

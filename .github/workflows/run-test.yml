@@ -1,21 +1,42 @@
-name: Run test
+name: CI Tests
 
 on:
-  - push
-  - pull_request
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CI: true
 
 jobs:
-  run-test:
+  test-matrix:
+    name: Quality Checks
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [ "24.x" ]
+        os: [ubuntu-latest]
 
-      - run: pnpm install
-      - run: pnpm test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: ./.github/actions
+
+      - name: Run format check
+        run: bun run format:check
+
+      - name: Run lint check
+        run: bun run lint
+
+      - name: Run type check
+        run: bun run typecheck
+
+      - name: Run tests
+        run: bun run test
+
+      

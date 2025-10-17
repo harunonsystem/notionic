@@ -1,4 +1,14 @@
-module.exports = {
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
+
+module.exports = withBundleAnalyzer({
+  eslint: {
+    // Turn off ESLint in Next.js build to avoid conflicts with Biome
+    dirs: ['components', 'pages', 'lib', 'styles', 'layout'],
+    ignoreDuringBuilds: true
+  },
+  reactStrictMode: true,
   i18n: {
     locales: ['en', 'ja'],
     defaultLocale: 'ja',
@@ -6,9 +16,23 @@ module.exports = {
   },
   transpilePackages: ['dayjs'],
   images: {
-    domains: ['www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com']
+    domains: [
+      'www.notion.so',
+      'images.unsplash.com',
+      's3.us-west-2.amazonaws.com'
+    ],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
   async headers() {
+    // Cache configuration
+    const CACHE_CONFIG = {
+      ASSETS: 31536000, // 1 year
+      IMAGES: 86400 // 24 hours
+    }
+
     return [
       {
         source: '/:path*{/}?',
@@ -16,6 +40,24 @@ module.exports = {
           {
             key: 'Permissions-Policy',
             value: 'interest-cohort=()'
+          }
+        ]
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: `public, max-age=${CACHE_CONFIG.ASSETS}, immutable`
+          }
+        ]
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: `public, max-age=${CACHE_CONFIG.IMAGES}`
           }
         ]
       }
@@ -34,7 +76,7 @@ module.exports = {
       {
         source: '/notes/:pathname/x/:slug*',
         destination: '/api/htmlrewrite?pathname=:pathname&slug=/x/:slug*'
-      },
+      }
       // {
       //   source: '/api/:slug*',
       //   destination: 'https://www.craft.do/api/:slug*'
@@ -65,5 +107,8 @@ module.exports = {
       //   destination: 'https://www.craft.do/404'
       // }
     ]
+  },
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'dayjs']
   }
-}
+})
