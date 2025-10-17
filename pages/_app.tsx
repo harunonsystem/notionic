@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic'
 import 'katex/dist/katex.min.css'
 import '@/styles/globals.css'
 import '@/styles/notion.css'
+import { Analytics } from '@vercel/analytics/react'
 
 // Dynamic imports for better bundle splitting
 const NotionStyles = dynamic(() => import('@/components/NotionStyles'), {
@@ -67,6 +68,7 @@ function MyApp({ Component, pageProps }) {
         </TransitionEffect>
         <Footer fullWidth={pageProps.post ? pageProps.post.fullWidth : false} />
       </ThemeProvider>
+      <Analytics />
     </>
   )
 }
