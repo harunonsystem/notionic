@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [tsConfigPaths(), react()],
 
   test: {
-    environment: 'jsdom',
+    environment: 'happy-dom',
     globals: true,
     setupFiles: './setupTests.ts'
   }

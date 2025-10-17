@@ -2,23 +2,22 @@
 
 ## Build/Lint/Test Commands
 
-using [Bun](https://bun.sh/) for package management and scripts.
+Using [Bun](https://bun.sh/) for package management and scripts.
 
 - Build: `next build`
-- Lint: `next lint`
-- Format: `prettier --write .`
-- Test all: `vitest`
-- Test UI: `vitest --ui`
+- Lint: `biome check components/ pages/ lib/ && biome format components/ pages/ lib/ --write`
+- Test all: `vitest run`
 - Single test: `vitest run <file>` (e.g., `vitest run ThemeSwither.test.tsx`)
-- Dev: `next dev`
-- Start: `next start`
+- Typecheck: `tsc --noEmit`
+- Full check: `bun run check` (lint + typecheck + format + test)
+- Dev: `next dev` | Start: `next start`
 
 ## Code Style Guidelines
 
-- **Imports**: Use absolute paths with `@/` alias (e.g., `import { Foo } from '@/components/Foo'`)
-- **Formatting**: Prettier with single quotes, no semicolons, 2-space tabs, trailing comma none
+- **Imports**: Absolute paths with `@/` alias (e.g., `import { Foo } from '@/components/Foo'`)
+- **Formatting**: Single quotes, no semicolons, 2-space indentation, trailing commas none (Biome)
 - **Types**: TypeScript with strict: false; use .ts/.tsx extensions
 - **Naming**: PascalCase for components, camelCase for functions/variables
 - **Error Handling**: Use try/catch; log errors appropriately
-- **Linting**: ESLint with Next.js core-web-vitals rules
-- **Testing**: Vitest with jsdom; globals enabled; setup in setupTests.ts
+- **Linting**: Biome for linting/formatting; ESLint for Next.js core-web-vitals
+- **Testing**: Vitest with happy-dom environment; globals enabled; setup in setupTests.ts
