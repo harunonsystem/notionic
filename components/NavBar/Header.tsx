@@ -1,11 +1,11 @@
 import {
-  CollectionIcon,
+  Bars3Icon,
+  FolderIcon,
   HomeIcon,
-  MenuIcon,
+  MagnifyingGlassIcon,
   NewspaperIcon,
-  SearchIcon,
   SparklesIcon
-} from '@heroicons/react/outline'
+} from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -50,7 +50,7 @@ const NavBar = React.memo(() => {
       id: 2,
       name: t.NAV.NOTES,
       to: '/notes',
-      icon: <CollectionIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <FolderIcon className='inline-block mb-1 h-5 w-5' />,
       show: BLOG.pagesShow.notes
     },
     {
@@ -64,7 +64,7 @@ const NavBar = React.memo(() => {
       id: 4,
       name: t.NAV.SEARCH,
       to: '/search',
-      icon: <SearchIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <MagnifyingGlassIcon className='inline-block mb-1 h-5 w-5' />,
       show: true
     }
   ]
@@ -104,7 +104,7 @@ const NavBar = React.memo(() => {
           onClick={() => setShowMenu((showMenu) => !showMenu)}
           className='hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block p-2 -mr-3 md:pb-3'
         >
-          <MenuIcon className='inline-block mb-1 h-5 w-5' />
+          <Bars3Icon className='inline-block mb-1 h-5 w-5' />
         </button>
         {showMenu && (
           <div className='absolute right-0 w-40 mr-4 mt-2 bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600 rounded-md shadow-lg outline-none'>

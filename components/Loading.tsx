@@ -1,4 +1,4 @@
-import { ExternalLinkIcon } from '@heroicons/react/outline'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -61,7 +61,7 @@ export default function Loading({ notionSlug }: LoadingProps) {
               scroll={false}
               className='text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition duration-100'
             >
-              <ExternalLinkIcon className='inline-block mb-1 h-5 w-5' />
+              <ArrowTopRightOnSquareIcon className='inline-block mb-1 h-5 w-5' />
               <span className='m-1'>{t.ERROR.TIMEOUT_TEXT}</span>
             </Link>
           )}
