@@ -1,4 +1,4 @@
-import { Link } from 'lucide-react'
+import { Check, Link } from 'lucide-react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { TwitterIcon } from '@/components/SvgIcons'
@@ -63,7 +63,7 @@ const ShareButton = ({ title }: ShareButtonProps) => {
             disabled
             className='flex gap-1 bg-gray-200 dark:bg-gray-600 text-sm rounded-lg px-4 py-2 cursor-not-allowed opacity-75'
           >
-            <Link className='flex flex-col justify-center items-center select-none cursor-pointer relative w-5 h-5' />
+            <Check className='flex flex-col justify-center items-center select-none cursor-pointer relative w-5 h-5' />
             {t.LAYOUT.COPY_TITLE_AND_URL_BUTTON_TEXT_COPIED}
           </button>
         ) : (
