@@ -53,9 +53,10 @@ const rawGetAllPosts = async ({
       // Add fullwidth to properties
       properties.fullWidth = block[id].value?.format?.page_full_width ?? false
       // Convert date (with timezone) to unix milliseconds timestamp
-      properties.date = dateToUnixTimestamp(
+      const dateInput =
         properties.date?.start_date || block[id].value?.created_time
-      )
+      const timestamp = dateToUnixTimestamp(dateInput, BLOG.timezone)
+      properties.date = timestamp ?? 0
 
       data.push(properties)
     }
