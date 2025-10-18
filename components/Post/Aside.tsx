@@ -1,8 +1,4 @@
-import {
-  ArrowUpIcon,
-  ChevronLeftIcon,
-  HandThumbUpIcon
-} from '@heroicons/react/24/outline'
+import { ArrowUp, ChevronLeft, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import type { ExtendedRecordMap } from 'notion-types'
 import { useEffect, useState } from 'react'
@@ -49,7 +45,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }: AsideProps) => {
                 onClick={() => setShowPay((showPay) => !showPay)}
                 className='text-gray-600 dark:text-day hover:text-gray-400 dark:hover:text-gray-400'
               >
-                <HandThumbUpIcon className='w-5 h-5' />
+                <ThumbsUp className='w-5 h-5' />
               </button>
             )}
             {pageTitle && (
@@ -59,7 +55,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }: AsideProps) => {
                 scroll={false}
                 className='text-gray-600 dark:text-day hover:text-gray-400 dark:hover:text-gray-400'
               >
-                <ChevronLeftIcon className='w-5 h-5' />
+                <ChevronLeft className='w-5 h-5' />
               </Link>
             )}
             {showScrollElement && (
@@ -68,7 +64,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }: AsideProps) => {
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className='text-gray-600 dark:text-day hover:text-gray-400 dark:hover:text-gray-400'
               >
-                <ArrowUpIcon className='w-5 h-5' />
+                <ArrowUp className='w-5 h-5' />
               </button>
             )}
           </div>
@@ -91,7 +87,7 @@ const Aside = ({ pageTitle, blockMap, frontMatter }: AsideProps) => {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className='md:hidden fixed inline-flex bottom-5 right-5 p-2 rounded-lg z-10 shadow bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600'
         >
-          <ArrowUpIcon className='text-gray-600 dark:text-day w-5 h-5' />
+          <ArrowUp className='text-gray-600 dark:text-day w-5 h-5' />
         </button>
       )}
     </>

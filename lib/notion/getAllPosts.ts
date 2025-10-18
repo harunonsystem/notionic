@@ -2,7 +2,7 @@ import { NotionAPI } from 'notion-client'
 import { idToUuid } from 'notion-utils'
 import pMemoize from 'p-memoize'
 import { BLOG } from '@/blog.config'
-import dayjs from '@/lib/day'
+import { dateToUnixTimestamp } from '@/lib/timezone'
 import filterPublishedPosts from './filterPublishedPosts'
 import getAllPageIds from './getAllPageIds'
 import getPageProperties from './getPageProperties'
@@ -53,11 +53,10 @@ const rawGetAllPosts = async ({
       // Add fullwidth to properties
       properties.fullWidth = block[id].value?.format?.page_full_width ?? false
       // Convert date (with timezone) to unix milliseconds timestamp
-      properties.date = (
-        properties.date?.start_date
-          ? dayjs.tz(properties.date?.start_date)
-          : dayjs(block[id].value?.created_time)
-      ).valueOf()
+      const dateInput =
+        properties.date?.start_date || block[id].value?.created_time
+      const timestamp = dateToUnixTimestamp(dateInput, BLOG.timezone)
+      properties.date = timestamp ?? 0
 
       data.push(properties)
     }

@@ -1,4 +1,4 @@
-import { ChevronLeftIcon } from '@heroicons/react/24/outline'
+import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import type { ExtendedRecordMap } from 'notion-types'
 import React from 'react'
@@ -30,7 +30,7 @@ const Content = React.memo(function Content({
           scroll={false}
           className='block md:-ml-6 mb-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300'
         >
-          <ChevronLeftIcon className='inline-block mb-1 h-5 w-5' />
+          <ChevronLeft className='inline-block mb-1 h-5 w-5' />
           <span className='m-1'>{frontMatter.title}</span>
         </Link>
       )}
