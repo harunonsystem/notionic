@@ -1,4 +1,4 @@
-import { ChevronLeftIcon } from '@heroicons/react/24/outline'
+import { ChevronLeft } from 'lucide-react'
 import Link from 'next/link'
 import type { Block, ExtendedRecordMap, PageBlock } from 'notion-types'
 import { getPageTableOfContents, type TableOfContentsEntry } from 'notion-utils'
@@ -60,7 +60,7 @@ export default function TableOfContents({
           scroll={false}
           className='block -ml-6 mb-2 p-2 hover:bg-gray-200 hover:dark:bg-gray-700 rounded-lg'
         >
-          <ChevronLeftIcon className='inline-block mb-1 h-5 w-5' />
+          <ChevronLeft className='inline-block mb-1 h-5 w-5' />
           <span className='ml-1'>{frontMatter.title}</span>
         </Link>
       )}

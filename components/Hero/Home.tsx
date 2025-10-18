@@ -1,8 +1,4 @@
-import {
-  ClipboardDocumentCheckIcon,
-  EnvelopeIcon,
-  RssIcon
-} from '@heroicons/react/24/outline'
+import { ClipboardCheck, Mail, Rss } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { ExtendedRecordMap } from 'notion-types'
@@ -46,7 +42,7 @@ const Hero = ({ blockMap }: HeroProps) => {
               type='button'
               className='w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
             >
-              <EnvelopeIcon className='inline-block text-gray-600 dark:text-day h-7 w-7 mt-1' />
+              <Mail className='inline-block text-gray-600 dark:text-day h-7 w-7 mt-1' />
               <span className='ml-4 flex items-start flex-col leading-none'>
                 <span className='text-xs text-gray-600 dark:text-day mb-1'>
                   {t.HERO.HOME.CONTACT_BUTTON_DES}
@@ -62,7 +58,7 @@ const Hero = ({ blockMap }: HeroProps) => {
               type='button'
               className='bg-gray-200 dark:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
             >
-              <ClipboardDocumentCheckIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
+              <ClipboardCheck className='inline-block text-gray-600 dark:text-day h-7 w-7' />
               <span className='ml-4 flex items-start flex-col leading-none'>
                 <span className='text-xs text-gray-600 dark:text-day mb-1'>
                   {t.HERO.RSS_BUTTON_DES_COPIED}
@@ -76,7 +72,7 @@ const Hero = ({ blockMap }: HeroProps) => {
               onClick={() => clickCopy()}
               className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
             >
-              <RssIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
+              <Rss className='inline-block text-gray-600 dark:text-day h-7 w-7' />
               <span className='ml-4 flex items-start flex-col leading-none'>
                 <span className='text-xs text-gray-600 dark:text-day mb-1'>
                   {t.HERO.RSS_BUTTON_DES}

@@ -166,7 +166,7 @@ describe('Aside', () => {
 
     // Mobile scroll button should be hidden
     const _mobileScrollButton = screen.queryByRole('button', {
-      name: '' // ArrowUpIcon button
+      name: '' // ArrowUp button
     })
     expect(screen.getAllByRole('button')).toHaveLength(1) // Only WeChat Pay button
   })

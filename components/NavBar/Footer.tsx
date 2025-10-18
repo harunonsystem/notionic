@@ -1,5 +1,5 @@
-import { EnvelopeIcon } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
+import { Mail } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { BLOG } from '@/blog.config'
@@ -52,7 +52,7 @@ const Footer = ({ fullWidth }: FooterProps) => {
       id: 3,
       name: t.NAV.CONTACT,
       to: '/contact',
-      icon: <EnvelopeIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <Mail className='inline-block mb-1 h-5 w-5' />,
       show: BLOG.pagesShow.contact
     }
   ]

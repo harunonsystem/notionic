@@ -1,12 +1,5 @@
-import {
-  Bars3Icon,
-  FolderIcon,
-  HomeIcon,
-  MagnifyingGlassIcon,
-  NewspaperIcon,
-  SparklesIcon
-} from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
+import { Folder, Home, Menu, Newspaper, Search, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -36,35 +29,35 @@ const NavBarComponent = React.memo(function NavBarComponent() {
       id: 0,
       name: t.NAV.INDEX,
       to: BLOG.path || '/',
-      icon: <HomeIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <Home className='inline-block mb-1 h-5 w-5' />,
       show: true
     },
     {
       id: 1,
       name: t.NAV.NEWSLETTER,
       to: '/news',
-      icon: <NewspaperIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <Newspaper className='inline-block mb-1 h-5 w-5' />,
       show: BLOG.pagesShow.newsletter
     },
     {
       id: 2,
       name: t.NAV.NOTES,
       to: '/notes',
-      icon: <FolderIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <Folder className='inline-block mb-1 h-5 w-5' />,
       show: BLOG.pagesShow.notes
     },
     {
       id: 3,
       name: t.NAV.PROJECTS,
       to: '/projects',
-      icon: <SparklesIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <Sparkles className='inline-block mb-1 h-5 w-5' />,
       show: BLOG.pagesShow.projects
     },
     {
       id: 4,
       name: t.NAV.SEARCH,
       to: '/search',
-      icon: <MagnifyingGlassIcon className='inline-block mb-1 h-5 w-5' />,
+      icon: <Search className='inline-block mb-1 h-5 w-5' />,
       show: true
     }
   ]
@@ -104,7 +97,7 @@ const NavBarComponent = React.memo(function NavBarComponent() {
           onClick={() => setShowMenu((showMenu) => !showMenu)}
           className='hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block p-2 -mr-3 md:pb-3'
         >
-          <Bars3Icon className='inline-block mb-1 h-5 w-5' />
+          <Menu className='inline-block mb-1 h-5 w-5' />
         </button>
         {showMenu && (
           <div className='absolute right-0 w-40 mr-4 mt-2 bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600 rounded-md shadow-lg outline-none'>

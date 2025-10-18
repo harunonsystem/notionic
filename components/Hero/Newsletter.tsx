@@ -1,7 +1,4 @@
-import {
-  ClipboardDocumentCheckIcon,
-  NewspaperIcon
-} from '@heroicons/react/24/outline'
+import { ClipboardCheck, Newspaper, Rss } from 'lucide-react'
 import { useRouter } from 'next/router'
 import type { ExtendedRecordMap } from 'notion-types'
 import { useState } from 'react'
@@ -74,7 +71,7 @@ const NewsletterHero = ({ blockMap }: NewsletterHeroProps) => {
               disabled
               className='bg-gray-200 dark:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
             >
-              <ClipboardDocumentCheckIcon className='inline-block text-gray-600 dark:text-day h-7 w-7' />
+              <ClipboardCheck className='inline-block text-gray-600 dark:text-day h-7 w-7' />
               <span className='ml-4 flex items-start flex-col leading-none'>
                 <span className='text-xs text-gray-600 dark:text-day mb-1'>
                   {t.HERO.RSS_BUTTON_DES_COPIED}
@@ -88,16 +85,7 @@ const NewsletterHero = ({ blockMap }: NewsletterHeroProps) => {
               onClick={() => clickCopy()}
               className='bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'
             >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='currentColor'
-                className='text-gray-600 dark:text-day w-6 h-6'
-                viewBox='0 0 24 24'
-              >
-                <title>RSS Feed</title>
-                <path fill='none' d='M0 0h24v24H0z' />
-                <path d='M3 17a4 4 0 0 1 4 4H3v-4zm0-7c6.075 0 11 4.925 11 11h-2a9 9 0 0 0-9-9v-2zm0-7c9.941 0 18 8.059 18 18h-2c0-8.837-7.163-16-16-16V3z' />
-              </svg>
+              <Rss className='text-gray-600 dark:text-day w-6 h-6' />
               <span className='ml-4 flex items-start flex-col leading-none'>
                 <span className='text-xs text-gray-600 dark:text-day mb-1'>
                   {t.HERO.RSS_BUTTON_DES}
@@ -111,7 +99,7 @@ const NewsletterHero = ({ blockMap }: NewsletterHeroProps) => {
         </div>
       </div>
       <div className='w-1/5'>
-        <NewspaperIcon className='object-cover object-center text-gray-500 dark:text-gray-300' />
+        <Newspaper className='object-cover object-center text-gray-500 dark:text-gray-300' />
       </div>
     </div>
   )

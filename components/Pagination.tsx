@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { BLOG } from '@/blog.config'
@@ -30,7 +30,7 @@ const Pagination = ({ page, showNext }: PaginationProps) => {
           }
         >
           <button type='button' rel='prev' className='block cursor-pointer'>
-            <ChevronLeftIcon className='inline-block mb-1 h-5 w-5' />{' '}
+            <ChevronLeft className='inline-block mb-1 h-5 w-5' />{' '}
             {t.PAGINATION.PREV}
           </button>
         </Link>
@@ -39,7 +39,7 @@ const Pagination = ({ page, showNext }: PaginationProps) => {
         <Link href={`/page/${currentPage + 1}`} scroll={false}>
           <button type='button' rel='next' className='block cursor-pointer'>
             {t.PAGINATION.NEXT}{' '}
-            <ChevronRightIcon className='inline-block mb-1 h-5 w-5' />
+            <ChevronRight className='inline-block mb-1 h-5 w-5' />
           </button>
         </Link>
       )}

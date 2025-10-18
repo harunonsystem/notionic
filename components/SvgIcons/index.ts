@@ -1,0 +1,6 @@
+export { GitHubIcon } from './GitHubIcon'
+export { KeybaseIcon } from './KeybaseIcon'
+export { NotionicLogo } from './NotionicLogo'
+export { SearchIcon } from './SearchIcon'
+export { TwitterIcon } from './TwitterIcon'
+export { XIcon } from './XIcon'

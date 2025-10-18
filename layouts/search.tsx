@@ -3,6 +3,7 @@ import { useState } from 'react'
 import BlogPost from '@/components/BlogPost'
 import Tags from '@/components/Common/Tags'
 import Container from '@/components/Container'
+import { SearchIcon } from '@/components/SvgIcons'
 import { lang } from '@/lib/lang'
 
 interface SearchLayoutProps {
@@ -38,21 +39,7 @@ const SearchLayout = ({ tags, posts, currentTag }: SearchLayoutProps) => {
           className='w-full bg-white dark:bg-gray-600 shadow-md rounded-lg outline-none focus:shadow p-3'
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <svg
-          className='absolute right-3 top-3 h-5 w-5 text-gray-400'
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'
-        >
-          <title>Search</title>
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth='2'
-            d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-          ></path>
-        </svg>
+        <SearchIcon className='absolute right-3 top-3 h-5 w-5 text-gray-400' />
       </div>
       <Tags tags={tags} currentTag={currentTag} />
       <div className='article-container my-8'>
