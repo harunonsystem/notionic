@@ -23,7 +23,8 @@ export const dateToUnixTimestamp = (
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        second: '2-digit',
+        hour12: false
       })
 
       const parts = formatter.formatToParts(date)
@@ -49,11 +50,22 @@ export const formatDateWithTimezone = (
   dateStr: string,
   locale: string = 'ja-JP'
 ): string => {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString(locale, {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    timeZone: BLOG.timezone
-  })
+  try {
+    const date = new Date(dateStr)
+
+    if (Number.isNaN(date.getTime())) {
+      console.error(`Invalid date: ${dateStr}`)
+      return ''
+    }
+
+    return date.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      timeZone: BLOG.timezone
+    })
+  } catch (error) {
+    console.error(`Failed to format date: ${dateStr}`, error)
+    return ''
+  }
 }
