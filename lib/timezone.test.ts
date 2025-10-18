@@ -101,6 +101,12 @@ describe('timezone utilities', () => {
       expect(formatted).toMatch(/\d{4}|1月|1\d/)
     })
 
+    it('should format date with timezone', () => {
+      const formatted = formatDateWithTimezone('2023-01-15T12:00:00Z', 'ja-JP')
+      expect(typeof formatted).toBe('string')
+      expect(formatted).toMatch(/\d{4}年.*1月.*\d{1,2}日/)
+    })
+
     it('should format date with default locale', () => {
       const formatted = formatDateWithTimezone('2023-01-15T12:00:00Z')
       expect(typeof formatted).toBe('string')

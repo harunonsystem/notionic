@@ -2,7 +2,7 @@ interface LogoProps {
   [key: string]: Record<string, string | number | boolean>
 }
 
-export const NotionicLogo = ({ props }: LogoProps) => (
+export const NotionicLogo = (props: LogoProps) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='24'
