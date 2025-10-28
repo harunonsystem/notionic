@@ -9,11 +9,16 @@ global.TextEncoder = TextEncoder as any
 global.TextDecoder = TextDecoder as typeof global.TextDecoder
 
 // Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn()
-}))
+class MockIntersectionObserver {
+  constructor(callback: IntersectionObserverCallback) {
+    this.callback = callback
+  }
+  callback: IntersectionObserverCallback
+  observe = vi.fn()
+  unobserve = vi.fn()
+  disconnect = vi.fn()
+}
+global.IntersectionObserver = MockIntersectionObserver as any
 
 // Cleanup after each test
 afterEach(() => {
