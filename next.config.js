@@ -3,11 +3,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer({
-  eslint: {
-    // Turn off ESLint in Next.js build to avoid conflicts with Biome
-    dirs: ['components', 'pages', 'lib', 'styles', 'layout'],
-    ignoreDuringBuilds: true
-  },
   reactStrictMode: true,
   i18n: {
     locales: ['en', 'ja'],
