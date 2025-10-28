@@ -17,7 +17,7 @@
     "start": "next start",
     "format": "biome format . --write",
     "format:check": "biome format .",
-    "lint": "biome check components/ pages/ lib/ && biome format components/ pages/ lib/ --write",
+    "lint": "biome check components/ pages/ lib/ && biome format components/ pages/ lib/ --write && eslint --ext .js,.jsx,.ts,.tsx --ignore-pattern '**/*.test.*' components/ pages/ lib/",
     "postbuild": "next-sitemap --config next-sitemap.config.ts",
     "test": "vitest run",
     "test:ui": "vitest --ui",
