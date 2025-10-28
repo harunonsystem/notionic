@@ -1,8 +1,8 @@
 import tseslint from 'typescript-eslint'
+import next from '@next/eslint-plugin-next'
 
 export default [
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
     ignores: [
       'node_modules/**',
       '.next/**',
@@ -10,7 +10,10 @@ export default [
       'dist/**',
       '.turbo/**',
       'coverage/**'
-    ],
+    ]
+  },
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
@@ -20,6 +23,13 @@ export default [
           jsx: true
         }
       }
+    },
+    plugins: {
+      '@next/next': next
+    },
+    rules: {
+      '@next/next/no-html-link-for-pages': 'warn',
+      '@next/next/no-img-element': 'warn'
     }
   }
 ]
