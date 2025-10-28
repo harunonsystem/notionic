@@ -17,7 +17,7 @@
     "start": "next start",
     "format": "biome format . --write",
     "format:check": "biome format .",
-    "lint": "biome check components/ pages/ lib/ && biome format components/ pages/ lib/ --write && eslint --ext .js,.jsx,.ts,.tsx --ignore-pattern '**/*.test.*' components/ pages/ lib/",
+    "lint": "biome check components/ pages/ lib/ && biome format components/ pages/ lib/ --write && eslint .",
     "postbuild": "next-sitemap --config next-sitemap.config.ts",
     "test": "vitest run",
     "test:ui": "vitest --ui",
@@ -43,11 +43,11 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-notion-x": "^7.7.1",
-    "sharp": "^0.34.4"
+    "sharp": "^0.34.4",
+    "typescript-eslint": "^8.46.2"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.6",
-    "@eslint/eslintrc": "^3.3.1",
     "@next/bundle-analyzer": "^15.5.5",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -60,7 +60,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "@vitest/ui": "^3.2.4",
     "autoprefixer": "^10.4.21",
-    "eslint": "8.57.1",
+    "eslint": "^9.38.0",
     "eslint-config-next": "^16.0.0",
     "happy-dom": "^20.0.4",
     "lefthook": "^1.13.6",

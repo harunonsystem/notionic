@@ -1,14 +1,15 @@
 import tseslint from 'typescript-eslint'
-import reactHooks from 'eslint-plugin-react-hooks'
 
 export default [
   {
-    files: [
-      'components/**/*.{js,jsx,ts,tsx}',
-      'pages/**/*.{js,jsx,ts,tsx}',
-      'lib/**/*.{js,jsx,ts,tsx}'
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      '**/*.test.*',
+      'dist/**',
+      '.turbo/**'
     ],
-    ignores: ['**/*.test.tsx', '**/*.test.ts'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
@@ -22,12 +23,8 @@ export default [
         fetch: 'readonly'
       }
     },
-    plugins: {
-      'react-hooks': reactHooks
-    },
     rules: {
-      'react-hooks/rules-of-hooks': 'warn',
-      'react-hooks/exhaustive-deps': 'warn'
+      // ESLint is minimal - Biome handles the heavy lifting
     }
   }
 ]
