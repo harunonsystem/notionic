@@ -8,7 +8,8 @@ export default [
       '.next/**',
       '**/*.test.*',
       'dist/**',
-      '.turbo/**'
+      '.turbo/**',
+      'coverage/**'
     ],
     languageOptions: {
       parser: tseslint.parser,
@@ -18,13 +19,7 @@ export default [
         ecmaFeatures: {
           jsx: true
         }
-      },
-      globals: {
-        fetch: 'readonly'
       }
-    },
-    rules: {
-      // ESLint is minimal - Biome handles the heavy lifting
     }
   }
 ]
