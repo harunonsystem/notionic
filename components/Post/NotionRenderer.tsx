@@ -7,7 +7,7 @@ import { BLOG } from '@/blog.config'
 import 'prismjs/components/prism-js-templates'
 import type { ExtendedRecordMap } from 'notion-types'
 import type React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 // Lazy-load some heavy components & override the renderers of some block types
 const components = {
@@ -79,9 +79,18 @@ export default function NotionRenderer({
   subPageTitle,
   recordMap
 }: NotionRendererProps) {
-  const { locale } = useRouter()
+  const { locale, isReady } = useRouter()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const mapPageUrl = (id) => {
     // console.log('mapPageUrl', BLOG.lang.split('-')[0])
+    if (!isReady || !locale) {
+      return `/s/${id.replace(/-/g, '')}`
+    }
     if (locale === BLOG.lang.split('-')[0]) {
       return `/s/${id.replace(/-/g, '')}`
     } else {
@@ -90,8 +99,10 @@ export default function NotionRenderer({
   }
 
   useEffect(() => {
-    Prism.highlightAll()
-  }, [])
+    if (mounted) {
+      Prism.highlightAll()
+    }
+  }, [mounted])
 
   return (
     <Renderer
