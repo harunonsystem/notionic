@@ -1,7 +1,7 @@
 import path from 'node:path'
-import { fileURLToPath } from 'url'
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
+import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -42,17 +42,6 @@ const config = [
     files: ['**/*.test.{js,jsx,ts,tsx}'],
     rules: {
       '@next/next/no-img-element': 'off'
-    }
-  },
-
-  {
-    files: ['setupTests.ts'],
-    languageOptions: {
-      globals: {
-        IntersectionObserverCallback: 'readonly',
-        IntersectionObserverInit: 'readonly',
-        IntersectionObserverEntry: 'readonly'
-      }
     }
   },
 
