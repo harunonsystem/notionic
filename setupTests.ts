@@ -1,4 +1,3 @@
-/// <reference lib="dom" />
 import '@testing-library/jest-dom'
 import { TextDecoder, TextEncoder } from 'node:util'
 import { vi, afterEach } from 'vitest'
@@ -9,24 +8,30 @@ import { createMockRouter } from './testUtils/mocks/nextRouter'
 global.TextEncoder = TextEncoder as any
 global.TextDecoder = TextDecoder as typeof global.TextDecoder
 
-// Mock IntersectionObserver with proper API fidelity
+/**
+ * Mock IntersectionObserver with proper API fidelity
+ * @param {IntersectionObserverCallback} callback
+ * @param {IntersectionObserverInit} [options]
+ */
 class IntersectionObserverMock {
-  private callback: IntersectionObserverCallback
-  private options: IntersectionObserverInit
-  private observedElements: Set<Element> = new Set()
+  /** @type {IntersectionObserverCallback} */
+  private callback
 
-  constructor(
-    callback: IntersectionObserverCallback,
-    options?: IntersectionObserverInit
-  ) {
+  /** @type {IntersectionObserverInit} */
+  private options
+
+  /** @type {Set<Element>} */
+  private observedElements = new Set()
+
+  constructor(callback, options) {
     this.callback = callback
     this.options = options || {}
   }
 
-  observe(element: Element) {
+  observe(element) {
     this.observedElements.add(element)
     // Call callback with synthetic entries to mimic real behavior
-    const entry: IntersectionObserverEntry = {
+    const entry = {
       target: element,
       isIntersecting: true,
       intersectionRatio: 1,
@@ -34,11 +39,11 @@ class IntersectionObserverMock {
       intersectionRect: element.getBoundingClientRect(),
       rootBounds: null,
       time: Date.now()
-    } as IntersectionObserverEntry
-    this.callback([entry], this as any)
+    }
+    this.callback([entry], this)
   }
 
-  unobserve(element: Element) {
+  unobserve(element) {
     this.observedElements.delete(element)
   }
 
@@ -46,7 +51,7 @@ class IntersectionObserverMock {
     this.observedElements.clear()
   }
 
-  takeRecords(): IntersectionObserverEntry[] {
+  takeRecords() {
     return []
   }
 }
