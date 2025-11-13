@@ -54,6 +54,13 @@ const config = [
         IntersectionObserverEntry: 'readonly'
       }
     }
+  },
+
+  {
+    files: ['lib/gtag.ts'],
+    rules: {
+      'no-unused-vars': 'off'
+    }
   }
 ]
 

@@ -3,10 +3,11 @@ import { BLOG } from '@/blog.config'
 export const GA_TRACKING_ID = BLOG.analytics.gaConfig.measurementId
 
 declare global {
-  // eslint-disable-next-line no-unused-vars
   interface Window {
-    // eslint-disable-next-line no-unused-vars
-    gtag: (...args: any[]) => void
+    gtag: (
+      command: 'config' | 'event' | 'set' | 'consent',
+      ...args: any[]
+    ) => void
   }
 }
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
