@@ -12,7 +12,7 @@ vi.mock('@/blog.config', () => ({
 }))
 
 vi.mock('./TableOfContents', () => ({
-  default: ({ className, _pageTitle, _blockMap, _frontMatter }) => (
+  default: ({ className }) => (
     <div data-testid='table-of-contents' className={className}>
       Table of Contents
     </div>
@@ -165,9 +165,6 @@ describe('Aside', () => {
     })
 
     // Mobile scroll button should be hidden
-    const _mobileScrollButton = screen.queryByRole('button', {
-      name: '' // ArrowUp button
-    })
     expect(screen.getAllByRole('button')).toHaveLength(1) // Only WeChat Pay button
   })
 

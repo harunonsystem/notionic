@@ -10,7 +10,7 @@ global.TextDecoder = TextDecoder as typeof global.TextDecoder
 
 // Mock IntersectionObserver
 class IntersectionObserverMock {
-  constructor(_callback?: any) {
+  constructor() {
     // callback is the intersection observer callback
   }
 

@@ -18,16 +18,8 @@ vi.mock('@/components/Common/FormattedDate', () => ({
 }))
 
 vi.mock('next/image', () => ({
-  default: function MockImage({
-    alt,
-    src,
-    className
-  }: {
-    alt: string
-    src: string
-    className: string
-  }) {
-    // eslint-disable-next-line @next/next/no-img-element
+  __esModule: true,
+  default: ({ alt, src, className }) => {
     return (
       <img data-testid='next-image' alt={alt} src={src} className={className} />
     )
