@@ -1,6 +1,9 @@
 import dynamic from 'next/dynamic'
 import 'katex/dist/katex.min.css'
+import 'react-notion-x/src/styles.css'
+import 'prismjs/themes/prism-tomorrow.min.css'
 import '@/styles/globals.css'
+import '@/styles/prism.css'
 import '@/styles/notion.css'
 import { Analytics } from '@vercel/analytics/react'
 
@@ -23,12 +26,12 @@ import Header from '@/components/NavBar/Header'
 
 const Gtag = dynamic(() => import('@/components/Common/Gtag'), { ssr: false })
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: any) {
   // https://github.com/vercel/next.js/blob/canary/examples/with-loading/pages/_app.js
   const router = useRouter()
 
   useEffect(() => {
-    const handleStart = (_url) => {
+    const handleStart = () => {
       // console.log(`Loading: ${url}`)
       NProgress.start()
     }
