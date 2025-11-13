@@ -1,3 +1,4 @@
+/// <reference lib="dom" />
 import '@testing-library/jest-dom'
 import { TextDecoder, TextEncoder } from 'node:util'
 import { vi, afterEach } from 'vitest'
@@ -8,15 +9,46 @@ import { createMockRouter } from './testUtils/mocks/nextRouter'
 global.TextEncoder = TextEncoder as any
 global.TextDecoder = TextDecoder as typeof global.TextDecoder
 
-// Mock IntersectionObserver
+// Mock IntersectionObserver with proper API fidelity
 class IntersectionObserverMock {
-  constructor() {
-    // callback is the intersection observer callback
+  private callback: IntersectionObserverCallback
+  private options: IntersectionObserverInit
+  private observedElements: Set<Element> = new Set()
+
+  constructor(
+    callback: IntersectionObserverCallback,
+    options?: IntersectionObserverInit
+  ) {
+    this.callback = callback
+    this.options = options || {}
   }
 
-  observe = vi.fn()
-  unobserve = vi.fn()
-  disconnect = vi.fn()
+  observe(element: Element) {
+    this.observedElements.add(element)
+    // Call callback with synthetic entries to mimic real behavior
+    const entry: IntersectionObserverEntry = {
+      target: element,
+      isIntersecting: true,
+      intersectionRatio: 1,
+      boundingClientRect: element.getBoundingClientRect(),
+      intersectionRect: element.getBoundingClientRect(),
+      rootBounds: null,
+      time: Date.now()
+    } as IntersectionObserverEntry
+    this.callback([entry], this as any)
+  }
+
+  unobserve(element: Element) {
+    this.observedElements.delete(element)
+  }
+
+  disconnect() {
+    this.observedElements.clear()
+  }
+
+  takeRecords(): IntersectionObserverEntry[] {
+    return []
+  }
 }
 
 global.IntersectionObserver = IntersectionObserverMock as any

@@ -43,6 +43,17 @@ const config = [
     rules: {
       '@next/next/no-img-element': 'off'
     }
+  },
+
+  {
+    files: ['setupTests.ts'],
+    languageOptions: {
+      globals: {
+        IntersectionObserverCallback: 'readonly',
+        IntersectionObserverInit: 'readonly',
+        IntersectionObserverEntry: 'readonly'
+      }
+    }
   }
 ]
 
