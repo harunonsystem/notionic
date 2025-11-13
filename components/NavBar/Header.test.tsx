@@ -104,8 +104,6 @@ describe('Header', () => {
     const observeMock = vi.fn()
 
     class IntersectionObserverMock {
-      constructor(_callback?: any) {}
-
       observe = observeMock
       unobserve = vi.fn()
       disconnect = vi.fn()
@@ -139,8 +137,6 @@ describe('Header', () => {
     const unobserveMock = vi.fn()
 
     class IntersectionObserverMock {
-      constructor(_callback?: any) {}
-
       observe = vi.fn()
       unobserve = unobserveMock
       disconnect = vi.fn()
