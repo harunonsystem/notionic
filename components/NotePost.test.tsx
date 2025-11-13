@@ -42,7 +42,6 @@ describe('NotePost', () => {
     render(<NotePost note={mockNote} />)
 
     const link = screen.getByRole('link')
-    const ____craftSlug = mockNote.url.slice(23) // Should be 'embed/12345678901234567890'
 
     expect(link).toHaveAttribute('href', '/notes.tsx/test-note')
     expect(link).toHaveClass('mb-10', 'group', 'h-60', 'flex', 'items-end')
@@ -90,7 +89,6 @@ describe('NotePost', () => {
     render(<NotePost note={mockNote} />)
 
     const image = screen.getByTestId('image-fallback')
-    const ____craftSlug = mockNote.url.slice(23)
 
     expect(image).toHaveClass(
       'w-full',
