@@ -93,7 +93,7 @@ describe('Header', () => {
 
     // Open mobile menu
     await act(async () => {
-      await fireEvent.click(menuButton)
+      fireEvent.click(menuButton)
     })
 
     // Should show mobile menu with social links
@@ -101,18 +101,17 @@ describe('Header', () => {
   })
 
   it('handles window scroll events correctly', () => {
-    const intersectionObserverMock = vi.fn().mockImplementation((callback) => ({
-      observe: vi.fn().mockImplementation((_element) => {
-        // Simulate intersection after mount
-        setTimeout(() => {
-          callback([{ isIntersecting: false }])
-        }, 100)
-      }),
-      unobserve: vi.fn(),
-      disconnect: vi.fn()
-    }))
+    const observeMock = vi.fn()
 
-    vi.stubGlobal('IntersectionObserver', intersectionObserverMock)
+    class IntersectionObserverMock {
+      constructor(_callback?: any) {}
+
+      observe = observeMock
+      unobserve = vi.fn()
+      disconnect = vi.fn()
+    }
+
+    vi.stubGlobal('IntersectionObserver', IntersectionObserverMock as any)
 
     render(<Header />)
 
@@ -121,7 +120,7 @@ describe('Header', () => {
       vi.advanceTimersByTime(100)
     })
 
-    expect(intersectionObserverMock).toHaveBeenCalled()
+    expect(observeMock).toHaveBeenCalled()
   })
 
   it('applies correct width classes based on fullWidth prop', () => {
@@ -138,15 +137,16 @@ describe('Header', () => {
 
   it('cleans up intersection observer on unmount', () => {
     const unobserveMock = vi.fn()
-    const intersectionObserverMock = vi
-      .fn()
-      .mockImplementation((_callback) => ({
-        observe: vi.fn(),
-        unobserve: unobserveMock,
-        disconnect: vi.fn()
-      }))
 
-    vi.stubGlobal('IntersectionObserver', intersectionObserverMock)
+    class IntersectionObserverMock {
+      constructor(_callback?: any) {}
+
+      observe = vi.fn()
+      unobserve = unobserveMock
+      disconnect = vi.fn()
+    }
+
+    vi.stubGlobal('IntersectionObserver', IntersectionObserverMock as any)
 
     const { unmount } = render(<Header />)
     unmount()

@@ -42,7 +42,7 @@ describe('NotePost', () => {
     render(<NotePost note={mockNote} />)
 
     const link = screen.getByRole('link')
-    const _craftSlug = mockNote.url.slice(23) // Should be 'embed/12345678901234567890'
+    const ____craftSlug = mockNote.url.slice(23) // Should be 'embed/12345678901234567890'
 
     expect(link).toHaveAttribute('href', '/notes.tsx/test-note')
     expect(link).toHaveClass('mb-10', 'group', 'h-60', 'flex', 'items-end')
@@ -52,11 +52,11 @@ describe('NotePost', () => {
     render(<NotePost note={mockNote} />)
 
     const image = screen.getByTestId('image-fallback')
-    const _craftSlug = mockNote.url.slice(23)
+    const craftSlug = mockNote.url.slice(23)
 
     expect(image).toHaveAttribute(
       'src',
-      `https://api.craft.do/render/preview/${_craftSlug}`
+      `https://api.craft.do/render/preview/${craftSlug}`
     )
     expect(image).toHaveAttribute('alt', 'Test Note')
   })
@@ -90,7 +90,7 @@ describe('NotePost', () => {
     render(<NotePost note={mockNote} />)
 
     const image = screen.getByTestId('image-fallback')
-    const _craftSlug = mockNote.url.slice(23)
+    const ____craftSlug = mockNote.url.slice(23)
 
     expect(image).toHaveClass(
       'w-full',
