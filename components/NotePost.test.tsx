@@ -11,7 +11,6 @@ vi.mock('@/blog.config.js', () => ({
 
 vi.mock('./Common/ImageFallback.js', () => ({
   default: ({ src, alt, className }: any) => (
-    // eslint-disable-next-line @next/next/no-img-element
     <img
       data-testid='image-fallback'
       src={src}

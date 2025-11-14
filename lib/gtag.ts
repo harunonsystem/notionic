@@ -4,7 +4,10 @@ export const GA_TRACKING_ID = BLOG.analytics.gaConfig.measurementId
 
 declare global {
   interface Window {
-    gtag: (command: string, ...args: any[]) => void
+    gtag: (
+      command: 'config' | 'event' | 'set' | 'consent',
+      ...args: any[]
+    ) => void
   }
 }
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages

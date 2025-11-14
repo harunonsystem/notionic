@@ -8,15 +8,52 @@ import { createMockRouter } from './testUtils/mocks/nextRouter'
 global.TextEncoder = TextEncoder as any
 global.TextDecoder = TextDecoder as typeof global.TextDecoder
 
-// Mock IntersectionObserver
+/**
+ * Mock IntersectionObserver with proper API fidelity
+ * @param {IntersectionObserverCallback} callback
+ * @param {IntersectionObserverInit} [options]
+ */
 class IntersectionObserverMock {
-  constructor(_callback?: any) {
-    // callback is the intersection observer callback
+  /** @type {IntersectionObserverCallback} */
+  private callback
+
+  /** @type {IntersectionObserverInit} */
+  private options
+
+  /** @type {Set<Element>} */
+  private observedElements = new Set()
+
+  constructor(callback, options) {
+    this.callback = callback
+    this.options = options || {}
   }
 
-  observe = vi.fn()
-  unobserve = vi.fn()
-  disconnect = vi.fn()
+  observe(element) {
+    this.observedElements.add(element)
+    // Call callback with synthetic entries to mimic real behavior
+    const entry = {
+      target: element,
+      isIntersecting: true,
+      intersectionRatio: 1,
+      boundingClientRect: element.getBoundingClientRect(),
+      intersectionRect: element.getBoundingClientRect(),
+      rootBounds: null,
+      time: Date.now()
+    }
+    this.callback([entry], this)
+  }
+
+  unobserve(element) {
+    this.observedElements.delete(element)
+  }
+
+  disconnect() {
+    this.observedElements.clear()
+  }
+
+  takeRecords() {
+    return []
+  }
 }
 
 global.IntersectionObserver = IntersectionObserverMock as any
