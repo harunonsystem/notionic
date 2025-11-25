@@ -1,125 +1,87 @@
 import type { ExtendedRecordMap } from 'notion-types'
-import { getBlockTitle, getPageTitle } from 'notion-utils'
+import { getBlockTitle, getPageContentBlockIds } from 'notion-utils'
 
-export function convertNotionToMarkdown(
-  blockMap: ExtendedRecordMap,
-  rootId?: string
-): string {
+export function convertNotionToMarkdown(blockMap: ExtendedRecordMap): string {
   if (!blockMap || !blockMap.block) {
     return ''
   }
 
-  const blocks = blockMap.block
-  const root = rootId || Object.keys(blocks)[0]
-  const markdown: string[] = []
+  const blockIds = getPageContentBlockIds(blockMap)
+  const lines: string[] = []
 
-  const processBlock = (blockId: string, level = 0): void => {
-    const block = blocks[blockId]?.value
-    if (!block) return
+  for (const blockId of blockIds) {
+    const block = blockMap.block[blockId]?.value
+    if (!block) continue
+
+    const text = getBlockTitle(block, blockMap)
+    if (!text || text.trim() === '') continue
 
     const type = block.type
-    const properties = block.properties
-    const content = properties ? getBlockTitle(block, blockMap) : ''
 
+    // Skip media blocks
+    if (
+      type === 'image' ||
+      type === 'video' ||
+      type === 'audio' ||
+      type === 'file' ||
+      type === 'embed' ||
+      type === 'bookmark'
+    ) {
+      continue
+    }
+
+    // Format based on block type
     switch (type) {
-      case 'page':
-        markdown.push(`# ${getPageTitle(blockMap)}\n`)
-        break
-
       case 'header':
-        markdown.push(`# ${content}\n`)
+        lines.push(`# ${text}`)
         break
 
       case 'sub_header':
-        markdown.push(`## ${content}\n`)
+        lines.push(`## ${text}`)
         break
 
       case 'sub_sub_header':
-        markdown.push(`### ${content}\n`)
+        lines.push(`### ${text}`)
         break
 
       case 'quote':
-        markdown.push(`> ${content}\n`)
+        lines.push(`> ${text}`)
         break
 
       case 'callout':
-        markdown.push(`> 💡 ${content}\n`)
-        break
-
-      case 'text':
-        if (content) {
-          markdown.push(`${content}\n`)
-        } else {
-          markdown.push('\n')
-        }
+        lines.push(`> ${text}`)
         break
 
       case 'bulleted_list':
-        markdown.push(`${'  '.repeat(level)}- ${content}\n`)
+        lines.push(`- ${text}`)
         break
 
       case 'numbered_list':
-        markdown.push(`${'  '.repeat(level)}1. ${content}\n`)
+        lines.push(`1. ${text}`)
         break
 
       case 'to_do': {
         const checked = block.properties?.checked?.[0]?.[0] === 'Yes'
-        markdown.push(`- [${checked ? 'x' : ' '}] ${content}\n`)
+        lines.push(`- [${checked ? 'x' : ' '}] ${text}`)
         break
       }
-
-      case 'toggle':
-        markdown.push(`<details>\n<summary>${content}</summary>\n\n`)
-        break
-
-      case 'divider':
-        markdown.push('---\n')
-        break
 
       case 'code': {
         const language = block.properties?.language?.[0]?.[0] || ''
-        markdown.push(`\`\`\`${language}\n${content}\n\`\`\`\n`)
+        lines.push(`\`\`\`${language}`)
+        lines.push(text)
+        lines.push('```')
         break
       }
 
-      case 'image': {
-        const imageUrl =
-          block.properties?.source?.[0]?.[0] ||
-          block.format?.display_source ||
-          ''
-        const caption = block.properties?.caption?.[0]?.[0] || ''
-        markdown.push(`![${caption}](${imageUrl})\n`)
-        break
-      }
-
-      case 'bookmark': {
-        const url = block.properties?.link?.[0]?.[0] || ''
-        markdown.push(`[${content}](${url})\n`)
-        break
-      }
-
-      case 'column_list':
-      case 'column':
+      case 'divider':
+        lines.push('---')
         break
 
       default:
-        if (content) {
-          markdown.push(`${content}\n`)
-        }
-    }
-
-    if (block.content) {
-      for (const childId of block.content) {
-        processBlock(childId, type === 'toggle' ? level : level)
-      }
-    }
-
-    if (type === 'toggle') {
-      markdown.push('</details>\n')
+        lines.push(text)
     }
   }
 
-  processBlock(root)
-
-  return markdown.join('\n')
+  return lines.join('\n\n')
 }
