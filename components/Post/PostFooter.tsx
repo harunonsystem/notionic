@@ -1,16 +1,19 @@
 import { Mail, ThumbsUp } from 'lucide-react'
 import { useRouter } from 'next/router'
+import type { ExtendedRecordMap } from 'notion-types'
 import { useState } from 'react'
 import { BLOG } from '@/blog.config'
+import CopyMarkdownButton from '@/components/Post/CopyMarkdownButton'
 import ShareButton from '@/components/Post/ShareButton'
 import WechatPay from '@/components/Post/WechatPay'
 import { lang } from '@/lib/lang'
 
 interface PostFooterProps {
   title: string
+  blockMap: ExtendedRecordMap
 }
 
-const PostFooter = ({ title }: PostFooterProps) => {
+const PostFooter = ({ title, blockMap }: PostFooterProps) => {
   const [showPay, setShowPay] = useState(false)
   const { locale } = useRouter()
   const router = useRouter()
@@ -43,6 +46,7 @@ const PostFooter = ({ title }: PostFooterProps) => {
           </button>
         </div>
       </div>
+      <CopyMarkdownButton blockMap={blockMap} title={title} />
       <ShareButton title={title} />
       {showPay && <WechatPay />}
     </div>
