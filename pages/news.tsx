@@ -20,7 +20,6 @@ export async function getStaticProps() {
     }
   } catch (err) {
     console.error(err)
-    // return { props: { post: null, blockMap: null } }
   }
 
   return {

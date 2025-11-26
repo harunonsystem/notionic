@@ -21,7 +21,6 @@ export async function getStaticProps() {
     }
   } catch (err) {
     console.error(err)
-    // return { props: { post: null, blockMap: null } }
   }
 
   const postsToShow = posts.slice(0, BLOG.postsPerPage)
@@ -29,7 +28,7 @@ export async function getStaticProps() {
   const showNext = totalPosts > BLOG.postsPerPage
   return {
     props: {
-      page: 1, // current page is 1
+      page: 1,
       postsToShow,
       showNext,
       blockMap
