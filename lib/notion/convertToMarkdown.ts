@@ -66,14 +66,13 @@ export function convertNotionToMarkdown(blockMap: ExtendedRecordMap): string {
         break
       }
 
-case 'code': {
+      case 'code': {
         const language = block.properties?.language?.[0]?.[0] || ''
-        const codeText = block.properties?.title
-          ?.map((segment: any) => segment[0])
-          .join('') || text
         lines.push(`\`\`\`${language}`)
-        lines.push(codeText)
-        lines.push('
+        lines.push(text)
+        lines.push('```')
+        break
+      }
 
       case 'divider':
         lines.push('---')

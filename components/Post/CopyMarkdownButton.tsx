@@ -1,7 +1,7 @@
 import { Check, FileText } from 'lucide-react'
 import { useRouter } from 'next/router'
 import type { ExtendedRecordMap } from 'notion-types'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { lang } from '@/lib/lang'
 import { convertNotionToMarkdown } from '@/lib/notion/convertToMarkdown'
 
@@ -14,6 +14,16 @@ const CopyMarkdownButton = ({ blockMap, title }: CopyMarkdownButtonProps) => {
   const { locale } = useRouter()
   const t = lang[locale]
   const [showCopied, setShowCopied] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+    }
+  }, [])
 
   const copyAsMarkdown = async () => {
     try {
@@ -48,7 +58,16 @@ const CopyMarkdownButton = ({ blockMap, title }: CopyMarkdownButtonProps) => {
       }
 
       setShowCopied(true)
-      setTimeout(() => setShowCopied(false), 2000)
+
+      // Clear any existing timer before setting a new one
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+
+      timerRef.current = setTimeout(() => {
+        setShowCopied(false)
+        timerRef.current = null
+      }, 2000)
     } catch (err) {
       console.error('Failed to copy markdown: ', err)
     }
