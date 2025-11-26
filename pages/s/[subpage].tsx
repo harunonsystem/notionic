@@ -81,6 +81,13 @@ export async function getStaticProps({ params: { subpage } }) {
     const id = idToUuid(subpage)
 
     const breadcrumbs = getPageBreadcrumbs(blockMap, id)
+
+    // Guard against empty breadcrumbs array to prevent crashes
+    if (!breadcrumbs || breadcrumbs.length === 0) {
+      console.warn(`No breadcrumbs found for page ${subpage}`)
+      return { props: { post: null, blockMap: null } }
+    }
+
     post = posts.find((t) => t.id === breadcrumbs[0].block.id) || null
 
     // When the page is not in the notion database, manually initialize the post

@@ -65,6 +65,12 @@ const rawGetAllPosts = async ({
         const properties =
           (await getPageProperties({ id, block, schema })) || null
 
+        // Guard against null properties to prevent crashes
+        if (!properties) {
+          console.warn(`Skipping page ${id}: properties is null`)
+          continue
+        }
+
         // Add fullwidth to properties
         properties.fullWidth = block[id].value?.format?.page_full_width ?? false
         // Convert date (with timezone) to unix milliseconds timestamp
