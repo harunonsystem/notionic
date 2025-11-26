@@ -11,8 +11,14 @@ import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 import Layout from '@/layouts/layout'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
+import type { Post } from '@/lib/types'
 
-const Post = ({ post, blockMap }) => {
+interface PostProps {
+  post: Post | null
+  blockMap: ExtendedRecordMap | null
+}
+
+const PostPage = ({ post, blockMap }: PostProps) => {
   const router = useRouter()
   if (router.isFallback) {
     return <Loading notionSlug={router.asPath.split('/')[2]} />
@@ -43,17 +49,13 @@ export async function getStaticPaths() {
 
   // Remove post id
   const posts = await getAllPosts({ onlyNewsletter: false })
-  const postIds = Object.values(posts).map(
-    (postId: { id: string }) => `/s${mapPageUrl(postId.id)}`
-  )
+  const postIds = posts.map((post) => `/s${mapPageUrl(post.id)}`)
   const noPostsIds = subpageIds
     .concat(postIds)
     .filter((v) => !subpageIds.includes(v) || !postIds.includes(v))
 
   const heros = await getAllPosts({ onlyHidden: true })
-  const heroIds = Object.values(heros).map(
-    (heroId: { id: string }) => `/s${mapPageUrl(heroId.id)}`
-  )
+  const heroIds = heros.map((hero) => `/s${mapPageUrl(hero.id)}`)
   const paths = noPostsIds
     .concat(heroIds)
     .filter((v) => !noPostsIds.includes(v) || !heroIds.includes(v))
@@ -71,18 +73,32 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { subpage } }) {
   const posts = await getAllPosts({ onlyNewsletter: false })
 
-  let blockMap: ExtendedRecordMap, post: any
+  let blockMap: ExtendedRecordMap | null = null
+  let post: Post | null = null
+
   try {
     blockMap = await getPostBlocks(subpage)
     const id = idToUuid(subpage)
 
     const breadcrumbs = getPageBreadcrumbs(blockMap, id)
-    post = posts.find((t) => t.id === breadcrumbs[0].block.id)
+
+    // Guard against empty breadcrumbs array to prevent crashes
+    if (!breadcrumbs || breadcrumbs.length === 0) {
+      console.warn(`No breadcrumbs found for page ${subpage}`)
+      return { props: { post: null, blockMap: null } }
+    }
+
+    post = posts.find((t) => t.id === breadcrumbs[0].block.id) || null
+
     // When the page is not in the notion database, manually initialize the post
     if (!post) {
       post = {
+        id,
+        slug: subpage,
+        title: breadcrumbs[0].title,
         type: ['Page'],
-        title: breadcrumbs[0].title
+        date: Date.now(),
+        status: ['Published']
       }
     }
     // console.log("debug: ", breadcrumbs, post)
@@ -94,6 +110,10 @@ export async function getStaticProps({ params: { subpage } }) {
   // Allow only pages in your own space
   const NOTION_SPACES_ID = BLOG.notionSpacesId
   const pageAllowed = (page) => {
+    // Check if page and page.block exist to prevent crashes
+    if (!page || !page.block) {
+      return false
+    }
     // When page block space_id = NOTION_SPACES_ID
     let allowed = false
     Object.values(page.block).forEach((block) => {
@@ -115,4 +135,4 @@ export async function getStaticProps({ params: { subpage } }) {
   }
 }
 
-export default Post
+export default PostPage

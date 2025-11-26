@@ -5,6 +5,7 @@ import Container from '@/components/Container'
 import NewsletterHero from '@/components/Hero/Newsletter'
 import { CACHE_CONFIG } from '@/lib/cache'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
+import type { PostPageProps } from '@/lib/types'
 
 export async function getStaticProps() {
   const posts = await getAllPosts({ onlyNewsletter: true })
@@ -12,12 +13,13 @@ export async function getStaticProps() {
   const heros = await getAllPosts({ onlyHidden: true })
   const hero = heros.find((t) => t.slug === 'newsletter')
 
-  let blockMap: ExtendedRecordMap = null
+  let blockMap: ExtendedRecordMap | null = null
   try {
-    blockMap = await getPostBlocks(hero.id)
+    if (hero?.id) {
+      blockMap = await getPostBlocks(hero.id)
+    }
   } catch (err) {
     console.error(err)
-    // return { props: { post: null, blockMap: null } }
   }
 
   return {
@@ -29,7 +31,7 @@ export async function getStaticProps() {
   }
 }
 
-const News = ({ posts, blockMap }) => {
+const News = ({ posts, blockMap }: PostPageProps) => {
   return (
     <Container title={BLOG.news} description={BLOG.description}>
       <NewsletterHero blockMap={blockMap} />

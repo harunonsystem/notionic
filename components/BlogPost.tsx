@@ -5,16 +5,10 @@ import React from 'react'
 import { BLOG } from '@/blog.config'
 
 import FormattedDate from '@/components/Common/FormattedDate'
+import type { Post } from '@/lib/types'
 
 interface BlogPostProps {
-  post: {
-    id: string
-    title: string
-    slug: string
-    date: string
-    summary: string
-    page_cover: string
-  }
+  post: Post
 }
 
 export default React.memo(function BlogPost({ post }: BlogPostProps) {

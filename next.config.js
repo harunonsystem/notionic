@@ -3,11 +3,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer({
-  eslint: {
-    // Turn off ESLint in Next.js build to avoid conflicts with Biome
-    dirs: ['components', 'pages', 'lib', 'styles', 'layout'],
-    ignoreDuringBuilds: true
-  },
   reactStrictMode: true,
   i18n: {
     locales: ['en', 'ja'],
@@ -16,10 +11,19 @@ module.exports = withBundleAnalyzer({
   },
   transpilePackages: ['dayjs'],
   images: {
-    domains: [
-      'www.notion.so',
-      'images.unsplash.com',
-      's3.us-west-2.amazonaws.com'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.notion.so'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.us-west-2.amazonaws.com'
+      }
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
