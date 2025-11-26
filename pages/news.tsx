@@ -10,11 +10,13 @@ export async function getStaticProps() {
   const posts = await getAllPosts({ onlyNewsletter: true })
 
   const heros = await getAllPosts({ onlyHidden: true })
-  const hero = heros.find((t) => t.slug === 'newsletter')
+  const hero = (heros || []).find((t) => t.slug === 'newsletter')
 
   let blockMap: ExtendedRecordMap = null
   try {
-    blockMap = await getPostBlocks(hero.id)
+    if (hero?.id) {
+      blockMap = await getPostBlocks(hero.id)
+    }
   } catch (err) {
     console.error(err)
     // return { props: { post: null, blockMap: null } }
@@ -22,7 +24,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts,
+      posts: posts || [],
       blockMap
     },
     revalidate: CACHE_CONFIG.ISR.NEWS

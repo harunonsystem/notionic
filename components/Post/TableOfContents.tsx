@@ -17,18 +17,35 @@ export default function TableOfContents({
   pageTitle,
   className
 }: TableOfContentsProps) {
-  let collectionId: string, page: Block
-  if (pageTitle) {
-    collectionId = Object.keys(blockMap.block)[0]
-    page = blockMap.block[collectionId].value
-  } else {
-    collectionId = Object.keys(blockMap.collection)[0]
-    page = Object.values(blockMap.block).find(
-      (block) => block.value.parent_id === collectionId
-    ).value
+  // Add null checks to prevent crashes when blockMap is invalid
+  if (!blockMap || !blockMap.block) {
+    return null
   }
+
+  let collectionId: string, page: Block | undefined
+  if (pageTitle) {
+    const blockKeys = Object.keys(blockMap.block)
+    if (blockKeys.length === 0) return null
+    collectionId = blockKeys[0]
+    const blockValue = blockMap.block[collectionId]
+    if (!blockValue) return null
+    page = blockValue.value
+  } else {
+    if (!blockMap.collection) return null
+    const collectionKeys = Object.keys(blockMap.collection)
+    if (collectionKeys.length === 0) return null
+    collectionId = collectionKeys[0]
+    const foundBlock = Object.values(blockMap.block).find(
+      (block) => block.value.parent_id === collectionId
+    )
+    if (!foundBlock) return null
+    page = foundBlock.value
+  }
+
+  if (!page) return null
+
   const nodes = getPageTableOfContents(page as PageBlock, blockMap)
-  if (!nodes.length) return null
+  if (!nodes || !nodes.length) return null
 
   /**
    * @param {string} id - The ID of target heading block (could be in UUID format)
