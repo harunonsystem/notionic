@@ -3,6 +3,7 @@ import { idToUuid } from 'notion-utils'
 import pMemoize from 'p-memoize'
 import { BLOG } from '@/blog.config'
 import { dateToUnixTimestamp } from '@/lib/timezone'
+import type { Post } from '@/lib/types'
 import filterPublishedPosts from './filterPublishedPosts'
 import getAllPageIds from './getAllPageIds'
 import getPageProperties from './getPageProperties'
@@ -21,7 +22,7 @@ const rawGetAllPosts = async ({
   onlyWeekly,
   onlyNotes,
   onlyHidden
-}: GetAllPostsProps): Promise<any[]> => {
+}: GetAllPostsProps): Promise<Post[]> => {
   let id = BLOG.notionPageId
   const authToken = BLOG.notionAccessToken || null
   const api = new NotionAPI({ authToken })

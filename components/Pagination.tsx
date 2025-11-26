@@ -5,14 +5,14 @@ import { BLOG } from '@/blog.config'
 import { lang } from '@/lib/lang'
 
 interface PaginationProps {
-  page: string
+  page: string | number
   showNext: boolean
 }
 
 const Pagination = ({ page, showNext }: PaginationProps) => {
   const { locale } = useRouter()
   const t = lang[locale]
-  const currentPage = +page
+  const currentPage = typeof page === 'number' ? page : +page
   let additionalClassName = 'justify-between'
   if (currentPage === 1 && showNext) additionalClassName = 'justify-end'
   if (currentPage !== 1 && !showNext) additionalClassName = 'justify-start'

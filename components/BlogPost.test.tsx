@@ -37,6 +37,7 @@ describe('BlogPost', () => {
     title: 'Test Blog Post',
     slug: 'test-blog-post',
     date: '2024-01-01',
+    type: ['Post'],
     summary: 'This is a test blog post summary.',
     page_cover: '/test-image.jpg'
   }

@@ -6,6 +6,7 @@ import Hero from '@/components/Hero/Home'
 import Pagination from '@/components/Pagination'
 import { CACHE_CONFIG } from '@/lib/cache'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
+import type { BlogPageProps } from '@/lib/types'
 
 export async function getStaticProps() {
   const posts = await getAllPosts({ onlyPost: true })
@@ -13,7 +14,7 @@ export async function getStaticProps() {
   const heros = await getAllPosts({ onlyHidden: true })
   const hero = heros.find((t) => t.slug === 'index')
 
-  let blockMap: ExtendedRecordMap = null
+  let blockMap: ExtendedRecordMap | null = null
   try {
     if (hero?.id) {
       blockMap = await getPostBlocks(hero.id)
@@ -37,7 +38,7 @@ export async function getStaticProps() {
   }
 }
 
-const blog = ({ postsToShow, page, showNext, blockMap }) => {
+const Blog = ({ postsToShow, page, showNext, blockMap }: BlogPageProps) => {
   return (
     <Container title={BLOG.title} description={BLOG.description}>
       <Hero blockMap={blockMap} />
@@ -49,4 +50,4 @@ const blog = ({ postsToShow, page, showNext, blockMap }) => {
   )
 }
 
-export default blog
+export default Blog
