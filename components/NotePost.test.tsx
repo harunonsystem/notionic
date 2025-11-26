@@ -108,10 +108,10 @@ describe('NotePost', () => {
   it('displays mobile-only gradient overlay', () => {
     const { container } = render(<NotePost note={mockNote} />)
 
-    const gradient = container.querySelector('.bg-gradient-to-t')
+    const gradient = container.querySelector('.bg-linear-to-t')
     expect(gradient).toHaveClass(
       'md:hidden',
-      'bg-gradient-to-t',
+      'bg-linear-to-t',
       'from-gray-900',
       'via-transparent',
       'to-transparent',

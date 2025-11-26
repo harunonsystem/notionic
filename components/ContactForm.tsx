@@ -47,13 +47,13 @@ function Contact() {
     <>
       {showResult ? (
         <div>
-          <p className='max-w-screen-md font-bold md:text-lg text-center mx-auto'>
+          <p className='max-w-(--breakpoint-md) font-bold md:text-lg text-center mx-auto'>
             {t.CONTACT.SUCCESS_MESSAGE}
           </p>
         </div>
       ) : (
         <form
-          className='max-w-screen-md grid sm:grid-cols-2 gap-4 mx-auto'
+          className='max-w-(--breakpoint-md) grid sm:grid-cols-2 gap-4 mx-auto'
           onSubmit={sentMessage}
         >
           <div>

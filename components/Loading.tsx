@@ -24,7 +24,7 @@ export default function Loading({ notionSlug }: LoadingProps) {
   const t = lang[locale]
   return (
     <div className='py-6 sm:py-8 lg:py-12'>
-      <div className='max-w-screen-2xl px-4 md:px-8 mx-auto'>
+      <div className='max-w-(--breakpoint-2xl) px-4 md:px-8 mx-auto'>
         <div className='flex flex-col items-center'>
           <div className='inline-flex items-center gap-2.5 mb-8'>
             <Image src={ProfileFile} alt={BLOG.title} width={40} height={40} />

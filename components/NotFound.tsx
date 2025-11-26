@@ -11,7 +11,7 @@ const Page404 = ({ statusCode }: Page404Props) => {
   const t = lang[locale]
   return (
     <div className='py-6 sm:py-8 lg:py-12'>
-      <div className='max-w-screen-2xl px-4 md:px-8 mx-auto'>
+      <div className='max-w-(--breakpoint-2xl) px-4 md:px-8 mx-auto'>
         <div className='flex flex-col items-center'>
           <div className='inline-flex items-center gap-2.5 mb-8'>
             <p>{'><'}</p>
@@ -26,7 +26,7 @@ const Page404 = ({ statusCode }: Page404Props) => {
               : `Error - ${t.ERROR.TITLE}`}
           </h1>
 
-          <p className='max-w-screen-md md:text-lg text-center mb-12'>
+          <p className='max-w-(--breakpoint-md) md:text-lg text-center mb-12'>
             {t.ERROR.HELP_TEXT}
           </p>
 

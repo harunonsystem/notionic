@@ -30,8 +30,8 @@ module.exports = async (req, res) => {
     siteConfigObj['Show Title Bar Text'] === 'True'
       ? removeCraftText
       : removeCraftText.replace(
-          /className:"flex items-center justify-start flex-grow mr-2 overflow-hidden shrink"/g,
-          'style:{display:"none"},className:"flex items-center justify-start flex-grow mr-2 overflow-hidden shrink"'
+          /className:"flex items-center justify-start grow mr-2 overflow-hidden shrink"/g,
+          'style:{display:"none"},className:"flex items-center justify-start grow mr-2 overflow-hidden shrink"'
         ) // Hide title bar text
 
   // don't show the "/b/*" and "/x/*" in the url

@@ -13,10 +13,10 @@ export const Contact = () => {
         <h2 className='text-xl lg:text-3xl font-light text-center mb-4'>
           {t.CONTACT.TITLE}
         </h2>
-        <p className='max-w-screen-md font-light md:text-lg text-center mx-auto'>
+        <p className='max-w-(--breakpoint-md) font-light md:text-lg text-center mx-auto'>
           {t.CONTACT.DESCRIPTION}
         </p>
-        <p className='max-w-screen-md font-light md:text-lg text-center mx-auto'>
+        <p className='max-w-(--breakpoint-md) font-light md:text-lg text-center mx-auto'>
           {t.CONTACT.TWITTER_DM_DESCRIPTION}
           <a
             href={`${t.CONTACT.TWITTER_DM_LINK}${t.CONTACT.TWITTER_DM_USERID}`}
