@@ -8,7 +8,7 @@ import { lang } from '@/lib/lang'
 import Social from '../Common/Social'
 
 interface NewsletterHeroProps {
-  blockMap: ExtendedRecordMap
+  blockMap: ExtendedRecordMap | null
 }
 
 const NewsletterHero = ({ blockMap }: NewsletterHeroProps) => {

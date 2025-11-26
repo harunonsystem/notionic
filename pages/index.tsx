@@ -11,7 +11,7 @@ export async function getStaticProps() {
   const posts = await getAllPosts({ onlyPost: true })
 
   const heros = await getAllPosts({ onlyHidden: true })
-  const hero = (heros || []).find((t) => t.slug === 'index')
+  const hero = heros.find((t) => t.slug === 'index')
 
   let blockMap: ExtendedRecordMap = null
   try {
@@ -23,8 +23,8 @@ export async function getStaticProps() {
     // return { props: { post: null, blockMap: null } }
   }
 
-  const postsToShow = (posts || []).slice(0, BLOG.postsPerPage)
-  const totalPosts = (posts || []).length
+  const postsToShow = posts.slice(0, BLOG.postsPerPage)
+  const totalPosts = posts.length
   const showNext = totalPosts > BLOG.postsPerPage
   return {
     props: {

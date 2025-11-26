@@ -21,7 +21,7 @@ const rawGetAllPosts = async ({
   onlyWeekly,
   onlyNotes,
   onlyHidden
-}: GetAllPostsProps) => {
+}: GetAllPostsProps): Promise<any[]> => {
   let id = BLOG.notionPageId
   const authToken = BLOG.notionAccessToken || null
   const api = new NotionAPI({ authToken })

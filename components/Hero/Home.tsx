@@ -10,7 +10,7 @@ import Social from '../Common/Social'
 import Avatar from './Avatar'
 
 interface HeroProps {
-  blockMap: ExtendedRecordMap
+  blockMap: ExtendedRecordMap | null
 }
 
 const Hero = ({ blockMap }: HeroProps) => {

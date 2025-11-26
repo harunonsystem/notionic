@@ -6,7 +6,7 @@ import Social from '../Common/Social'
 import Avatar from './Avatar'
 
 interface NoteHeroProps {
-  blockMap: ExtendedRecordMap
+  blockMap: ExtendedRecordMap | null
 }
 
 const NoteHero = ({ blockMap }: NoteHeroProps) => {

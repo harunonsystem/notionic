@@ -43,7 +43,7 @@ export async function getStaticPaths() {
 
   // Remove post id
   const posts = await getAllPosts({ onlyNewsletter: false })
-  const postIds = (posts || []).map(
+  const postIds = posts.map(
     (postId: { id: string }) => `/s${mapPageUrl(postId.id)}`
   )
   const noPostsIds = subpageIds
@@ -51,7 +51,7 @@ export async function getStaticPaths() {
     .filter((v) => !subpageIds.includes(v) || !postIds.includes(v))
 
   const heros = await getAllPosts({ onlyHidden: true })
-  const heroIds = (heros || []).map(
+  const heroIds = heros.map(
     (heroId: { id: string }) => `/s${mapPageUrl(heroId.id)}`
   )
   const paths = noPostsIds
@@ -77,7 +77,7 @@ export async function getStaticProps({ params: { subpage } }) {
     const id = idToUuid(subpage)
 
     const breadcrumbs = getPageBreadcrumbs(blockMap, id)
-    post = (posts || []).find((t) => t.id === breadcrumbs[0].block.id)
+    post = posts.find((t) => t.id === breadcrumbs[0].block.id)
     // When the page is not in the notion database, manually initialize the post
     if (!post) {
       post = {

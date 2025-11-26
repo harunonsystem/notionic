@@ -8,7 +8,7 @@ export async function getStaticProps() {
   const allowSlug = ['notes', 'weekly']
   const notes = await getAllPosts({ onlyNotes: true })
   const heros = await getAllPosts({ onlyHidden: true })
-  const hero = (heros || []).find((t) => allowSlug.includes(t.slug))
+  const hero = heros.find((t) => allowSlug.includes(t.slug))
 
   let blockMap: ExtendedRecordMap = null
   try {
@@ -20,7 +20,7 @@ export async function getStaticProps() {
     // return { props: { post: null, blockMap: null } }
   }
 
-  const posts = [...(notes || [])]
+  const posts = [...notes]
   // const posts = [...notes, ...weekly]
   return {
     props: {
