@@ -18,7 +18,17 @@ const CopyMarkdownButton = ({ blockMap, title }: CopyMarkdownButtonProps) => {
   const copyAsMarkdown = async () => {
     try {
       const markdown = convertNotionToMarkdown(blockMap)
-      const fullMarkdown = `# ${title}\n\n${markdown}`
+
+      // Check if markdown already starts with an H1 heading matching the title
+      const trimmedMarkdown = markdown.trim()
+      const h1Match = trimmedMarkdown.match(/^#\s+(.+)$/m)
+      const hasMatchingTitle =
+        h1Match &&
+        h1Match[1].trim().toLowerCase() === title.trim().toLowerCase()
+
+      const fullMarkdown = hasMatchingTitle
+        ? markdown
+        : `# ${title}\n\n${markdown}`
 
       if (navigator?.clipboard?.writeText) {
         await navigator.clipboard.writeText(fullMarkdown)
