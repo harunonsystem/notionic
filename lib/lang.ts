@@ -19,6 +19,8 @@ interface LangType {
       NOTICE_TEXT: string
       COPY_TITLE_AND_URL_BUTTON_TEXT: string
       COPY_TITLE_AND_URL_BUTTON_TEXT_COPIED: string
+      COPY_MARKDOWN_BUTTON_TEXT: string
+      COPY_MARKDOWN_BUTTON_TEXT_COPIED: string
       SHARE_TWITTER_BUTTON_TEXT: string
       PAY_BUTTON: string
       NOTICE_BUTTON: string
@@ -109,6 +111,8 @@ export const lang: LangType = {
       NOTICE_TEXT: 'If you have any questions, please contact me.',
       COPY_TITLE_AND_URL_BUTTON_TEXT: 'Copy Title and URL',
       COPY_TITLE_AND_URL_BUTTON_TEXT_COPIED: 'Copied!',
+      COPY_MARKDOWN_BUTTON_TEXT: 'Copy Content',
+      COPY_MARKDOWN_BUTTON_TEXT_COPIED: 'Copied!',
       SHARE_TWITTER_BUTTON_TEXT: 'Share!',
       PAY_BUTTON: 'Sponsor',
       NOTICE_BUTTON: 'Contact',
@@ -201,6 +205,8 @@ export const lang: LangType = {
       NOTICE_TEXT: 'If you have any questions, please contact me.',
       COPY_TITLE_AND_URL_BUTTON_TEXT: 'タイトルと本文をコピー',
       COPY_TITLE_AND_URL_BUTTON_TEXT_COPIED: 'コピったかも!',
+      COPY_MARKDOWN_BUTTON_TEXT: '本文をコピー',
+      COPY_MARKDOWN_BUTTON_TEXT_COPIED: 'コピーしました!',
       SHARE_TWITTER_BUTTON_TEXT: 'share!',
       PAY_BUTTON: 'Coffee',
       NOTICE_BUTTON: 'Contact',
