@@ -170,7 +170,9 @@ export default React.memo(function Header({
       }
     })
     return () => {
-      sentinelEl && observer.unobserve(sentinelEl)
+      if (sentinelEl) {
+        observer.unobserve(sentinelEl)
+      }
     }
   }, [handler])
   return (

@@ -64,8 +64,8 @@ export const BLOG = {
       measurementId: '' // e.g: G-XXXXXXXXXX
     },
     umamiConfig: {
-      scriptUrl: '', // The url of your Umami script
-      websiteId: '' // The website id of your Umami instance
+      scriptUrl: 'https://analytics.harunonsystem.com/umami.js', // The url of your Umami script
+      websiteId: '52c52004-819f-45e0-add9-c63f4939e481' // The website id of your Umami instance
     }
   },
   comment: {
