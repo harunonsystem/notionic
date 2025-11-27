@@ -1,6 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+@theme {
+  --color-day: #F6F8FA;
+  --color-night: #212936;
+
+  --font-family-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Noto Sans CJK JP", "Noto Sans JP";
+  --font-family-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif, "Noto Serif CJK JP", "Noto Serif JP";
+  --font-family-noEmoji: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
 html {
   --scrollbarBG: #ffffff00;
@@ -107,7 +116,7 @@ nav {
 @supports not (backdrop-filter: none) {
   .sticky-nav-full {
     backdrop-filter: none;
-    @apply bg-day bg-opacity-90 dark:bg-night dark:bg-opacity-90;
+    @apply bg-day/90 dark:bg-night/90;
   }
 }
 
