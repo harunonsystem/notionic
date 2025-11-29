@@ -16,7 +16,8 @@ export default function filterPublishedPosts({
   onlyWeekly
 }: FilterPublishedPostsProps) {
   if (!posts || !posts.length) return []
-  return posts
+
+  const filtered = posts
     .filter((post) =>
       onlyNewsletter ? post?.type?.[0] === 'Newsletter' : post
     )
@@ -27,11 +28,28 @@ export default function filterPublishedPosts({
     )
     .filter((post) => (onlyWeekly ? post?.type?.[0] === 'Weekly' : post))
     .filter((post) => {
-      return (
-        post.title &&
-        post.slug &&
-        post?.status?.[0] === 'Published' &&
-        post.date <= new Date()
-      )
+      const hasTitle = !!post.title
+      const hasSlug = !!post.slug
+      const isPublished = post?.status?.[0] === 'Published'
+      const isNotFuture = post.date <= new Date()
+      const shouldInclude = hasTitle && hasSlug && isPublished && isNotFuture
+
+      if (!shouldInclude && post.slug) {
+        console.log(
+          `filterPublishedPosts: Filtering out post with slug="${post.slug}":`,
+          {
+            hasTitle,
+            hasSlug,
+            status: post?.status?.[0],
+            isPublished,
+            date: new Date(post.date).toISOString(),
+            isNotFuture
+          }
+        )
+      }
+
+      return shouldInclude
     })
+
+  return filtered
 }

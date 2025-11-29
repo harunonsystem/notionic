@@ -27,11 +27,18 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params: { slug } }) {
+export async function getStaticProps({ params: { slug }, locale }) {
+  console.log(`[slug].tsx getStaticProps: slug=${slug}, locale=${locale}`)
   const posts = await getAllPosts({ onlyNewsletter: false })
+  console.log(`[slug].tsx getStaticProps: Found ${posts.length} posts`)
+  console.log(
+    `[slug].tsx getStaticProps: Post slugs:`,
+    posts.map((p) => p.slug).join(', ')
+  )
   const post = posts.find((t) => t.slug === slug)
 
   if (!post) {
+    console.log(`[slug].tsx getStaticProps: Post not found for slug=${slug}`)
     return {
       notFound: true
     }
@@ -47,7 +54,7 @@ export async function getStaticProps({ params: { slug } }) {
       revalidate: CACHE_CONFIG.ISR.SLUG
     }
   } catch (err) {
-    console.error(err)
+    console.error(`[slug].tsx getStaticProps: Error for slug=${slug}:`, err)
     return {
       props: {
         post: null,

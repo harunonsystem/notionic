@@ -92,6 +92,12 @@ const rawGetAllPosts = async ({
         onlyWeekly
       })
 
+      console.log(`getAllPosts: Total posts after filtering: ${posts.length}`)
+      console.log(
+        `getAllPosts: Post slugs after filtering:`,
+        posts.map((p) => p.slug).join(', ')
+      )
+
       if (BLOG.sortByDate) {
         posts.sort((a, b) => b.date - a.date)
       }
