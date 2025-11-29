@@ -4,6 +4,7 @@ import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 import Layout from '@/layouts/layout'
 import { CACHE_CONFIG } from '@/lib/cache'
+import { i18nConfig } from '@/lib/i18n'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 
 const Post = ({ post, blockMap }) => {
@@ -21,13 +22,22 @@ const Post = ({ post, blockMap }) => {
 
 export async function getStaticPaths() {
   const posts = await getAllPosts({ onlyNewsletter: false })
+
+  // Generate paths for all locales
+  const paths = posts.flatMap((row) =>
+    i18nConfig.locales.map((locale) => ({
+      params: { slug: row.slug },
+      locale
+    }))
+  )
+
   return {
-    paths: posts.map((row) => `${BLOG.path}/${row.slug}`),
+    paths,
     fallback: true
   }
 }
 
-export async function getStaticProps({ params: { slug } }) {
+export async function getStaticProps({ params: { slug }, locale }) {
   const posts = await getAllPosts({ onlyNewsletter: false })
   const post = posts.find((t) => t.slug === slug)
 

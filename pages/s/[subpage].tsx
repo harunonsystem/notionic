@@ -10,6 +10,7 @@ import { BLOG } from '@/blog.config'
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 import Layout from '@/layouts/layout'
+import { i18nConfig } from '@/lib/i18n'
 import { getAllPosts, getPostBlocks } from '@/lib/notion'
 import type { Post } from '@/lib/types'
 
@@ -56,9 +57,17 @@ export async function getStaticPaths() {
 
   const heros = await getAllPosts({ onlyHidden: true })
   const heroIds = heros.map((hero) => `/s${mapPageUrl(hero.id)}`)
-  const paths = noPostsIds
+  const pathsWithoutLocale = noPostsIds
     .concat(heroIds)
     .filter((v) => !noPostsIds.includes(v) || !heroIds.includes(v))
+
+  // Generate paths for all locales
+  const paths = pathsWithoutLocale.flatMap((path) =>
+    i18nConfig.locales.map((locale) => ({
+      params: { subpage: path.replace('/s/', '') },
+      locale
+    }))
+  )
 
   return {
     paths,
@@ -70,7 +79,7 @@ export async function getStaticPaths() {
   // }
 }
 
-export async function getStaticProps({ params: { subpage } }) {
+export async function getStaticProps({ params: { subpage }, locale }) {
   const posts = await getAllPosts({ onlyNewsletter: false })
 
   let blockMap: ExtendedRecordMap | null = null

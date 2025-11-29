@@ -2,6 +2,7 @@ import { BLOG } from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
 import Container from '@/components/Container'
 import Pagination from '@/components/Pagination'
+import { i18nConfig } from '@/lib/i18n'
 import { getAllPosts } from '@/lib/notion'
 
 const Page = ({ postsToShow, page, showNext }) => {
@@ -15,7 +16,10 @@ const Page = ({ postsToShow, page, showNext }) => {
   )
 }
 
-export async function getStaticProps(context: { params: { page: number } }) {
+export async function getStaticProps(context: {
+  params: { page: number }
+  locale: string
+}) {
   const { page } = context.params // Get Current Page No.
   const posts = await getAllPosts({ onlyNewsletter: false })
   const postsToShow = posts.slice(
@@ -38,11 +42,19 @@ export async function getStaticPaths() {
   const posts = await getAllPosts({ onlyNewsletter: false })
   const totalPosts = posts.length
   const totalPages = Math.ceil(totalPosts / BLOG.postsPerPage)
+
+  // Generate paths for all locales
+  const paths = Array.from({ length: totalPages - 1 }, (_, i) => i + 2).flatMap(
+    (pageNum) =>
+      i18nConfig.locales.map((locale) => ({
+        params: { page: `${pageNum}` },
+        locale
+      }))
+  )
+
   return {
-    // remove first page, we 're not gonna handle that.
-    paths: Array.from({ length: totalPages - 1 }, (_, i) => ({
-      params: { page: `${i + 2}` }
-    })),
+    // remove first page, we're not gonna handle that.
+    paths,
     fallback: true
   }
 }
