@@ -2,11 +2,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
+const { i18nConfig } = require('./lib/i18n')
+
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   i18n: {
-    locales: ['en', 'ja'],
-    defaultLocale: 'ja',
+    locales: i18nConfig.locales,
+    defaultLocale: i18nConfig.defaultLocale,
     localeDetection: false
   },
   transpilePackages: ['dayjs'],
