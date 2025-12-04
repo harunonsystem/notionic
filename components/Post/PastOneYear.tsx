@@ -16,7 +16,7 @@ interface PastOneYearProps {
 
 export default function PastOneYear({ date }: PastOneYearProps) {
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
 
   return isOneYearPassed(date) ? (
     <div className='w-full pb-12 justify-between font-medium text-gray-500 dark:text-gray-400'>

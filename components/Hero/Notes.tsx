@@ -11,7 +11,7 @@ interface NoteHeroProps {
 
 const NoteHero = ({ blockMap }: NoteHeroProps) => {
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
   return (
     <div className='container mx-auto flex px-5 py-2 mb-10 md:flex-row flex-col items-center'>
       <div className='flex flex-col md:w-3/5 md:items-start mb-6 md:mb-0 text-left'>

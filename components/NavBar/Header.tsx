@@ -14,7 +14,7 @@ import Social from '../Common/Social'
 const NavBarComponent = React.memo(function NavBarComponent() {
   const router = useRouter()
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
   const [showMenu, setShowMenu] = useState(false)
 
   let activeMenu = ''

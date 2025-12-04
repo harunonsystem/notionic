@@ -15,7 +15,7 @@ interface SearchLayoutProps {
 const SearchLayout = ({ tags, posts, currentTag }: SearchLayoutProps) => {
   const [searchValue, setSearchValue] = useState('')
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
 
   let filteredBlogPosts = []
   if (posts) {

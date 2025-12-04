@@ -13,7 +13,7 @@ interface FooterProps {
 const Footer = ({ fullWidth }: FooterProps) => {
   const router = useRouter()
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
 
   let activeMenu = ''
   if (router.query.slug) {

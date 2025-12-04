@@ -11,7 +11,7 @@ interface PaginationProps {
 
 const Pagination = ({ page, showNext }: PaginationProps) => {
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
   const currentPage = typeof page === 'number' ? page : +page
   let additionalClassName = 'justify-between'
   if (currentPage === 1 && showNext) additionalClassName = 'justify-end'

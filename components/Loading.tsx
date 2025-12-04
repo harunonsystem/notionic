@@ -21,7 +21,7 @@ export default function Loading({ notionSlug }: LoadingProps) {
     }, 3000)
   }
 
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
   return (
     <div className='py-6 sm:py-8 lg:py-12'>
       <div className='max-w-screen-2xl px-4 md:px-8 mx-auto'>

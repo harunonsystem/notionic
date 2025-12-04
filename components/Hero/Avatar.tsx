@@ -5,7 +5,7 @@ import ProfileFile from '@/public/harunon_refia_crop.png'
 
 const Avatar = ({ className }: { className: string }) => {
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
   return (
     <div className={className}>
       <Image

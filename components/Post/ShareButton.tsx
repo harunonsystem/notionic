@@ -10,7 +10,7 @@ interface ShareButtonProps {
 
 const ShareButton = ({ title }: ShareButtonProps) => {
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
 
   const [showCopied, setShowCopied] = useState(false)
 

@@ -10,7 +10,7 @@ function Contact() {
   const [showResult, setShowResult] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
 
   const sentMessage = async (event) => {
     event.preventDefault()

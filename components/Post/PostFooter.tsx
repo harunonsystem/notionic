@@ -17,7 +17,7 @@ const PostFooter = ({ title, blockMap }: PostFooterProps) => {
   const [showPay, setShowPay] = useState(false)
   const { locale } = useRouter()
   const router = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
 
   return (
     <div className='w-full pb-12 justify-between font-medium text-gray-500 dark:text-gray-400'>

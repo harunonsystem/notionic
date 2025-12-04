@@ -16,7 +16,7 @@ interface HeroProps {
 const Hero = ({ blockMap }: HeroProps) => {
   const [showCopied, setShowCopied] = useState(false)
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
 
   const clickCopy = async () => {
     setShowCopied(true)

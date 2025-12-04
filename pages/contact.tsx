@@ -6,7 +6,7 @@ import { lang } from '@/lib/lang'
 
 export const Contact = () => {
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
   return (
     <Container title={BLOG.title} description={BLOG.description}>
       <div className='mb-8 md:mb-16 text-gray-600 dark:text-gray-200'>

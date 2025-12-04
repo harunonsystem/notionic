@@ -12,7 +12,7 @@ interface CopyMarkdownButtonProps {
 
 const CopyMarkdownButton = ({ blockMap, title }: CopyMarkdownButtonProps) => {
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
   const [showCopied, setShowCopied] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 

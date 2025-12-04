@@ -8,7 +8,7 @@ interface Page404Props {
 
 const Page404 = ({ statusCode }: Page404Props) => {
   const { locale } = useRouter()
-  const t = lang[locale]
+  const t = lang[locale || 'ja']
   return (
     <div className='py-6 sm:py-8 lg:py-12'>
       <div className='max-w-screen-2xl px-4 md:px-8 mx-auto'>
