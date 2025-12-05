@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { BLOG } from '@/blog.config'
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 import Layout from '@/layouts/layout'
@@ -37,7 +36,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params: { slug }, locale }) {
+export async function getStaticProps({ params: { slug } }) {
   const posts = await getAllPosts({ onlyNewsletter: false })
   const post = posts.find((t) => t.slug === slug)
 
