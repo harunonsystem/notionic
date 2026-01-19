@@ -114,6 +114,18 @@ module.exports = withBundleAnalyzer({
       // }
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/(.*)',
+        has: [
+          { type: 'host', value: 'harunonsystem.com' }
+        ],
+        destination: 'https://x.com/harunonsystem',
+        permanent: false
+      }
+    ]
+  },
   experimental: {
     optimizePackageImports: ['framer-motion', 'dayjs']
   }
