@@ -7,7 +7,7 @@
       "has": [
         {
           "type": "host",
-          "value": "harunonsystem.com"
+          "value": "(?:www\\.)?harunonsystem\\.com"
         }
       ],
       "destination": "https://x.com/harunonsystem",
